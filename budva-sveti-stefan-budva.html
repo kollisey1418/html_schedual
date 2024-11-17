@@ -119,6 +119,19 @@
         td {
             background-color: #ffffff;
             }
+
+        @media (max-width: 768px) {
+    .schedule-container {
+        flex-direction: column;
+    }
+    .map-container, .price-container, .timetable-container {
+        width: 100%; /* Увеличиваем ширину до 100% для мобильных устройств */
+        margin-bottom: 20px; /* Добавляем отступы между элементами */
+    }
+    table {
+        width: 100%; /* Таблицы также занимают всю ширину */
+    }
+}
     </style>
 </head>
 <body>
@@ -279,7 +292,7 @@
                 <p>Blue Ticket - €2</p>
             </div>
             <div class="price-item">
-                <img src="img/Bus_Green.png" alt="Green Stop">
+                <img src="/img/Bus_Green.png" alt="Green Stop">
                 <p>Green Ticket - €2.5</p>
             </div>
         </div>
