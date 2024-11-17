@@ -110,6 +110,10 @@ td {
     background-color: #ffffff;
 }
 
+.mobil-only {
+    display: none; /* Скрываем на ПК */
+}
+
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
     .schedule-container {
@@ -119,6 +123,20 @@ td {
         padding: 0px;
 
     }
+
+    .desktop-only {
+        display: none; /* Скрываем на телефоне */
+    }
+
+    .mobil-only {
+        display: block; /* Показываем только на телефоне */
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+        justify-content: center; /* Центрируем содержимое по горизонтали */
+        align-items: center;    /* Центрируем содержимое по вертикали */
+    }
+
 
     .price-container, .timetable-container {
         width: 90%;
@@ -138,8 +156,9 @@ td {
     </style>
 </head>
 <body>
-<div style="position: absolute; top: 20px; right: 20px;">
-        <a href="index.html" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
+<div style="position: absolute; top: 20px; left: 20px;">
+        <a href="index.html" class="home-button desktop-only" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
+        <a href="index.html" class="home-button mobil-only" style="text-decoration: none; background-color: #cc0000; color: white; border-radius: 10px; font-weight: bold;">🢠</a>
     </div>
     <div class="header">
         Mediteran Express
