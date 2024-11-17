@@ -7,129 +7,132 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #003366;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+ body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #003366;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden; /* Убирает горизонтальную прокрутку */
+}
 
-        .header {
-            background-color: #002244;
-            color: #ffffff;
-            padding: 8px;
-            text-align: center;
-            font-family: 'Tangerine', cursive;
-            font-size: 5em;
-            font-style: italic;
-            letter-spacing: 3px;
-        }
+.header {
+    background-color: #002244;
+    color: #ffffff;
+    padding: 8px;
+    text-align: center;
+    font-family: 'Tangerine', cursive;
+    font-size: 5em;
+    font-style: italic;
+    letter-spacing: 3px;
+}
 
-        .schedule-container {
-            background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            width: 95%;
-            max-width: 1200px;
-            padding: 40px;
-            margin: 40px auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+.schedule-container {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    width: 95%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-        h1 {
-            font-weight: 700;
-            color: #cc0000;
-            text-align: center;
-        }
-        h2 {
-            font-weight: 700;
-            color: #cc0000;
-            text-align: center;
-        }
+h1, h2 {
+    font-weight: 700;
+    color: #cc0000;
+    text-align: center;
+}
 
+.footer {
+    margin-top: 40px;
+    font-size: 1em;
+    color: #ffffff;
+    text-align: center;
+    background-color: #002244;
+    padding: 20px;
+    border-radius: 0 0 15px 15px;
+}
 
-        .footer {
-            margin-top: 40px;
-            font-size: 1em;
-            color: #ffffff;
-            text-align: center;
-            background-color: #002244;
-            padding: 20px;
-            border-radius: 0 0 15px 15px;
-        }
+.map-container {
+    width: 40%;
+    margin-bottom: 30px;
+}
 
-        .map-container {
-            width: 40%;
-            margin-bottom: 30px;
-        }
+#map1, #map2 {
+    height: 350px;
+    width: 100%;
+    margin: 20px auto;
+}
 
-        #map1, #map2 {
-            height: 350px;
-            width: 100%;
-            margin: 20px auto;
-        }
+.price-container {
+    width: 20%;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        @media (max-width: 768px) {
-            #map1, #map2 {
-                width: 90%;
-            }
-        .price-container {
-            display: block;
-             width: 100%;
-             margin-bottom: 10px; /* Отступ между контейнерами */
-            }
+.price-item img {
+    width: 50px; /* Настройте под свои нужды */
+    height: auto;
+    margin-bottom: 8px;
+}
 
-        .price-item {
-             text-align: center;
-            }
+.timetable-container {
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
 
-        .price-item img {
-            width: 50px; /* можно настроить по твоему вкусу */
-            height: auto; /* сохраняет пропорции */
-            margin-bottom: 8px; /* отступ между иконкой и текстом */
-            }
-        }
-        .timetable-container {
-           margin-top: 20px;
-           width: 100%;
-           overflow-x: auto;
-            }
+table {
+    width: 40%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
 
-        table {
-            width: 40%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            margin: 0 auto; /* добавляем центрирование таблицы */
-            }
+table, th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+}
 
-        table, th, td {
-            border: 1px solid #ccc;
-            text-align: center;
-            padding: 5px;
-            }
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
 
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            }
+td {
+    background-color: #ffffff;
+}
 
-        td {
-            background-color: #ffffff;
-            }
-
-        @media (max-width: 768px) {
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 550px) {
     .schedule-container {
         flex-direction: column;
+        align-items: center;
+        width: 98%;
+        padding: 0px;
+
     }
-    .map-container, .price-container, .timetable-container {
-        width: 100%; /* Увеличиваем ширину до 100% для мобильных устройств */
-        margin-bottom: 20px; /* Добавляем отступы между элементами */
+
+    .price-container, .timetable-container {
+        width: 90%;
+        margin-bottom: 20px;
     }
+
+    .map-container {
+    width: 100%; /* или любое значение, которое вам нужно */
+    margin: 10px auto; /* Уменьшите верхний/нижний отступ, если необходимо */
+    padding: 0; /* Если были внутренние отступы, убираем их */
+}
+
     table {
-        width: 100%; /* Таблицы также занимают всю ширину */
+        width: 100%;
     }
 }
     </style>
@@ -284,7 +287,7 @@
 
             </div>
             <div class="price-item">
-                <img src="/img/Bus_Red.png" alt="Red Stop">
+                <img src="img/Bus_Red.png" alt="Red Stop">
                 <p>Red Ticket - €1.5</p>
             </div>
             <div class="price-item">
@@ -292,7 +295,7 @@
                 <p>Blue Ticket - €2</p>
             </div>
             <div class="price-item">
-                <img src="/img/Bus_Green.png" alt="Green Stop">
+                <img src="img/Bus_Green.png" alt="Green Stop">
                 <p>Green Ticket - €2.5</p>
             </div>
         </div>
