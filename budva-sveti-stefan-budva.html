@@ -114,6 +114,104 @@ td {
     display: none; /* Скрываем на ПК */
 }
 
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Содержимое popup */
+.popup-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 6000px;
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Кнопка закрытия popup */
+.popup .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.popup .close:hover,
+.popup .close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Стиль таблицы */
+.popup table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.popup th, .popup td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.popup th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none; /* Скрыть по умолчанию */
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover {
+    background-color: #f2f2f2;
+}
+
+.dropdown-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .schedule-selection {
+    text-align: center;
+    margin: 20px auto;
+}
+
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
     .schedule-container {
@@ -152,7 +250,16 @@ td {
     table {
         width: 100%;
     }
+
+    .highlight {
+    background-color: yellow;
+      font-weight: bold;
 }
+
+
+
+
+    }
     </style>
 </head>
 <body>
@@ -170,135 +277,66 @@ td {
     <div id="map1"></div>
     <div class="timetable-container">
         <h2>Timetable for Stops</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Stop</th>
-                    <th>06:00</th>
-                    <th>06:30</th>
-                    <th>07:00</th>
-                    <th>07:30</th>
-                    <th>08:00</th>
-                    <th>Every 20 min</th>
-                    <th>00:00</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Budva</td>
-                    <td>06:00</td>
-                    <td>06:30</td>
-                    <td>07:00</td>
-                    <td>07:30</td>
-                    <td>08:00</td>
-                    <td>...</td>
-                    <td>00:00</td>
-                </tr>
-                <tr>
-                    <td>Crvena Zgrad*</td>
-                    <td>06:03</td>
-                    <td>06:33</td>
-                    <td>07:03</td>
-                    <td>07:33</td>
-                    <td>08:03</td>
-                    <td>...</td>
-                    <td>00:03</td>
-                </tr>
-                <tr>
-                <td>Stadion*</td>
-                <td>06:06</td>
-                <td>06:36</td>
-                <td>07:06</td>
-                <td>07:36</td>
-                <td>08:06</td>
-                <td>...</td>
-                <td>00:06</td>
-            </tr>
-            <tr>
-                <td>Aquapark*</td>
-                <td>06:09</td>
-                <td>06:39</td>
-                <td>07:09</td>
-                <td>07:39</td>
-                <td>08:09</td>
-                <td>...</td>
-                <td>00:09</td>
-            </tr>
-            <tr>
-                <td>Moc*</td>
-                <td>06:12</td>
-                <td>06:42</td>
-                <td>07:12</td>
-                <td>07:42</td>
-                <td>08:12</td>
-                <td>...</td>
-                <td>00:12</td>
-            </tr>
-            <tr>
-                <td>Belavista*</td>
-                <td>06:15</td>
-                <td>06:45</td>
-                <td>07:15</td>
-                <td>07:45</td>
-                <td>08:15</td>
-                <td>...</td>
-                <td>00:15</td>
-            </tr>
-            <tr>
-                <td>Rafailovichi*</td>
-                <td>06:18</td>
-                <td>06:48</td>
-                <td>07:18</td>
-                <td>07:48</td>
-                <td>08:18</td>
-                <td>...</td>
-                <td>00:18</td>
-            </tr>
-            <tr>
-                <td>Kamenovo*</td>
-                <td>06:21</td>
-                <td>06:51</td>
-                <td>07:21</td>
-                <td>07:51</td>
-                <td>08:21</td>
-                <td>...</td>
-                <td>00:21</td>
-            </tr>
-            <tr>
-                <td>Maestral*</td>
-                <td>06:24</td>
-                <td>06:54</td>
-                <td>07:24</td>
-                <td>07:54</td>
-                <td>08:24</td>
-                <td>...</td>
-                <td>00:24</td>
-            </tr>
-            <tr>
-                <td>Przno*</td>
-                <td>06:27</td>
-                <td>06:57</td>
-                <td>07:27</td>
-                <td>07:57</td>
-                <td>08:27</td>
-                <td>...</td>
-                <td>00:27</td>
-            </tr>
-            <tr>
-                <td>Sveti Stefan*</td>
-                <td>06:30</td>
-                <td>07:00</td>
-                <td>07:30</td>
-                <td>08:00</td>
-                <td>08:30</td>
-                <td>...</td>
-                <td>00:30</td>
-            </tr>
-            </tbody>
-        </table>
+       <div class="timetable-container">
+    <button class="schedule-button">Detailed Schedule</button>
+</div>
         <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
     </div>
 </div>
+
+      <div id="schedulePopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Detailed Schedule</h2>
+              <div class="filter-buttons">
+            <button id="departureButton" class="dropdown-button">Select Departure</button>
+            <div id="departureDropdown" class="dropdown-content">
+                <a href="#" data-station="Budva">Budva</a>
+                <a href="#" data-station="Crvena Zgrad">Crvena Zgrad</a>
+                <a href="#" data-station="Stadion">Stadion</a>
+                <a href="#" data-station="Aquapark">Aqua park</a>
+                <a href="#" data-station="Moc">Moc</a>
+                <a href="#" data-station="Belavista">Belavista</a>
+                <a href="#" data-station="Rafailovichi">Rafailovichi</a>
+                <a href="#" data-station="Kamenovo">Kamenovo</a>
+                <a href="#" data-station="Maestral">Maestral</a>
+                <a href="#" data-station="Przno">Przno</a>
+                <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
+            </div>
+
+            <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
+            <div id="arrivalDropdown" class="dropdown-content">
+                <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
+                <a href="#" data-station="Przno">Przno</a>
+                <a href="#" data-station="Maestral">Maestral</a>
+                <a href="#" data-station="Kamenovo">Kamenovo</a>
+                <a href="#" data-station="Rafailovichi">Rafailovichi</a>
+                <a href="#" data-station="Belavista">Belavista</a>
+                <a href="#" data-station="Moc">Moc</a>
+                <a href="#" data-station="Aqua park">Aqua park</a>
+                <a href="#" data-station="Stadion">Stadion</a>
+                <a href="#" data-station="Crvena Zgrad">Crvena Zgrad</a>
+            </div>
+
+            <button id="intervalButton" class="dropdown-button">Select Time Interval</button>
+            <div id="intervalDropdown" class="dropdown-content">
+                <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
+                <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
+                <a href="#" data-interval="10:00-12:00">10:00-12:00</a>
+            </div>
+
+            <button id="searchButton" class="search-button">Find Schedule</button>
+            <button id="showAllButton" class="search-button">Show All</button>
+        </div>
+     <div id="result"></div>
+
+
+    </div>
+</div>
+
+
+
+
                 <div class="price-container">
              <p><h2>Price for stops</h2></p>
                     <div class="price-item">
@@ -325,7 +363,7 @@ td {
             <div id="map2"></div>
             <div class="timetable-container">
         <h2>Timetable for Stops</h2>
-        <table>
+        <table id="routeSvetiStefanBudva">
             <thead>
                 <tr>
                             <th>Stop</th>
@@ -480,7 +518,170 @@ td {
                 map: map2
             });
         }
+
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuVZouqPoNNvzq781PhW4PJkoa9OF0hjw&callback=initMap" async defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Получаем элементы
+        const popup = document.getElementById('schedulePopup');
+        const openButton = document.querySelector('.schedule-button');
+        const closeButton = popup.querySelector('.close');
+
+        // Функция для открытия popup
+        openButton.addEventListener('click', () => {
+            popup.style.display = 'block';
+        });
+
+        // Функция для закрытия popup
+        closeButton.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Закрытие popup при клике вне окна
+        window.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const departureButton = document.getElementById('departureButton');
+    const arrivalButton = document.getElementById('arrivalButton');
+    const intervalButton = document.getElementById('intervalButton');
+    const searchButton = document.getElementById('searchButton');
+    const showAllButton = document.getElementById('showAllButton');
+
+    const departureDropdown = document.getElementById('departureDropdown');
+    const arrivalDropdown = document.getElementById('arrivalDropdown');
+    const intervalDropdown = document.getElementById('intervalDropdown');
+
+    const resultContainer = document.getElementById('result');
+
+    // Данные расписания
+    const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aqua park", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Maestral", "Przno", "Sveti Stefan"];
+    const times = {
+        "06:00": ["06:00", "06:03", "06:06", "06:09", "06:12", "06:15", "06:18", "06:21", "06:24", "06:27", "06:30"],
+        "06:30": ["06:30", "06:33", "06:36", "06:39", "06:42", "06:45", "06:48", "06:51", "06:54", "06:57", "07:00"],
+        "07:00": ["07:00", "07:03", "07:06", "07:09", "07:12", "07:15", "07:18", "07:21", "07:24", "07:27", "07:30"],
+        "07:30": ["07:30", "07:33", "07:36", "07:39", "07:42", "07:45", "07:48", "07:51", "07:54", "07:57", "08:00"],
+        "08:00": ["08:00", "08:03", "08:06", "08:09", "08:12", "08:15", "08:18", "08:21", "08:24", "08:27", "08:30"],
+        // Добавьте оставшиеся времена...
+    };
+
+    let selectedDeparture = null;
+    let selectedArrival = null;
+    let selectedInterval = null;
+
+    // Функция для управления dropdown
+    function setupDropdown(button, dropdown, callback) {
+        button.addEventListener('click', () => {
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        dropdown.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                const value = event.target.dataset.station || event.target.dataset.interval;
+                button.textContent = event.target.textContent; // Обновляем текст кнопки
+                dropdown.style.display = 'none'; // Скрываем dropdown
+                callback(value); // Сохраняем выбранное значение
+            }
+        });
+
+        // Закрываем dropdown при клике вне его
+        window.addEventListener('click', (event) => {
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    }
+
+    // Настройка dropdowns
+    setupDropdown(departureButton, departureDropdown, (value) => selectedDeparture = value);
+    setupDropdown(arrivalButton, arrivalDropdown, (value) => selectedArrival = value);
+    setupDropdown(intervalButton, intervalDropdown, (value) => selectedInterval = value);
+
+    // Функция для отображения таблицы
+function renderTable(filteredTimes) {
+    if (!filteredTimes || Object.keys(filteredTimes).length === 0) {
+        resultContainer.innerHTML = `<p>No schedule found for the selected filters.</p>`;
+        return;
+    }
+
+    resultContainer.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    ${stops.map(stop => `<th>${stop}</th>`).join('')}
+                </tr>
+            </thead>
+            <tbody>
+                ${Object.entries(filteredTimes).map(([time, timesArray]) => `
+                    <tr>
+                        <td>${time}</td>
+                        ${timesArray.map((stopTime, index) => `
+                            <td ${stops[index] === selectedDeparture || stops[index] === selectedArrival ? 'class="highlight"' : ''}>
+                                ${stopTime}
+                            </td>
+                        `).join('')}
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+        `;
+    }
+
+    // Обработчик кнопки поиска расписания
+    searchButton.addEventListener('click', () => {
+        console.log("Search button clicked"); // Проверка: нажата ли кнопка
+
+        if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+            alert('Please select departure, arrival, and interval!');
+            console.log("Missing input: ", { selectedDeparture, selectedArrival, selectedInterval });
+            return;
+        }
+
+        console.log("Selected values: ", { selectedDeparture, selectedArrival, selectedInterval });
+
+        // Преобразуем выбранный интервал в границы
+        const [start, end] = selectedInterval.split('-');
+        const startTime = parseInt(start.replace(':', ''), 10);
+        const endTime = parseInt(end.replace(':', ''), 10);
+
+        console.log("Time range: ", { startTime, endTime });
+
+        // Фильтруем расписание по времени
+        const filteredTimes = Object.fromEntries(
+            Object.entries(times).filter(([time]) => {
+                const numericTime = parseInt(time.replace(':', ''), 10);
+                return numericTime >= startTime && numericTime <= endTime;
+            })
+        );
+
+        console.log("Filtered times: ", filteredTimes);
+
+        if (Object.keys(filteredTimes).length === 0) {
+            alert('No schedule found for the selected interval!');
+            return;
+        }
+
+        renderTable(filteredTimes);
+    });
+
+    // Обработчик кнопки "Show All"
+    showAllButton.addEventListener('click', () => {
+        console.log("Show All button clicked");
+        renderTable(times);
+    });
+});
+
+</script>
+
 </body>
 </html>
