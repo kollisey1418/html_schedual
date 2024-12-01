@@ -358,145 +358,52 @@ td {
             </div>
         </div>
 
-
-        <div class="map-container">
-            <h1>Bus Route: Sveti Stefan - Budva</h1>
-            <div id="map2"></div>
-            <div class="timetable-container">
+      <div class="map-container">
+    <h1>Bus Route: Sveti Stefan - Budva</h1>
+    <div id="map2"></div>
+    <div class="timetable-container">
         <h2>Timetable for Stops</h2>
-        <table id="routeSvetiStefanBudva">
-            <thead>
-                <tr>
-                            <th>Stop</th>
-                            <th>06:20</th>
-                            <th>07:00</th>
-                            <th>07:30</th>
-                            <th>08:00</th>
-                            <th>08:30</th>
-                            <th>Every 20 min</th>
-                            <th>00:30</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Sveti Stefan</td>
-                            <td>06:20</td>
-                            <td>07:00</td>
-                            <td>07:30</td>
-                            <td>08:00</td>
-                            <td>08:30</td>
-                            <td>...</td>
-                            <td>00:30</td>
-                        </tr>
-                        <tr>
-                            <td>Vertmont</td>
-                            <td>06:23</td>
-                            <td>07:03</td>
-                            <td>07:33</td>
-                            <td>08:03</td>
-                            <td>08:33</td>
-                            <td>...</td>
-                            <td>00:33</td>
-                        </tr>
-                        <tr>
-                            <td>Adrovichi</td>
-                            <td>06:26</td>
-                            <td>07:06</td>
-                            <td>07:36</td>
-                            <td>08:06</td>
-                            <td>08:36</td>
-                            <td>...</td>
-                            <td>00:36</td>
-                        </tr>
-                        <tr>
-                            <td>Kamenovo</td>
-                            <td>06:29</td>
-                            <td>07:09</td>
-                            <td>07:39</td>
-                            <td>08:09</td>
-                            <td>08:39</td>
-                            <td>...</td>
-                            <td>00:39</td>
-                        </tr>
-                        <tr>
-                            <td>Rafailovichi</td>
-                            <td>06:32</td>
-                            <td>07:12</td>
-                            <td>07:42</td>
-                            <td>08:12</td>
-                            <td>08:42</td>
-                            <td>...</td>
-                            <td>00:42</td>
-                        </tr>
-                        <tr>
-                            <td>Brlavista</td>
-                            <td>06:35</td>
-                            <td>07:15</td>
-                            <td>07:45</td>
-                            <td>08:15</td>
-                            <td>08:45</td>
-                            <td>...</td>
-                            <td>00:45</td>
-                        </tr>
-                        <tr>
-                            <td>Moc</td>
-                            <td>06:38</td>
-                            <td>07:18</td>
-                            <td>07:48</td>
-                            <td>08:18</td>
-                            <td>08:48</td>
-                            <td>...</td>
-                            <td>00:48</td>
-                        </tr>
-                        <tr>
-                            <td>Aquapark</td>
-                            <td>06:41</td>
-                            <td>07:21</td>
-                            <td>07:51</td>
-                            <td>08:21</td>
-                            <td>08:51</td>
-                            <td>...</td>
-                            <td>00:51</td>
-                        </tr>
-                        <tr>
-                            <td>Slavija</td>
-                            <td>06:44</td>
-                            <td>07:24</td>
-                            <td>07:54</td>
-                            <td>08:24</td>
-                            <td>08:54</td>
-                            <td>...</td>
-                            <td>00:54</td>
-                        </tr>
-                        <tr>
-                            <td>Bus Station</td>
-                            <td>06:47</td>
-                            <td>07:27</td>
-                            <td>07:57</td>
-                            <td>08:27</td>
-                            <td>08:57</td>
-                            <td>...</td>
-                            <td>00:57</td>
-                        </tr>
-                        <tr>
-                            <td>Old town</td>
-                            <td>06:50</td>
-                            <td>07:30</td>
-                            <td>08:00</td>
-                            <td>08:30</td>
-                            <td>09:00</td>
-                            <td>...</td>
-                            <td>01:00</td>
-                        </tr>
-            </tbody>
-        </table>
+        <button class="schedule-button" id="scheduleButton2">Detailed Schedule</button>
         <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
     </div>
+</div>
+
+<div id="schedulePopup2" class="popup">
+    <div class="popup-content">
+        <span class="close" id="closePopup2">&times;</span>
+        <h2>Detailed Schedule</h2>
+        <div class="filter-buttons">
+            <button id="departureButton2" class="dropdown-button">Select Departure</button>
+            <div id="departureDropdown2" class="dropdown-content">
+                <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
+                <a href="#" data-station="Kamenovo">Kamenovo</a>
+                <a href="#" data-station="Budva">Budva</a>
+            </div>
+
+            <button id="arrivalButton2" class="dropdown-button">Select Arrival</button>
+            <div id="arrivalDropdown2" class="dropdown-content">
+                <a href="#" data-station="Budva">Budva</a>
+                <a href="#" data-station="Kamenovo">Kamenovo</a>
+                <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
+            </div>
+
+            <button id="intervalButton2" class="dropdown-button">Select Time Interval</button>
+            <div id="intervalDropdown2" class="dropdown-content">
+                <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
+                <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
+                <a href="#" data-interval="08:00-10:00">10:00-12:00</a>
+            </div>
+
+            <button id="searchButton2" class="search-button">Find Schedule</button>
+            <button id="showAllButton2" class="search-button">Show All</button>
         </div>
+        <div id="result2"></div>
     </div>
-    <div class="footer">
-        Contact us for more information about the schedule and routes.
-    </div>
+</div>
+    </div>>
+
+
+
     <script>
         function initMap() {
             var map1 = new google.maps.Map(document.getElementById('map1'), {
@@ -729,6 +636,130 @@ function renderTable(filteredTimes) {
     });
 });
 
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Инициализация карты
+    const initMap2 = () => {
+        const map2 = new google.maps.Map(document.getElementById('map2'), {
+            zoom: 13,
+            center: { lat: 42.2867, lng: 18.8414 } // Координаты для карты
+        });
+
+        const kmlLayer2 = new google.maps.KmlLayer({
+            url: 'https://drive.google.com/uc?id=17vJKvg5c4JtjPOYZ7EREV-At0DeMYN59',
+            map: map2
+        });
+    };
+
+    // Управление popup для map2
+    const popup2 = document.getElementById('schedulePopup2');
+    const openButton2 = document.getElementById('scheduleButton2');
+    const closeButton2 = document.getElementById('closePopup2');
+
+    openButton2.addEventListener('click', () => {
+        popup2.style.display = 'block';
+    });
+
+    closeButton2.addEventListener('click', () => {
+        popup2.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === popup2) {
+            popup2.style.display = 'none';
+        }
+    });
+
+    // Логика для выбора остановок и интервалов
+    let selectedDeparture2 = null;
+    let selectedArrival2 = null;
+    let selectedInterval2 = null;
+
+    const setupDropdown = (buttonId, dropdownId, callback) => {
+        const button = document.getElementById(buttonId);
+        const dropdown = document.getElementById(dropdownId);
+
+        button.addEventListener('click', () => {
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        dropdown.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                const value = event.target.dataset.station || event.target.dataset.interval;
+                button.textContent = event.target.textContent;
+                dropdown.style.display = 'none';
+                callback(value);
+            }
+        });
+
+        window.addEventListener('click', (event) => {
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    };
+
+    setupDropdown('departureButton2', 'departureDropdown2', (value) => selectedDeparture2 = value);
+    setupDropdown('arrivalButton2', 'arrivalDropdown2', (value) => selectedArrival2 = value);
+    setupDropdown('intervalButton2', 'intervalDropdown2', (value) => selectedInterval2 = value);
+
+    const stops = ["Sveti Stefan", "Vermont", "Adrovichi", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aqua park", "Slavija", "Obshtima", "Budva"];
+    const times2 = {
+    "06:20": ["06:20", "06:22", "06:25", "06:27", "06:30", "06:32", "06:35", "06:37", "06:40", "06:42", "06:45"],
+    "07:00": ["07:00", "07:02", "07:05", "07:07", "07:10", "07:12", "07:15", "07:17", "07:20", "07:22", "07:25"],
+    "07:30": ["07:30", "07:32", "07:35", "07:37", "07:40", "07:42", "07:45", "07:47", "07:50", "07:52", "07:55"],
+    "08:00": ["08:00", "08:02", "08:05", "08:07", "08:10", "08:12", "08:15", "08:17", "08:20", "08:22", "08:25"],
+    "08:30": ["08:30", "08:32", "08:35", "08:37", "08:40", "08:42", "08:45", "08:47", "08:50", "08:52", "08:55"]
+    };
+
+const renderTable = (filteredTimes) => {
+    const result2 = document.getElementById('result2');
+    if (!filteredTimes || Object.keys(filteredTimes).length === 0) {
+        result2.innerHTML = '<p>No schedule found.</p>';
+        return;
+    }
+
+    result2.innerHTML = `
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                ${stops.map(stop => `<th>${stop}</th>`).join('')}
+            </tr>
+        </thead>
+        <tbody>
+            ${Object.entries(filteredTimes).map(([time, timesArray]) => `
+                <tr>
+                    <td>${time}</td>
+                    ${timesArray.map((stopTime) => `
+                        <td>${stopTime}</td>
+                    `).join('')}
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+    `;
+};
+
+    document.getElementById('searchButton2').addEventListener('click', () => {
+        const filteredTimes = Object.fromEntries(
+            Object.entries(times2).filter(([time]) => {
+                const [start, end] = selectedInterval2.split('-');
+                return time >= start && time <= end;
+            })
+        );
+        renderTable(filteredTimes);
+    });
+
+    document.getElementById('showAllButton2').addEventListener('click', () => {
+        renderTable(times2);
+    });
+
+    // Инициализация карты
+    initMap2();
+});
 </script>
 
 </body>
