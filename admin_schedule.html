@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bus Schedule</title>
+    <style>
+        /* Пример простого стиля для кнопок выбора расписания */
+        .schedule-option {
+            margin: 10px;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Bus Schedule: Budva - Sveti Stefan</h1>
+    <button class="schedule-option" id="select2Buses">2 Buses (every 30 minutes)</button>
+    <button class="schedule-option" id="select3Buses">3 Buses (every 20 minutes)</button>
+
+
+  <script>
+    document.getElementById('select2Buses').addEventListener('click', () => {
+        fetch('update_schedule.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ active: '2buses' })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('select3Buses').addEventListener('click', () => {
+        fetch('update_schedule.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ active: '3buses' })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+</script>
+
+
+
+</body>
+</html>
