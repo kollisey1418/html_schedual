@@ -16,41 +16,114 @@
             font-size: 18px;
             border-radius: 5px;
         }
+
+        .selected {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+}
+
     </style>
 </head>
 <body>
-    <h1>Select Bus Schedule: Budva - Sveti Stefan</h1>
-    <button class="schedule-option" id="select2Buses">2 Buses (every 30 minutes)</button>
-    <button class="schedule-option" id="select3Buses">3 Buses (every 20 minutes)</button>
+    <h1>Budva - Sveti Stefan</h1>
+    <button class="schedule-option" id="BdSvselect2Buses">2 Buses</button>
+    <button class="schedule-option" id="BdSvselect3Buses">3 Buses</button>
+
+    <h1>Budva - Petrovac</h1>
+    <button class="schedule-option" id="selectBusPetrovac">1 Bus</button>
+    <button class="schedule-option" id="select2BusesPetrovac">2 Buses</button>
 
 
   <script>
-    document.getElementById('select2Buses').addEventListener('click', () => {
-        fetch('update_schedule.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ active: '2buses' })
-        })
+    document.getElementById('BdSvselect2Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '2buses'})
+      })
         .then(response => response.json())
         .then(data => console.log(data.message))
         .catch(error => console.error('Error updating schedule:', error));
     });
 
-    document.getElementById('select3Buses').addEventListener('click', () => {
-        fetch('update_schedule.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ active: '3buses' })
-        })
+    document.getElementById('BdSvselect3Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '3buses'})
+      })
         .then(response => response.json())
         .then(data => console.log(data.message))
         .catch(error => console.error('Error updating schedule:', error));
     });
-</script>
+
+    document.getElementById('selectBusPetrovac').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_petrovac: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+      document.getElementById('select2BusesPetrovac').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_petrovac: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+      </script>
+
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Кнопки для Budva-Sveti Stefan
+    const svetiStefanButtons = [
+        document.getElementById('BdSvselect2Buses'),
+        document.getElementById('BdSvselect3Buses')
+    ];
+
+    // Кнопки для Budva-Petrovac
+    const petrovacButtons = [
+        document.getElementById('select2BusesPetrovac'),
+        document.getElementById('select1BusPetrovac')
+    ];
+
+    // Функция для управления подсветкой
+    const addHighlighting = (buttons) => {
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Удаляем класс 'selected' у всех кнопок в группе
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                // Добавляем класс 'selected' к нажатой кнопке
+                button.classList.add('selected');
+            });
+        });
+    };
+
+    // Добавляем подсветку для каждой группы кнопок
+    addHighlighting(svetiStefanButtons);
+    addHighlighting(petrovacButtons);
+});
+
+  </script>
 
 
 

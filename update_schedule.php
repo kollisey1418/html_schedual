@@ -10,13 +10,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     // Проверяем, что поле "active" существует
-    if (isset($data['active'])) {
+    if (isset($data['active']) || isset($data['active_petrovac'])) {
         // Путь к файлу JSON
         $file = 'active_schedule.json';
 
+        // Читаем текущее содержимое файла
+        $currentData = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
+
+        // Обновляем данные для Budva-Sveti Stefan, если они переданы
+        if (isset($data['active'])) {
+            $currentData['active'] = $data['active'];
+        }
+
+        // Обновляем данные для Budva-Petrovac, если они переданы
+        if (isset($data['active_petrovac'])) {
+            $currentData['active_petrovac'] = $data['active_petrovac'];
+        }
+
         // Пытаемся записать данные в файл
         try {
-            file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+            file_put_contents($file, json_encode($currentData, JSON_PRETTY_PRINT)); // Здесь используется $currentData
             echo json_encode(['status' => 'success', 'message' => 'Schedule updated successfully.']);
         } catch (Exception $e) {
             echo json_encode(['status' => 'error', 'message' => 'Failed to update schedule.']);
