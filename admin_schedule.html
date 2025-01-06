@@ -31,7 +31,7 @@
     <button class="schedule-option" id="BdSvselect3Buses">3 Buses</button>
 
     <h1>Budva - Petrovac</h1>
-    <button class="schedule-option" id="selectBusPetrovac">1 Bus</button>
+    <button class="schedule-option" id="select1BusPetrovac">1 Bus</button>
     <button class="schedule-option" id="select2BusesPetrovac">2 Buses</button>
 
 
@@ -62,7 +62,7 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
-    document.getElementById('selectBusPetrovac').addEventListener('click', () => {
+    document.getElementById('select1BusPetrovac').addEventListener('click', () => {
       fetch('update_schedule.php', {
         method: 'POST',
         headers: {

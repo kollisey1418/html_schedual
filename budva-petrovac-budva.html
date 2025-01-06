@@ -74,13 +74,13 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .price-item img {
     width: 50px; /* Настройте под свои нужды */
     height: auto;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .timetable-container {
@@ -361,9 +361,9 @@ td {
 
 
                 <div class="price-container">
-             <p><h2>Price for stops</h2></p>
+             <h2>Price for stops</h2>
                     <div class="price-item">
-                        <p><h2> ↓ </h2></p>
+                        <h2> ↓ </h2>
 
             </div>
             <div class="price-item">
@@ -377,6 +377,10 @@ td {
             <div class="price-item">
                 <img src="img/Bus_Green.png" alt="Green Stop">
                 <p>Green Ticket - €2.5</p>
+            </div>
+            <div class="price-item">
+                <img src="img/Bus_Grey.png" alt="Grey Stop">
+                <p>Green Ticket - €3.5</p>
             </div>
         </div>
 
@@ -479,7 +483,7 @@ td {
             });
 
             var kmlLayer2 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=17vJKvg5c4JtjPOYZ7EREV-At0DeMYN59',
+                url: 'https://drive.google.com/uc?id=10I9TCMZVVESSWnryu4Fw5Axtj6Tesl7U',
                 map: map2
             });
         }
@@ -750,7 +754,7 @@ function loadActiveSchedule2() {
             }
 
             lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
-            const scheduleFile = data.active_petrovac === '2buses' ? 'sveti_stefan-budva_2buses.json' : 'sveti_stefan-budva_3buses.json';
+            const scheduleFile = data.active_petrovac === '1bus' ? 'petrovac-budva_1bus.json' : 'petrovac-budva_2buses.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -772,7 +776,7 @@ function loadActiveSchedule2() {
 // Функция для рендера таблицы для второго маршрута
 function renderTable2(schedule) {
     const resultContainer2 = document.getElementById('result2');
-    const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
+    const stops2 = ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezevici", "Giardino", "Rezevici", "Blizikuce", "Adrovici", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
 
     if (!schedule || Object.keys(schedule).length === 0) {
         resultContainer2.innerHTML = `<p>No schedule found for the selected filters.</p>`;
@@ -864,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupDropdown('arrivalButton2', 'arrivalDropdown2', (value) => selectedArrival2 = value);
     setupDropdown('intervalButton2', 'intervalDropdown2', (value) => selectedInterval2 = value);
 
-    const stops = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
+    const stops = ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezevici", "Giardino", "Rezevici", "Blizikuce", "Adrovici", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
 
     const renderFilteredTable = (filteredTimes) => {
         const result2 = document.getElementById('result2');
