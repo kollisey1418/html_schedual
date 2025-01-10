@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     // Проверяем, что поле "active" существует
-    if (isset($data['active']) || isset($data['active_petrovac'])) {
+    if (isset($data['active']) || isset($data['active_petrovac']) || isset($data['active_lastva'])) {
         // Путь к файлу JSON
         $file = 'active_schedule.json';
 
@@ -25,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Обновляем данные для Budva-Petrovac, если они переданы
         if (isset($data['active_petrovac'])) {
             $currentData['active_petrovac'] = $data['active_petrovac'];
+        }
+
+        // Обновляем данные для Budva-Lastva, если они переданы
+        if (isset($data['active_lastva'])) {
+            $currentData['active_lastva'] = $data['active_lastva'];
         }
 
         // Пытаемся записать данные в файл

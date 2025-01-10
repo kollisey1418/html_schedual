@@ -34,6 +34,10 @@
     <button class="schedule-option" id="select1BusPetrovac">1 Bus</button>
     <button class="schedule-option" id="select2BusesPetrovac">2 Buses</button>
 
+    <h1>Budva - Lastav</h1>
+    <button class="schedule-option" id="select1BusLastva">1 Bus</button>
+    <button class="schedule-option" id="select2BusesLastva">2 Buses</button>
+
 
   <script>
     document.getElementById('BdSvselect2Buses').addEventListener('click', () => {
@@ -88,6 +92,32 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+      document.getElementById('select1BusLastva').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_lastva: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('select2BusesLastva').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_lastva: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
       </script>
 
 
@@ -106,6 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('select1BusPetrovac')
     ];
 
+        // Кнопки для Budva-Lastva
+    const lastvaButtons = [
+        document.getElementById('select1BusLastva'),
+        document.getElementById('select2BusesLastva')
+    ];
+
     // Функция для управления подсветкой
     const addHighlighting = (buttons) => {
         buttons.forEach(button => {
@@ -121,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Добавляем подсветку для каждой группы кнопок
     addHighlighting(svetiStefanButtons);
     addHighlighting(petrovacButtons);
+    addHighlighting(lastvaButtons);
 });
 
   </script>
