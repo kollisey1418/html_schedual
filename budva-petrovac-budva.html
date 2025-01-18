@@ -213,7 +213,16 @@ td {
     margin: 20px auto;
 }
 
-
+            .site-version {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
 
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
@@ -546,6 +555,7 @@ td {
 // Глобальная переменная для текущего расписания
 let currentSchedule = null;
 let lastUpdated = null;
+let isShowAllClicked = false; //Информация, если Show All не нажата
 
 // Функция для загрузки расписания
 function loadActiveSchedule() {
@@ -611,6 +621,8 @@ function renderTable(schedule) {
     resultContainer.style.display = 'block'; // Показываем расписание
 
 }
+
+
 
 // Настройка событий и автоматического обновления
 document.addEventListener('DOMContentLoaded', () => {
@@ -708,6 +720,22 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
+document.getElementById('showAllButton').addEventListener('click', () => {
+    isShowAllClicked = true;  // Запоминаем, что кнопка "Show All" была нажата
+    // Здесь можно добавить код для показа расписания, если это нужно
+});
+
+document.getElementById('searchButton').addEventListener('click', () => {
+    if (!isShowAllClicked) {
+        // Если "Show All" не было нажато, показываем сообщение
+        alert("Please click 'Show All' to load the schedule before searching.");
+    } else {
+        // Если "Show All" было нажато, выполняем поиск расписания
+        loadScheduleData();  // Пример вызова функции для загрузки данных
+    }
+});
+
+
 document.getElementById('searchButton').addEventListener('click', () => {
     if (!currentSchedule) {
         alert("Schedule data is not loaded yet. Please try again later.");
@@ -741,6 +769,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 // Глобальная переменная для текущего расписания
 let currentSchedule2 = null;
 let lastUpdated2 = null;
+let isShowAllClicked2 = false;//Информация, если Show All не нажата
 
 // Функция для загрузки расписания
 function loadActiveSchedule2() {
@@ -899,6 +928,22 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
+    document.getElementById('showAllButton2').addEventListener('click', () => {
+    isShowAllClicked = true;  // Запоминаем, что кнопка "Show All" была нажата
+    // Здесь можно добавить код для показа расписания, если это нужно
+});
+
+document.getElementById('searchButton2').addEventListener('click', () => {
+    if (!isShowAllClicked2) {
+        // Если "Show All" не было нажато, показываем сообщение
+        alert("Please click 'Show All' to load the schedule before searching.");
+    } else {
+        // Если "Show All" было нажато, выполняем поиск расписания
+        loadScheduleData();  // Пример вызова функции для загрузки данных
+    }
+});
+
+
     document.getElementById('searchButton2').addEventListener('click', () => {
         if (!currentSchedule2) {
             alert("Schedule data is not loaded yet. Please try again later.");
@@ -930,7 +975,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+<div class="site-version">Version: Beta 1.0</div>
 
 
 </body>
