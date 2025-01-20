@@ -28,6 +28,7 @@
     letter-spacing: 3px;
 }
 
+
 .schedule-container {
     background-color: #ffffff;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -281,7 +282,7 @@ td {
         <a href="index.html" class="home-button mobil-only" style="text-decoration: none; background-color: #cc0000; color: white; border-radius: 10px; font-weight: bold;">⬅</a>
     </div>
     <div class="header">
-        Mediteran Express
+Mediteran Express
     </div>
     <div class="schedule-container">
 
@@ -613,9 +614,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = document.getElementById(buttonId);
         const dropdown = document.getElementById(dropdownId);
 
-        button.addEventListener('click', () => {
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
+    // При клике на кнопку показываем или скрываем выпадающий список
+    button.addEventListener('click', (event) => {
+        // Получаем координаты кнопки для корректного позиционирования списка
+        const buttonRect = button.getBoundingClientRect(); // Получаем размеры и позицию кнопки
+        const dropdownHeight = dropdown.offsetHeight;
+
+         // Устанавливаем позицию списка под кнопкой
+        dropdown.style.left = `${buttonRect.left}px`;  // Позиционируем список по оси X (горизонтально)
+        dropdown.style.top = `${buttonRect.bottom}px`; // Позиционируем список по оси Y (вертикально)
+
+        // Показываем или скрываем текущий список
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
 
         dropdown.addEventListener('click', (event) => {
             if (event.target.tagName === 'A') {
@@ -865,9 +876,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = document.getElementById(buttonId);
         const dropdown = document.getElementById(dropdownId);
 
-        button.addEventListener('click', () => {
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
+    // При клике на кнопку показываем или скрываем выпадающий список
+    button.addEventListener('click', (event) => {
+        // Получаем координаты кнопки для корректного позиционирования списка
+        const buttonRect = button.getBoundingClientRect(); // Получаем размеры и позицию кнопки
+        const dropdownHeight = dropdown.offsetHeight;
+
+         // Устанавливаем позицию списка под кнопкой
+        dropdown.style.left = `${buttonRect.left}px`;  // Позиционируем список по оси X (горизонтально)
+        dropdown.style.top = `${buttonRect.bottom}px`; // Позиционируем список по оси Y (вертикально)
+
+        // Показываем или скрываем текущий список
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
 
         dropdown.addEventListener('click', (event) => {
             if (event.target.tagName === 'A') {
