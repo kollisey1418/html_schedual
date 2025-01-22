@@ -176,6 +176,7 @@ td {
 
 .dropdown-content {
     display: none; /* Скрыть по умолчанию */
+    list-style: none;
     position: absolute;
     background-color: white;
     border: 1px solid #ccc;
@@ -324,24 +325,7 @@ td {
                     </div>
 
                     <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
-                    <div id="arrivalDropdown" class="dropdown-content">
-                        <a href="#" data-station="Buljarica">Buljarica</a>
-                        <a href="#" data-station="Petrovac">Petrovac</a>
-                        <a href="#" data-station="Bus Station (Petrovac)">Bus Station (Petrovac)</a>
-                        <a href="#" data-station="Monastery Rezevici">Monastery Rezevici</a>
-                        <a href="#" data-station="Giardino">Giardino</a>
-                        <a href="#" data-station="Rezevici">Rezevici</a>
-                        <a href="#" data-station="Blizikuce">Blizikuce</a>
-                        <a href="#" data-station="Boskovic">Boskovic</a>
-                        <a href="#" data-station="Adrovici">Adrovici</a>
-                        <a href="#" data-station="Kamenovo">Kamenovo</a>
-                        <a href="#" data-station="Rafailovichi">Rafailovichi</a>
-                        <a href="#" data-station="Belavista">Belavista</a>
-                        <a href="#" data-station="Moc">Moc</a>
-                        <a href="#" data-station="Aqua park">Aqua park</a>
-                        <a href="#" data-station="Stadion">Stadion</a>
-                        <a href="#" data-station="Crvena Zgrad">Crvena Zgrad</a>
-                    </div>
+                    <div id="arrivalDropdown" class="dropdown-content"></div>
 
                     <button id="intervalButton" class="dropdown-button">Select Time Interval</button>
                     <div id="intervalDropdown" class="dropdown-content">
@@ -390,7 +374,7 @@ td {
             </div>
             <div class="price-item">
                 <img src="img/Bus_Grey.png" alt="Grey Stop">
-                <p>Green Ticket - €3.5</p>
+                <p>Grey Ticket - €3.5</p>
             </div>
         </div>
 
@@ -411,7 +395,6 @@ td {
         <div class="filter-buttons">
             <button id="departureButton2" class="dropdown-button">Select Departure</button>
             <div id="departureDropdown2" class="dropdown-content">
-                     <a href="#" data-station="Buljarica">Buljarica</a>
                         <a href="#" data-station="Petrovac">Petrovac</a>
                         <a href="#" data-station="Bus Station (Petrovac)">Bus Station (Petrovac)</a>
                         <a href="#" data-station="Monastery Rezevici">Monastery Rezevici</a>
@@ -430,25 +413,7 @@ td {
             </div>
 
             <button id="arrivalButton2" class="dropdown-button">Select Arrival</button>
-            <div id="arrivalDropdown2" class="dropdown-content">
-                        <a href="#" data-station="Budva">Budva</a>
-                        <a href="#" data-station="Crvena Zgrad">Crvena Zgrad</a>
-                        <a href="#" data-station="Stadion">Stadion</a>
-                        <a href="#" data-station="Aquapark">Aqua park</a>
-                        <a href="#" data-station="Moc">Moc</a>
-                        <a href="#" data-station="Belavista">Belavista</a>
-                        <a href="#" data-station="Rafailovichi">Rafailovichi</a>
-                        <a href="#" data-station="Kamenovo">Kamenovo</a>
-                        <a href="#" data-station="Adrovici">Adrovici</a>
-                        <a href="#" data-station="Boskovic">Boskovic</a>
-                        <a href="#" data-station="Blizikuce">Blizikuce</a>
-                        <a href="#" data-station="Rezevici">Rezevici</a>
-                        <a href="#" data-station="Giardino">Giardino</a>
-                        <a href="#" data-station="Monastery Rezevici">Monastery Rezevici</a>
-                        <a href="#" data-station="Bus Station (Petrovac)">Bus Station (Petrovac)</a>
-                        <a href="#" data-station="Petrovac">Petrovac</a>
-                        <a href="#" data-station="Buljarica">Buljarica</a>
-            </div>
+            <div id="arrivalDropdown2" class="dropdown-content"></div>
 
             <button id="intervalButton2" class="dropdown-button">Select Time Interval</button>
             <div id="intervalDropdown2" class="dropdown-content">
@@ -553,13 +518,29 @@ td {
     </script>
 
 <script>
-// Глобальная переменная для текущего расписания
-let currentSchedule = null;
-let lastUpdated = null;
-let isShowAllClicked = false; //Информация, если Show All не нажата
+    // Глобальная переменная для текущего расписания
+    let currentSchedule = null;
+    let lastUpdated = null;
+    let isShowAllClicked = false; // Запоминаем, нажата ли кнопка "Show All"
 
-// Функция для загрузки расписания
-function loadActiveSchedule() {
+    const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aqua park", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Adrovici", "Boskovic", "Blizikuce", "Rezevici", "Giardino", "Monastery Rezevici", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
+
+    function updateArrivalDropdown(selectedDeparture) {
+  const departureIndex = stops.indexOf(selectedDeparture);
+  const allowedArrivals = stops.slice(departureIndex + 1);
+
+  const arrivalDropdown = document.getElementById('arrivalDropdown');
+  arrivalDropdown.innerHTML = ''; // Очищаем старые пункты
+
+  allowedArrivals.forEach(station => {
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#" data-station="${station}">${station}</a>`;
+    arrivalDropdown.appendChild(li);
+  });
+}
+
+    // Функция для загрузки расписания
+    function loadActiveSchedule() {
     return fetch('active_schedule.json')
         .then(response => response.json())
         .then(data => {
@@ -569,7 +550,7 @@ function loadActiveSchedule() {
                 return; // Если данных нет изменений, ничего не делаем
             }
 
-            lastUpdated = data.lastUpdated; // Обновляем метку времени
+            lastUpdated = data.lastUpdated;
             const scheduleFile = data.active_petrovac === '2buses' ? 'budva-petrovac_2buses.json' : 'budva-petrovac_1bus.json';
             return fetch(scheduleFile).then(response => response.json());
         })
@@ -577,12 +558,11 @@ function loadActiveSchedule() {
             currentSchedule = scheduleData; // Сохраняем данные в глобальную переменную
             console.log('Schedule loaded into memory:', currentSchedule); // Для отладки
             if (scheduleData) {
-                currentSchedule = scheduleData; // Обновляем глобальную переменную
                 console.log('Schedule updated:', currentSchedule);
 
                 // Обновляем таблицу только если она видима
                 if (document.getElementById('result').style.display === 'block') {
-                    renderTable(currentSchedule);
+                    renderTable(scheduleData); // Используем scheduleData, а не currentSchedule
                 }
             }
         })
@@ -590,12 +570,16 @@ function loadActiveSchedule() {
 }
 
 
-// Функция для рендера таблицы
-function renderTable(schedule) {
+    // Функция для рендера таблицы
+    function renderTable(schedule) {
     const resultContainer = document.getElementById('result');
-    const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aqua park", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Adrovici", "Boskovic", "Blizikuce", "Rezevici", "Giardino", "Monastery Rezevici", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
 
-    if (!schedule || Object.keys(schedule).length === 0) {
+
+        // Проверяем структуру schedule
+    console.log('Schedule:', schedule);
+
+    if (!schedule || schedule.length === 0) {
+       console.error('Invalid schedule structure:', schedule);
         resultContainer.innerHTML = `<p>No schedule found for the selected filters.</p>`;
         return;
     }
@@ -609,23 +593,65 @@ function renderTable(schedule) {
                 </tr>
             </thead>
             <tbody>
-                ${Object.entries(schedule).map(([time, stops]) => `
-                    <tr>
-                        <td>${time}</td>
-                        ${stops.map(stopTime => `<td>${stopTime || '-'}</td>`).join('')}
-                    </tr>
-                `).join('')}
+                ${schedule.map(({ time, osta }) => {
+                     console.log('Osta:', osta);
+
+
+                     if (!Array.isArray(osta)) {
+                        return `<tr><td>${time}</td>${'<td>-</td>'.repeat(osta.length)}</tr>`;
+                    }
+
+                    return `
+                        <tr>
+                            <td>${time}</td>
+                            ${osta.map(stopTime => `<td>${stopTime || '-'}</td>`).join('')}
+                        </tr>
+                    `;
+                }).join('')}
             </tbody>
         </table>
     `;
 
     resultContainer.style.display = 'block'; // Показываем расписание
-
 }
 
+    // Функция для рендера отфильтрованных данных
+    function renderFilteredTable(filteredTimes, selectedDeparture, selectedArrival) {
+    const result = document.getElementById('result');
+    result.style.display = 'block';
 
+    if (!filteredTimes || filteredTimes.length === 0) {
+        result.innerHTML = '<p>No schedule found.</p>';
+        return;
+    }
 
-// Настройка событий и автоматического обновления
+    // Используем глобальную переменную stops (либо объявите const stops = [...] здесь)
+    const departureIndex = stops.indexOf(selectedDeparture);
+    const arrivalIndex   = stops.indexOf(selectedArrival);
+
+    result.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>${selectedDeparture}</th>
+                    <th>${selectedArrival}</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${filteredTimes.map(({ time, osta }) => `
+                    <tr>
+                        <td>${time}</td>
+                        <td>${osta[departureIndex] || '-'}</td>
+                        <td>${osta[arrivalIndex]   || '-'}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+  // Настройка событий и автоматического обновления
 document.addEventListener('DOMContentLoaded', () => {
     loadActiveSchedule(); // Первоначальная загрузка
 
@@ -653,31 +679,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Обработчик для фильтрации расписания
 document.addEventListener('DOMContentLoaded', () => {
     let selectedDeparture = null;
     let selectedArrival = null;
     let selectedInterval = null;
-
-
 
     // Настройка выпадающих списков
     const setupDropdown = (buttonId, dropdownId, callback) => {
         const button = document.getElementById(buttonId);
         const dropdown = document.getElementById(dropdownId);
 
-    // При клике на кнопку показываем или скрываем выпадающий список
-    button.addEventListener('click', (event) => {
-        // Получаем координаты кнопки для корректного позиционирования списка
-        const buttonRect = button.getBoundingClientRect(); // Получаем размеры и позицию кнопки
-        const dropdownHeight = dropdown.offsetHeight;
-
-         // Устанавливаем позицию списка под кнопкой
-        dropdown.style.left = `${buttonRect.left}px`;  // Позиционируем список по оси X (горизонтально)
-        dropdown.style.top = `${buttonRect.bottom}px`; // Позиционируем список по оси Y (вертикально)
-
-        // Показываем или скрываем текущий список
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    });
+        button.addEventListener('click', (event) => {
+            const buttonRect = button.getBoundingClientRect();
+            dropdown.style.left = `${buttonRect.left}px`;
+            dropdown.style.top = `${buttonRect.bottom}px`;
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
 
         dropdown.addEventListener('click', (event) => {
             if (event.target.tagName === 'A') {
@@ -695,103 +713,66 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Настраиваем кнопки
-    setupDropdown('departureButton', 'departureDropdown', (value) => selectedDeparture = value);
+    setupDropdown('departureButton', 'departureDropdown', (value) => { selectedDeparture = value; updateArrivalDropdown(value); });
     setupDropdown('arrivalButton', 'arrivalDropdown', (value) => selectedArrival = value);
     setupDropdown('intervalButton', 'intervalDropdown', (value) => selectedInterval = value);
 
-    const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aqua park", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Adrovici", "Boskovic", "Blizikuce", "Rezevici", "Giardino", "Monastery Rezevici", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
-
-    const renderFilteredTable = (filteredTimes) => {
-        const result = document.getElementById('result');
-        if (!filteredTimes || Object.keys(filteredTimes).length === 0) {
-            result.innerHTML = '<p>No schedule found.</p>';
-            return;
-        }
-
-        result.innerHTML = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>${selectedDeparture}</th>
-                    <th>${selectedArrival}</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${Object.entries(filteredTimes).map(([time, stopTimes]) => `
-                    <tr>
-                        <td>${time}</td>
-                        <td>${stopTimes[stops.indexOf(selectedDeparture)] || '-'}</td>
-                        <td>${stopTimes[stops.indexOf(selectedArrival)] || '-'}</td>
-                    </tr>
-                `).join('')}
-            </tbody>
-        </table>
-        `;
-    };
-
-document.getElementById('showAllButton').addEventListener('click', () => {
+ document.getElementById('showAllButton').addEventListener('click', () => {
     isShowAllClicked = true;  // Запоминаем, что кнопка "Show All" была нажата
     // Здесь можно добавить код для показа расписания, если это нужно
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
     if (!isShowAllClicked) {
-        // Если "Show All" не было нажато, показываем сообщение
         alert("Please click 'Show All' to load the schedule before searching.");
     } else {
-        // Если "Show All" было нажато, выполняем поиск расписания
-        loadScheduleData();  // Пример вызова функции для загрузки данных
-    }
-});
-
-
-document.getElementById('searchButton').addEventListener('click', () => {
-    if (!currentSchedule) {
-        alert("Schedule data is not loaded yet. Please try again later.");
-        return;
-    }
-
-    if (!selectedDeparture || !selectedArrival || !selectedInterval) {
-        alert("Please select Departure, Arrival, and Time Interval.");
-        return;
-    }
-
-    const [start, end] = selectedInterval.split('-');
-    const filteredTimes = Object.fromEntries(
-        Object.entries(currentSchedule).filter(([time]) => {
-            // Логика для учета перехода через полночь
+        const [start, end] = selectedInterval.split('-');
+        const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {
-                return time >= start || time <= end; // Учитываем обе стороны
+                return time >= start || time <= end;
             }
             return time >= start && time <= end;
-        })
-    );
+        });
 
-    renderFilteredTable(filteredTimes);
+        // Передаём и filteredTimes, и выбранные станции
+        renderFilteredTable(filteredTimes, selectedDeparture, selectedArrival);
+    }
 });
 });
-
-
 </script>
 
+
     <script>
-// Глобальная переменная для текущего расписания
-let currentSchedule2 = null;
-let lastUpdated2 = null;
-let isShowAllClicked2 = false;//Информация, если Show All не нажата
+    // Глобальная переменная для текущего расписания второго блока
+    let currentSchedule2 = null;
+    let lastUpdated2 = null;
+    let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
+
+    const stops2 =  ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezevici", "Giardino", "Rezevici", "Blizikuce", "Adrovici", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
+
+     function updateArrivalDropdown2(selectedDeparture) {
+        const departureIndex = stops2.indexOf(selectedDeparture);
+        const allowedArrivals = stops2.slice(departureIndex + 1);
+
+        const arrivalDropdown = document.getElementById('arrivalDropdown2');
+        arrivalDropdown.innerHTML = ''; // Очищаем старые пункты
+
+        allowedArrivals.forEach(station => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#" data-station="${station}">${station}</a>`;
+            arrivalDropdown.appendChild(li);
+        });
+    }
 
 // Функция для загрузки расписания
-function loadActiveSchedule2() {
-    return fetch('active_schedule.json')
-        .then(response => response.json())
-        .then(data => {
-            // Проверяем, изменились ли данные
-            if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
-                console.log("No changes in schedule data.");
-                return; // Если данных нет изменений, ничего не делаем
-            }
+    function loadActiveSchedule2() {
+        return fetch('active_schedule.json')
+            .then(response => response.json())
+            .then(data => {
+                if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
+                    console.log("No changes in schedule data.");
+                    return;
+                }
 
             lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
             const scheduleFile = data.active_petrovac === '1bus' ? 'petrovac-budva_1bus.json' : 'petrovac-budva_2buses.json';
@@ -799,204 +780,171 @@ function loadActiveSchedule2() {
         })
         .then(scheduleData => {
             currentSchedule2 = scheduleData; // Сохраняем данные в глобальную переменную
-            console.log('Schedule loaded into memory:', currentSchedule); // Для отладки
-            if (scheduleData) {
-                currentSchedule2 = scheduleData; // Обновляем глобальную переменную
-                console.log('Schedule updated:', currentSchedule2);
 
-                // Обновляем таблицу только если она видима
-                if (document.getElementById('result').style.display === 'block') {
-                    renderTable(currentSchedule2);
+             if (document.getElementById('result2').style.display === 'block') {
+                    renderTable2(currentSchedule2);
                 }
-            }
-        })
-        .catch(error => console.error('Error loading schedule:', error));
-}
+            })
+            .catch(error => console.error('Error loading schedule:', error));
+    }
+
 
 // Функция для рендера таблицы для второго маршрута
 function renderTable2(schedule) {
-    const resultContainer2 = document.getElementById('result2');
-    const stops2 = ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezevici", "Giardino", "Rezevici", "Blizikuce", "Adrovici", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
+    const resultContainer = document.getElementById('result2');
 
-    if (!schedule || Object.keys(schedule).length === 0) {
-        resultContainer2.innerHTML = `<p>No schedule found for the selected filters.</p>`;
-        return;
-    }
-
-    resultContainer2.innerHTML = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    ${stops2.map(stop => `<th>${stop}</th>`).join('')}
-                </tr>
-            </thead>
-            <tbody>
-                ${Object.entries(schedule).map(([time, stopsArray]) => `
-                    <tr>
-                        <td>${time}</td>
-                        ${stopsArray.map(stopTime => `<td>${stopTime || '-'}</td>`).join('')}
-                    </tr>
-                `).join('')}
-            </tbody>
-        </table>
-    `;
-
-    resultContainer2.style.display = 'block'; // Показываем расписание
-}
-
-// Настройка событий и автоматического обновления
-document.addEventListener('DOMContentLoaded', () => {
-    loadActiveSchedule2(); // Первоначальная загрузка
-
-    // Устанавливаем интервал для автоматического обновления
-    setInterval(() => {
-        loadActiveSchedule2();
-    }, 5 * 60 * 1000); // Каждые 5 минут
-});
-
-// Привязка событий для второго маршрута
-document.addEventListener('DOMContentLoaded', () => {
-    const showAllButton2 = document.getElementById('showAllButton2');
-    const resultContainer2 = document.getElementById('result2');
-
-    // Скрываем расписание по умолчанию
-    resultContainer2.style.display = 'none';
-
-    // Показываем расписание только при нажатии на кнопку "Show All"
-    showAllButton2.addEventListener('click', () => {
-        if (currentSchedule2) {
-            renderTable2(currentSchedule2); // Отображаем уже загруженное расписание
-        } else {
-            loadActiveSchedule2(); // Загружаем и отображаем расписание
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    let selectedDeparture2 = null;
-    let selectedArrival2 = null;
-    let selectedInterval2 = null;
-
-    // Настройка выпадающих списков
-    const setupDropdown = (buttonId, dropdownId, callback) => {
-        const button = document.getElementById(buttonId);
-        const dropdown = document.getElementById(dropdownId);
-
-    // При клике на кнопку показываем или скрываем выпадающий список
-    button.addEventListener('click', (event) => {
-        // Получаем координаты кнопки для корректного позиционирования списка
-        const buttonRect = button.getBoundingClientRect(); // Получаем размеры и позицию кнопки
-        const dropdownHeight = dropdown.offsetHeight;
-
-         // Устанавливаем позицию списка под кнопкой
-        dropdown.style.left = `${buttonRect.left}px`;  // Позиционируем список по оси X (горизонтально)
-        dropdown.style.top = `${buttonRect.bottom}px`; // Позиционируем список по оси Y (вертикально)
-
-        // Показываем или скрываем текущий список
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-        dropdown.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A') {
-                const value = event.target.dataset.station || event.target.dataset.interval;
-                button.textContent = event.target.textContent;
-                dropdown.style.display = 'none';
-                callback(value);
-            }
-        });
-
-        window.addEventListener('click', (event) => {
-            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-    };
-
-    // Настраиваем кнопки
-    setupDropdown('departureButton2', 'departureDropdown2', (value) => selectedDeparture2 = value);
-    setupDropdown('arrivalButton2', 'arrivalDropdown2', (value) => selectedArrival2 = value);
-    setupDropdown('intervalButton2', 'intervalDropdown2', (value) => selectedInterval2 = value);
-
-    const stops = ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezevici", "Giardino", "Rezevici", "Blizikuce", "Adrovici", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
-
-    const renderFilteredTable = (filteredTimes) => {
-        const result2 = document.getElementById('result2');
-        if (!filteredTimes || Object.keys(filteredTimes).length === 0) {
-            result2.innerHTML = '<p>No schedule found.</p>';
+     if (!Array.isArray(schedule) || schedule.length === 0) {
+            resultContainer.innerHTML = '<p>No schedule found.</p>';
             return;
         }
 
-        result2.innerHTML = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>${selectedDeparture2}</th>
-                    <th>${selectedArrival2}</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${Object.entries(filteredTimes).map(([time, stopTimes]) => `
+        const tableHeader = `<tr><th>Time</th>${stops2.map(stop => `<th>${stop}</th>`).join('')}</tr>`;
+        const tableBody = schedule.map(({ time, osta }) => {
+            if (!Array.isArray(osta)) return '';
+            return `<tr><td>${time}</td>${osta.map(stopTime => `<td>${stopTime || '-'}</td>`).join('')}</tr>`;
+        }).join('');
+
+        resultContainer.innerHTML = `<table>
+            <thead>${tableHeader}</thead>
+            <tbody>${tableBody}</tbody>
+        </table>`;
+        resultContainer.style.display = 'block';
+    }
+
+// Обработчик кнопки "Show All"
+    document.addEventListener('DOMContentLoaded', () => {
+        const showAllButton = document.getElementById('showAllButton2');
+        showAllButton.addEventListener('click', () => {
+            isShowAllClicked2 = true;
+            if (currentSchedule2) {
+                renderTable2(currentSchedule2);
+            } else {
+                loadActiveSchedule2();
+            }
+        });
+    });
+
+// Функция фильтрации расписания
+    function renderFilteredTable2(filteredTimes, selectedDeparture, selectedArrival) {
+        const result = document.getElementById('result2');
+        result.style.display = 'block';
+
+        if (!Array.isArray(filteredTimes) || filteredTimes.length === 0) {
+            result.innerHTML = '<p>No schedule found.</p>';
+            return;
+        }
+
+        const departureIndex = stops2.indexOf(selectedDeparture);
+        const arrivalIndex = stops2.indexOf(selectedArrival);
+
+        const tableBody = filteredTimes.map(({ time, osta }) => `
+            <tr>
+                <td>${time}</td>
+                <td>${osta[departureIndex] || '-'}</td>
+                <td>${osta[arrivalIndex] || '-'}</td>
+            </tr>
+        `).join('');
+
+        result.innerHTML = `
+            <table>
+                <thead>
                     <tr>
-                        <td>${time}</td>
-                        <td>${stopTimes[stops.indexOf(selectedDeparture2)] || '-'}</td>
-                        <td>${stopTimes[stops.indexOf(selectedArrival2)] || '-'}</td>
+                        <th>Time</th>
+                        <th>${selectedDeparture}</th>
+                        <th>${selectedArrival}</th>
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${tableBody}
+                </tbody>
+            </table>
         `;
-    };
-
-    document.getElementById('showAllButton2').addEventListener('click', () => {
-    isShowAllClicked = true;  // Запоминаем, что кнопка "Show All" была нажата
-    // Здесь можно добавить код для показа расписания, если это нужно
-});
-
-document.getElementById('searchButton2').addEventListener('click', () => {
-    if (!isShowAllClicked2) {
-        // Если "Show All" не было нажато, показываем сообщение
-        alert("Please click 'Show All' to load the schedule before searching.");
-    } else {
-        // Если "Show All" было нажато, выполняем поиск расписания
-        loadScheduleData();  // Пример вызова функции для загрузки данных
     }
-});
 
+    // Настройка событий
+    document.addEventListener('DOMContentLoaded', () => {
+        loadActiveSchedule2();
 
-    document.getElementById('searchButton2').addEventListener('click', () => {
-        if (!currentSchedule2) {
-            alert("Schedule data is not loaded yet. Please try again later.");
-            return;
-        }
+        // Автоматическое обновление каждые 5 минут
+        setInterval(() => {
+            loadActiveSchedule2();
+        }, 5 * 60 * 1000);
+    });
 
-        if (!selectedDeparture2 || !selectedArrival2 || !selectedInterval2) {
-            alert("Please select Departure, Arrival, and Time Interval.");
-            return;
-        }
+ document.addEventListener('DOMContentLoaded', () => {
+        let selectedDeparture2 = null;
+        let selectedArrival2 = null;
+        let selectedInterval2 = null;
 
-        const [start, end] = selectedInterval2.split('-');
-        const filteredTimes = Object.fromEntries(
-            Object.entries(currentSchedule2).filter(([time]) => {
-                // Логика для учета перехода через полночь
+        const setupDropdown = (buttonId, dropdownId, callback) => {
+            const button = document.getElementById(buttonId);
+            const dropdown = document.getElementById(dropdownId);
+
+            button.addEventListener('click', (event) => {
+                // Позиционируем выпадающее меню относительно кнопки
+                const buttonRect = button.getBoundingClientRect();
+                dropdown.style.left = `${buttonRect.left}px`;
+                dropdown.style.top = `${buttonRect.bottom}px`;
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            dropdown.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A') {
+                    const value = event.target.dataset.station || event.target.dataset.interval;
+                    button.textContent = event.target.textContent;
+                    dropdown.style.display = 'none';
+                    callback(value);
+                }
+            });
+
+            window.addEventListener('click', (event) => {
+                if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                    dropdown.style.display = 'none';
+                }
+            });
+        };
+
+        setupDropdown('departureButton2', 'departureDropdown2', (value) => {
+            selectedDeparture2 = value;
+            updateArrivalDropdown2(value);
+        });
+        setupDropdown('arrivalButton2', 'arrivalDropdown2', (value) => {
+            selectedArrival2 = value;
+        });
+        setupDropdown('intervalButton2', 'intervalDropdown2', (value) => {
+            selectedInterval2 = value;
+        });
+
+        document.getElementById('searchButton2').addEventListener('click', () => {
+            if (!currentSchedule2) {
+                alert("Schedule data is not loaded yet. Please try again later.");
+                return;
+            }
+
+            if (!selectedDeparture2 || !selectedArrival2 || !selectedInterval2) {
+                alert("Please select Departure, Arrival, and Time Interval.");
+                return;
+            }
+
+            const [start, end] = selectedInterval2.split('-');
+            const filteredTimes = currentSchedule2.filter(({ time }) => {
                 if (start > end) {
+                    // Интервалы через полночь
                     return time >= start || time <= end;
                 }
                 return time >= start && time <= end;
-            })
-        );
+            });
 
-        renderFilteredTable(filteredTimes);
+            renderFilteredTable2(filteredTimes, selectedDeparture2, selectedArrival2);
+        });
     });
-});
 </script>
 
 
 
 
 
-<div class="site-version">Version: Beta 1.0</div>
+<div class="site-version">Version: Beta 1.0.2</div>
 
 
 </body>
