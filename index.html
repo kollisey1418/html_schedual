@@ -25,6 +25,25 @@
             font-style: italic;
             letter-spacing: 3px;
         }
+.language-switcher {
+    position: absolute; /* Располагает блок поверх других элементов */
+    top: 10px;          /* Отступ сверху */
+    right: 10px;        /* Отступ справа */
+    z-index: 1000;      /* Уровень слоя (чтобы всегда было видно) */
+}
+
+.language-switcher a img {
+    width: 32px;       /* Ширина значков */
+    height: 32px;      /* Высота значков */
+    margin-left: 5px;  /* Расстояние между значками */
+    border-radius: 50%; /* Скругление углов, если нужно */
+    transition: transform 0.2s; /* Анимация при наведении */
+}
+
+.language-switcher a img:hover {
+    transform: scale(1.2); /* Увеличение значка при наведении */
+    cursor: pointer;       /* Указатель мыши */
+}
 
         .schedule-container {
             background-color: #ffffff;
@@ -127,6 +146,13 @@
     <div class="header">
         Mediteran Express
     </div>
+      <div class="language-switcher">
+        <a href="languages/me/index_me.html"><img src="img/me.png" alt="Serbian"></a>
+        <a href="languages/ru/index_ru.html"><img src="img/ru.png" alt="Russian"></a>
+        <a href="languages/de/index_de.html"><img src="img/ge.png" alt="German"></a>
+        <a href="languages/fr/index_fr.html"><img src="img/fr.png" alt="French"></a>
+        <a href="languages/al/index_al.html"><img src="img/al.png" alt="Albanian"></a>
+</div>
     <div class="schedule-container">
         <h1>Bus Schedule</h1>
         <div class="card-container">
