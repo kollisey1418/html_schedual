@@ -226,6 +226,25 @@ td {
         font-size: 12px;
     }
 
+                        /*Разработка страницы*/
+
+
+.loading {
+  text-align: center;
+  justify-content: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+img {
+  width: 100px; /* Изменение размера изображения */
+  height: auto;
+}
+
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
     .schedule-container {
@@ -285,7 +304,11 @@ td {
         Mediteran Express
     </div>
     <div class="schedule-container">
-
+        <div class="loading">
+    <h1>The website is under development.</h1>
+    <img src="/html_schedual/img/loading.gif" alt="loading">
+  </div>
+<!--
 <div class="map-container">
     <h1>Budva - Braichi</h1>
     <div id="map1"></div>
@@ -407,9 +430,9 @@ td {
 </div>
     </div>
 
+-->
 
-
-
+    </div>>
     <script>
         function initMap() {
             var map1 = new google.maps.Map(document.getElementById('map1'), {

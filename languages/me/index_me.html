@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:clip-path="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,16 +15,18 @@
             min-height: 100vh;
         }
 
-        .header {
-            background-color: #002244;
-            color: #ffffff;
-            padding: 8px;
-            text-align: center;
-            font-family: 'Tangerine', cursive;
-            font-size: 5em;
-            font-style: italic;
-            letter-spacing: 3px;
-        }
+.header {
+    background-color: #002244;
+    color: #ffffff;
+    padding: 8px;
+    text-align: center;
+    font-family: 'Tangerine', cursive;
+    font-size: 5em;
+    font-style: italic;
+    letter-spacing: 3px;
+}
+
+
 .language-switcher {
     position: absolute; /* Располагает блок поверх других элементов */
     top: 10px;          /* Отступ сверху */
@@ -74,8 +76,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 100%;
-            max-width: 300px;
-            padding: 20px;
+            max-width: 250px;
+            padding: 5px;
             text-align: left;
             transition: transform 0.3s ease;
         }
@@ -148,8 +150,9 @@
     </div>
       <div class="language-switcher">
         <a href="/html_schedual/index.html"><img src="/html_schedual/img/en.png" alt="English"></a>
-</div>
+      </div>
     <div class="schedule-container">
+      <img src="/html_schedual/img/logo.jpeg">
         <h1>Raspored autobusa</h1>
         <div class="card-container">
             <div class="card">
@@ -167,11 +170,17 @@
                 <p class="card-info"><strong>Stanice:</strong> Budva ⮕ Top Hill ⮕ Lastva ⮕ Mega Market ⮕ Jaz</p>
                 <a href="budva-lastva-budva_me.html" class="card-button">Više detalja</a>
             </div>
+          <div class="card">
+                <h2 class="card-title">Budva - Braichi - Budva</h2>
+                <p class="card-info"><strong>Stops:</strong> Budva ⮕ Top Hill ⮕ Lastva ⮕ Mega Market ⮕ Jaz</p>
+                <a href="budva-braichi-budva_me.html" class="card-button">MViše detalja</a>
+            </div>
         </div>
     </div>
     <div class="footer">
     Kontaktirajte nas za više informacija o rasporedu i rutama.
     </div>
+
 
 <div class="site-version">Version: Beta 1.0.2</div>
 
