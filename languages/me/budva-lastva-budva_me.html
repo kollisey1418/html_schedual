@@ -511,7 +511,7 @@ function updateArrivalDropdown(selectedDeparture) {
 
 // Функция для загрузки расписания
 function loadActiveSchedule() {
-    return fetch('/html_schedual/active_schedule.json')
+    return fetch('/active_schedule.json')
         .then(response => response.json())
         .then(data => {
             // Проверяем, изменились ли данные
@@ -521,7 +521,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active_lastva === '2buses' ? '/html_schedual/budva-lastva_2buses.json' : '/html_schedual/budva-lastva_1bus.json';
+            const scheduleFile = data.active_lastva === '2buses' ? '/budva-lastva_2buses.json' : '/budva-lastva_1bus.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -738,7 +738,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
     // Функция для загрузки расписания
     function loadActiveSchedule2() {
-        return fetch('/html_schedual/active_schedule.json')
+        return fetch('/active_schedule.json')
             .then(response => response.json())
             .then(data => {
                 if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
@@ -747,7 +747,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-                const scheduleFile = data.active_lastva === '2buses'  ? '/html_schedual/lastva-budva_2buses.json'  : '/html_schedual/lastva-budva_1bus.json';
+                const scheduleFile = data.active_lastva === '2buses'  ? '/lastva-budva_2buses.json'  : '/lastva-budva_1bus.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {

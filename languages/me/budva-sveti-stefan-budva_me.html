@@ -357,15 +357,15 @@ Mediteran Express
 
             </div>
             <div class="price-item">
-                <img src="/html_schedual/img/Bus_Red.png" alt="Red Stop">
+                <img src="/img/Bus_Red.png" alt="Red Stop">
                 <p>Crvena karta - €1.5</p>
             </div>
             <div class="price-item">
-                <img src="/html_schedual/img/Bus_Blue.png" alt="Blue Stop">
+                <img src="/img/Bus_Blue.png" alt="Blue Stop">
                 <p>Plava karta - €2</p>
             </div>
             <div class="price-item">
-                <img src="/html_schedual/img/Bus_Green.png" alt="Green Stop">
+                <img src="/img/Bus_Green.png" alt="Green Stop">
                 <p>Zelena karta - €2.5</p>
             </div>
         </div>
@@ -508,7 +508,7 @@ function updateArrivalDropdown(selectedDeparture) {
 
 // Функция для загрузки расписания
 function loadActiveSchedule() {
-    return fetch('/html_schedual/active_schedule.json')
+    return fetch('/active_schedule.json')
         .then(response => response.json())
         .then(data => {
             // Проверяем, изменились ли данные
@@ -518,7 +518,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active === '2buses' ? '/html_schedual/budva-sveti_stefan_2buses.json' : '/html_schedual/budva-sveti_stefan_3buses.json';
+            const scheduleFile = data.active === '2buses' ? '/budva-sveti_stefan_2buses.json' : '/budva-sveti_stefan_3buses.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -760,7 +760,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
 
 // Функция для загрузки расписания
     function loadActiveSchedule2() {
-        return fetch('/html_schedual/active_schedule.json')
+        return fetch('/active_schedule.json')
             .then(response => response.json())
             .then(data => {
                 if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
@@ -769,7 +769,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-            const scheduleFile = data.active === '2buses' ? '/html_schedual/sveti_stefan-budva_2buses.json' : '/html_schedual/sveti_stefan-budva_3buses.json';
+            const scheduleFile = data.active === '2buses' ? '/sveti_stefan-budva_2buses.json' : '/sveti_stefan-budva_3buses.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {
