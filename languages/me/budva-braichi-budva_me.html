@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budva - Braichi - Budva</title>
-  <link rel="icon" type="image/png" href="img/img_for_favicon.png">
+  <link rel="icon" type="image/png" href="/img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -20,7 +20,7 @@
 .header {
     background-color: #002244;
     color: #ffffff;
-    padding: 8px;
+    padding: 2px;
     text-align: center;
     font-family: 'Tangerine', cursive;
     font-size: 5em;
@@ -34,8 +34,8 @@
     border-radius: 15px;
     width: 95%;
     max-width: 1200px;
-    padding: 20px;
-    margin: 40px auto;
+    padding: 4px;
+    margin: 4px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -306,12 +306,7 @@ img {
     </div>
     <div class="schedule-container">
 
-  <div class="loading">
-    <h1>Stranica u izradi</h1>
-    <img src="/html_schedual/img/loading.gif" alt="loading">
-  </div>
-  <!--
-<div class="map-container">
+  <div class="map-container">
     <h1>Budva - Braichi</h1>
     <div id="map1"></div>
     <div class="timetable-container">
@@ -330,9 +325,11 @@ img {
               <div class="filter-buttons">
             <button id="departureButton" class="dropdown-button">Select Departure</button>
              <div id="departureDropdown" class="dropdown-content">
-                        <a href="#" data-station="Budva">Budva</a>
-                        <a href="#" data-station="Top Hill">Top Hill</a>
-                        <a href="#" data-station="Sveti Djordje">Sveti Djordje</a>
+                        <a href="#" data-station="Budva (Obshtina)">Budva (Obshtina)</a>
+                        <a href="#" data-station="Nova Shkola">Nova Shkola</a>
+                        <a href="#" data-station="Dukley">Dukley</a>
+                        <a href="#" data-station="Markovichi">Markovichi</a>
+                        <a href="#" data-station="Pobori">Pobori</a>
                     </div>
 
                     <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
@@ -374,7 +371,7 @@ img {
 
             </div>
             <div class="price-item">
-                <img src="img/Bus_Red.png" alt="Red Stop">
+                <img src="/img/Bus_Red.png" alt="Red Stop">
                 <p>Red Ticket - €1.5</p>
             </div>
 
@@ -397,10 +394,10 @@ img {
         <div class="filter-buttons">
             <button id="departureButton2" class="dropdown-button">Select Departure</button>
             <div id="departureDropdown2" class="dropdown-content">
-                     <a href="#" data-station="Lastva">Lastva</a>
-                        <a href="#" data-station="Lovćen Auto">Lovćen Auto</a>
-                        <a href="#" data-station="Mega Market">Mega Market</a>
-                        <a href="#" data-station="Jaz">Jaz</a>
+                     <a href="#" data-station="Braichi">Braichi</a>
+                        <a href="#" data-station="Pobori">Pobori</a>
+                        <a href="#" data-station="Markovichi">Markovichi</a>
+                        <a href="#" data-station="Stadion (Slavia)">Stadion (Slavia)</a>
 
             </div>
 
@@ -431,10 +428,10 @@ img {
     </div>
 </div>
     </div>
--->
-</div>
 
 
+
+    </div>>
     <script>
         function initMap() {
             var map1 = new google.maps.Map(document.getElementById('map1'), {
@@ -517,7 +514,7 @@ img {
 let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; // Информация, если Show All не нажата
-   const stops =["Budva", "Top Hill", "Sveti Djordje", "Lastva", "Lovćen Auto", "Mega Market", "Jaz"];
+   const stops =["Budva (Obshtina)", "Nova Shkola", "Dukley", "Markovichi", "Pobori", "Braichi"];
 
    // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -536,7 +533,7 @@ function updateArrivalDropdown(selectedDeparture) {
 
 // Функция для загрузки расписания
 function loadActiveSchedule() {
-    return fetch('active_schedule.json')
+    return fetch('/active_schedule.json')
         .then(response => response.json())
         .then(data => {
             // Проверяем, изменились ли данные
@@ -546,7 +543,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active_lastva === '2buses' ? 'budva-lastva_2buses.json' : 'budva-lastva_1bus.json';
+            const scheduleFile = data.active_braichi === '1bus' ? '/budva-braichi.json' : '/budva-braichi.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -744,7 +741,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
 
-    const stops2 = ["Lastva", "Lovćen Auto", "Mega Market", "Jaz", "Crvena Zgrad", "Stadion"];
+    const stops2 = ["Braichi", "Pobori", "Markovichi", "Stadion (Slavia)", "Budva (Obshtina)",];
 
     // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {
@@ -763,7 +760,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
     // Функция для загрузки расписания
     function loadActiveSchedule2() {
-        return fetch('active_schedule.json')
+        return fetch('/active_schedule.json')
             .then(response => response.json())
             .then(data => {
                 if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
@@ -772,7 +769,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-                const scheduleFile = data.active_lastva === '2buses'  ? 'lastva-budva_2buses.json'  : 'lastva-budva_1bus.json';
+                const scheduleFile = data.active_braichi === '1bus'  ? '/braichi-budva.json'  : '/braichi-budva.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {

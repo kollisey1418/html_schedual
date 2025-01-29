@@ -20,7 +20,7 @@
 .header {
     background-color: #002244;
     color: #ffffff;
-    padding: 8px;
+    padding: 2px;
     text-align: center;
     font-family: 'Tangerine', cursive;
     font-size: 5em;
@@ -34,8 +34,8 @@
     border-radius: 15px;
     width: 95%;
     max-width: 1200px;
-    padding: 20px;
-    margin: 40px auto;
+    padding: 4px;
+    margin: 4px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -373,7 +373,7 @@ td {
             <button id="departureButton2" class="dropdown-button">Select Departure</button>
             <div id="departureDropdown2" class="dropdown-content">
                      <a href="#" data-station="Lastva">Lastva</a>
-                        <a href="#" data-station="Lovćen Auto">Lovćen Auto</a>
+                        <a href="#" data-station="Lovćen Auto">Lovchen Auto</a>
                         <a href="#" data-station="Mega Market">Mega Market</a>
                         <a href="#" data-station="Jaz">Jaz</a>
 
@@ -492,7 +492,7 @@ td {
 let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; // Информация, если Show All не нажата
-   const stops =["Budva", "Top Hill", "Sveti Djordje", "Lastva", "Lovćen Auto", "Mega Market", "Jaz"];
+   const stops =["Budva", "Top Hill", "Sveti Djordje", "Lastva", "Lovchen Auto", "Mega Market", "Jaz"];
 
    // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -719,7 +719,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
 
-    const stops2 = ["Lastva", "Lovćen Auto", "Mega Market", "Jaz", "Crvena Zgrad", "Stadion"];
+    const stops2 = ["Lastva", "Lovchen Auto", "Mega Market", "Jaz", "Nova Shkola", "Stadion"];
 
     // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {

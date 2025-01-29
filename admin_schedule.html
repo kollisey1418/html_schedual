@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bus Schedule</title>
+    <link rel="icon" type="image/png" href="img/img_for_favicon.png">
     <style>
         /* Пример простого стиля для кнопок выбора расписания */
         .schedule-option {
@@ -49,8 +50,12 @@
     <button class="schedule-option" id="select1BusLastva">1 Bus</button>
     <button class="schedule-option" id="select2BusesLastva">2 Buses</button>
 
+    <h1>Budva - Lastav</h1>
+    <button class="schedule-option" id="select1BusBraich">1 Bus</button>
+
 
   <script>
+    //Lastva----------------------------------------------
     document.getElementById('BdSvselect2Buses').addEventListener('click', () => {
       fetch('update_schedule.php', {
         method: 'POST',
@@ -77,6 +82,8 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+
+    //Petrovac----------------------------------------------
     document.getElementById('select1BusPetrovac').addEventListener('click', () => {
       fetch('update_schedule.php', {
         method: 'POST',
@@ -103,6 +110,8 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+
+      //Lastva----------------------------------------------
       document.getElementById('select1BusLastva').addEventListener('click', () => {
       fetch('update_schedule.php', {
         method: 'POST',
@@ -129,6 +138,22 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+
+    //Braichi----------------------------------------------
+    document.getElementById('select1BusBraichi').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_braichi: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+
       </script>
 
 
@@ -153,6 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('select2BusesLastva')
     ];
 
+    // Кнопки для Budva-Braich
+    const braichiButtons = [
+        document.getElementById('select1BusBraichi')
+    ];
+
     // Функция для управления подсветкой
     const addHighlighting = (buttons) => {
         buttons.forEach(button => {
@@ -169,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addHighlighting(svetiStefanButtons);
     addHighlighting(petrovacButtons);
     addHighlighting(lastvaButtons);
+    addHighlighting(braichiButtons);
 });
 
   </script>

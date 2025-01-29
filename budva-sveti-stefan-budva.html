@@ -20,7 +20,7 @@
 .header {
     background-color: #002244;
     color: #ffffff;
-    padding: 8px;
+    padding: 2px;
     text-align: center;
     font-family: 'Tangerine', cursive;
     font-size: 5em;
@@ -35,8 +35,8 @@
     border-radius: 15px;
     width: 95%;
     max-width: 1200px;
-    padding: 20px;
-    margin: 40px auto;
+    padding: 4px;
+    margin: 4px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -310,12 +310,12 @@ Mediteran Express
                         <a href="#" data-station="Crvena Zgrad">Crvena Zgrad</a>
                         <a href="#" data-station="Stadion">Stadion</a>
                         <a href="#" data-station="Aquapark">Aqua park</a>
-                        <a href="#" data-station="Moc">Moc</a>
+                        <a href="#" data-station="Moc (SkyLine)">Moc (SkyLine)</a>
                         <a href="#" data-station="Belavista">Belavista</a>
                         <a href="#" data-station="Rafailovichi">Rafailovichi</a>
                         <a href="#" data-station="Kamenovo">Kamenovo</a>
                         <a href="#" data-station="Maestral">Maestral</a>
-                        <a href="#" data-station="Przno">Przno</a>
+                        <a href="#" data-station="Przhno">Przhno</a>
                         <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
                     </div>
 
@@ -393,11 +393,10 @@ Mediteran Express
                 <a href="#" data-station="Kamenovo">Kamenovo</a>
                 <a href="#" data-station="Rafailovichi">Rafailovichi</a>
                 <a href="#" data-station="Belavista">Belavista</a>
-                <a href="#" data-station="Moc">Moc</a>
+                <a href="#" data-station="Moc (SkyLine)">Moc (SkyLine)</a>
                 <a href="#" data-station="Aquapark">Aquapark</a>
                 <a href="#" data-station="Slavija">Slavija</a>
-                <a href="#" data-station="Obshtima">Obshtima</a>
-                <a href="#" data-station="Budva">Budva</a>
+                <a href="#" data-station="Obshtina (Bus Station)">Obshtina (Bus Station)</a>
             </div>
 
             <button id="arrivalButton2" class="dropdown-button">Select Arrival</button>
@@ -489,7 +488,7 @@ let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; //Информация, если Show All не нажата
 
-const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aquapark", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Maestral", "Przno", "Sveti Stefan"];
+const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aquapark", "Moc (SkyLine)", "Belavista", "Rafailovichi", "Kamenovo", "Maestral", "Przhno", "Sveti Stefan"];
 
 // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -740,7 +739,7 @@ let currentSchedule2 = null;
 let lastUpdated2 = null;
 let isShowAllClicked2 = false; //Информация, если Show All не нажата
 
-const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
+const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovichi", "Belavista", "Moc (SkyLine)", "Aquapark", "Slavija", "Obshtina (Bus Station)", "Budva"];
 
   // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budva - Petrovac - Budva</title>
-    <link rel="icon" type="image/png" href="/html_schedual/img/img_for_favicon.png">
+    <link rel="icon" type="image/png" href="/img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -20,7 +20,7 @@
 .header {
     background-color: #002244;
     color: #ffffff;
-    padding: 8px;
+    padding: 2px;
     text-align: center;
     font-family: 'Tangerine', cursive;
     font-size: 5em;
@@ -34,8 +34,8 @@
     border-radius: 15px;
     width: 95%;
     max-width: 1200px;
-    padding: 20px;
-    margin: 40px auto;
+    padding: 4px;
+    margin: 4px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -310,14 +310,14 @@ td {
                         <a href="#" data-station="Stadion">Stadion</a>
                         <a href="#" data-station="Aqua park">Aqua park</a>
                         <a href="#" data-station="Moc">Moc</a>
-                        <a href="#" data-station="Belavista">Belavista</a>
-                        <a href="#" data-station="Rafailovichi">Rafailovichi</a>
+                        <a href="#" data-station="Bella Vista">Bella Vista</a>
+                        <a href="#" data-station="Rafailovići">Rafailovići</a>
                         <a href="#" data-station="Kamenovo">Kamenovo</a>
-                        <a href="#" data-station="Adrovici">Adrovici</a>
-                        <a href="#" data-station="Blizikuce">Blizikuce</a>
-                        <a href="#" data-station="Rezevici">Rezevici</a>
+                        <a href="#" data-station="Adrović">Adrović</a>
+                        <a href="#" data-station="Blizikuće">Blizikuće</a>
+                        <a href="#" data-station="Reževići">Reževići</a>
                         <a href="#" data-station="Giardino">Giardino</a>
-                        <a href="#" data-station="Monastery Rezevici">Monastery Rezevici</a>
+                        <a href="#" data-station="Monastir Reževići">Monastir Reževići</a>
                         <a href="#" data-station="Bus Station (Petrovac)">Bus Station (Petrovac)</a>
                         <a href="#" data-station="Petrovac">Petrovac</a>
                         <a href="#" data-station="Buljarica">Buljarica</a>
@@ -396,14 +396,14 @@ td {
             <div id="departureDropdown2" class="dropdown-content">
                         <a href="#" data-station="Petrovac">Petrovac</a>
                         <a href="#" data-station="Bus Station (Petrovac)">Bus Station (Petrovac)</a>
-                        <a href="#" data-station="Monastery Rezevici">Monastery Rezevici</a>
+                        <a href="#" data-station="Monastir Reževići">Monastir Reževići</a>
                         <a href="#" data-station="Giardino">Giardino</a>
-                        <a href="#" data-station="Rezevici">Rezevici</a>
-                        <a href="#" data-station="Blizikuce">Blizikuce</a>
-                        <a href="#" data-station="Adrovici">Adrovici</a>
+                        <a href="#" data-station="Reževići">Reževići</a>
+                        <a href="#" data-station="Blizikuće">Blizikuće</a>
+                        <a href="#" data-station="Adrović">Adrović</a>
                         <a href="#" data-station="Kamenovo">Kamenovo</a>
-                        <a href="#" data-station="Rafailovichi">Rafailovichi</a>
-                        <a href="#" data-station="Belavista">Belavista</a>
+                        <a href="#" data-station="Rafailovići">Rafailovići</a>
+                        <a href="#" data-station="Bella Vista">Bella Vista</a>
                         <a href="#" data-station="Moc">Moc</a>
                         <a href="#" data-station="Aqua park">Aqua park</a>
                         <a href="#" data-station="Stadion">Stadion</a>
@@ -521,7 +521,7 @@ td {
     let lastUpdated = null;
     let isShowAllClicked = false; // Запоминаем, нажата ли кнопка "Show All"
 
-    const stops = ["Budva", "Crvena Zgrada", "Stadion", "Aqua park", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Adrovici", "Blizikuce", "Rezevici", "Giardino", "Monastery Rezevici", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
+    const stops = ["Budva", "Crvena Zgrada", "Stadion", "Aqua park", "Moc", "Bella Vista", "Rafailovići", "Kamenovo", "Adrović", "Blizikuće", "Reževići", "Giardino", "Monastir Reževići", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
 
     function updateArrivalDropdown(selectedDeparture) {
   const departureIndex = stops.indexOf(selectedDeparture);
@@ -746,7 +746,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
 
-    const stops2 =  ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezevici", "Giardino", "Rezevici", "Blizikuce", "Adrovici", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aqua park", "Slavija", "Obshtina", "Budva"];
+    const stops2 =  ["Petrovac", "Bus Station (Petrovac)", "Monastir Reževići", "Giardino", "Reževići", "Blizikuće", "Adrović", "Kamenovo", "Rafailovići", "Bella Vista", "Moc", "Aqua park", "Slavija", "Obshtina", "Budva"];
 
      function updateArrivalDropdown2(selectedDeparture) {
         const departureIndex = stops2.indexOf(selectedDeparture);
