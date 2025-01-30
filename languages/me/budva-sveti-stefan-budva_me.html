@@ -693,9 +693,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
-    if (!isShowAllClicked) {
-        alert("Molimo kliknite na „Prikaži sve“ da učitate raspored pre pretrage.");
-    } else {
+ {
+            if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+                alert("Molimo vas da izaberete polazak, dolazak i vremenski interval.");
+                return;
+            }
         const [start, end] = selectedInterval.split('-');
         const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {

@@ -440,7 +440,7 @@ img {
             });
 
             var kmlLayer1 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1XQWXd5Rsm5crZPth7ILZhohn2FmHBi2w', 
+                url: 'https://drive.google.com/uc?id=1XQWXd5Rsm5crZPth7ILZhohn2FmHBi2w',
                 map: map1
             });
 
@@ -450,7 +450,7 @@ img {
             });
 
             var kmlLayer2 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1xxP_NY7RxzuDuQ0wjNnKiKOIdzfGU5h5', 
+                url: 'https://drive.google.com/uc?id=1xxP_NY7RxzuDuQ0wjNnKiKOIdzfGU5h5',
                 map: map2
             });
         }
@@ -716,9 +716,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
-    if (!isShowAllClicked) {
-        alert("Please click 'Show All' to load the schedule before searching.");
-    } else {
+ {
+   if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+                alert("Please select Departure, Arrival, and Time Interval.");
+                return;
+            }
+
         const [start, end] = selectedInterval.split('-');
         const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {

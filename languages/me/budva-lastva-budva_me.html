@@ -349,7 +349,7 @@ td {
 
             </div>
             <div class="price-item">
-                <img src="/html_schedual/img/Bus_Red.png" alt="Red Stop">
+                <img src="/img/Bus_Red.png" alt="Red Stop">
                 <p>Crvena karta - €1.5</p>
             </div>
 
@@ -694,9 +694,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
-    if (!isShowAllClicked) {
-        alert("Please click 'Show All' to load the schedule before searching.");
-    } else {
+ {
+   if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+                alert("Molimo vas da izaberete polazak, dolazak i vremenski interval.");
+                return;
+            }
+
         const [start, end] = selectedInterval.split('-');
         const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {
@@ -894,7 +897,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
             }
 
             if (!selectedDeparture2 || !selectedArrival2 || !selectedInterval2) {
-                alert("Please select Departure, Arrival, and Time Interval.");
+                alert("Molimo vas da izaberete polazak, dolazak i vremenski interval.");
                 return;
             }
 

@@ -692,9 +692,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
-    if (!isShowAllClicked) {
-        alert("Please click 'Show All' to load the schedule before searching.");
-    } else {
+if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+                alert("Please select Departure, Arrival, and Time Interval.");
+                return;
+            } {
         const [start, end] = selectedInterval.split('-');
         const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {
