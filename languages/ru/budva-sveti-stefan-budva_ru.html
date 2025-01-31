@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budva - Sveti Stefan - Budva</title>
-    <link rel="icon" type="image/png" href="img/img_for_favicon.png">
+    <title>Будва - Свети Стефан - Будва</title>
+    <link rel="icon" type="image/png" href="/img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -20,7 +20,7 @@
 .header {
     background-color: #002244;
     color: #ffffff;
-    padding: 8px;
+    padding: 2px;
     text-align: center;
     font-family: 'Tangerine', cursive;
     font-size: 5em;
@@ -35,8 +35,8 @@
     border-radius: 15px;
     width: 95%;
     max-width: 1200px;
-    padding: 20px;
-    margin: 40px auto;
+    padding: 4px;
+    margin: 4px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -279,8 +279,8 @@ td {
 </head>
 <body>
 <div style="position: absolute; top: 20px; left: 20px;">
-        <a href="index.html" class="home-button desktop-only" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
-        <a href="index.html" class="home-button mobil-only" style="text-decoration: none; background-color: #cc0000; color: white; border-radius: 10px; font-weight: bold;">⬅</a>
+        <a href="index_ru.html" class="home-button desktop-only" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Главная</a>
+        <a href="index_ru.html" class="home-button mobil-only" style="border-radius: 10px; font-weight: bold;"><img src="/img/home_mobil.png" alt="Back" class="home-icon"></a>
     </div>
     <div class="header">
 Mediteran Express
@@ -288,43 +288,43 @@ Mediteran Express
     <div class="schedule-container">
 
 <div class="map-container">
-    <h1>Budva - Sveti Stefan</h1>
+    <h1>Будва - Свети Стефан</h1>
     <div id="map1"></div>
     <div class="timetable-container">
-        <h2>Timetable for Stops</h2>
+        <h2>Расписание автобусов</h2>
        <div class="timetable-container">
-    <button id="detailedScheduleButton" class="schedule-button">Detailed Schedule</button>
+    <button id="detailedScheduleButton" class="schedule-button">Детали расписания</button>
 </div>
-        <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
+        <p style="text-align: center;">*Расписание может быть не точным из-за дорожных обстоятельств.</p>
     </div>
 </div>
 
       <div id="schedulePopup" class="popup">
     <div class="popup-content">
         <span class="close">&times;</span>
-        <h2>Detailed Schedule</h2>
+        <h2>Детали расписания</h2>
               <div class="filter-buttons">
-            <button id="departureButton" class="dropdown-button">Select Departure</button>
+            <button id="departureButton" class="dropdown-button">Остановка отправления</button>
              <div id="departureDropdown" class="dropdown-content">
-                        <a href="#" data-station="Budva">Budva</a>
-                        <a href="#" data-station="Crvena Zgrad">Crvena Zgrad</a>
-                        <a href="#" data-station="Stadion">Stadion</a>
-                        <a href="#" data-station="Aquapark">Aqua park</a>
-                        <a href="#" data-station="Moc">Moc</a>
-                        <a href="#" data-station="Belavista">Belavista</a>
-                        <a href="#" data-station="Rafailovichi">Rafailovichi</a>
-                        <a href="#" data-station="Kamenovo">Kamenovo</a>
-                        <a href="#" data-station="Maestral">Maestral</a>
-                        <a href="#" data-station="Przno">Przno</a>
-                        <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
+                        <a href="#" data-station="Будва">Будва</a>
+                        <a href="#" data-station="Црвена Зграда">Црвена Зграда</a>
+                        <a href="#" data-station="Стадион (Славия)">Стадион (Славия)</a>
+                        <a href="#" data-station="Аквапарк">Аквапарк</a>
+                        <a href="#" data-station="Моц">Моц</a>
+                        <a href="#" data-station="Белла Виста">Белла Виста</a>
+                        <a href="#" data-station="Рафаиловичи">Рафаиловичи</a>
+                        <a href="#" data-station="Каменово">Каменово</a>
+                        <a href="#" data-station="Маэстрал">Маэстрал</a>
+                        <a href="#" data-station="Пржно">Пржно</a>
+                        <a href="#" data-station="Свети Стефан">Свети Стефан</a>
                     </div>
 
-                    <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
+                    <button id="arrivalButton" class="dropdown-button">Остановка назначения</button>
                     <div id="arrivalDropdown" class="dropdown-content">
-                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Please select a departure</a>
+                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Пожалуйста, выберите остановку отправления</a>
                     </div>
 
-                    <button id="intervalButton" class="dropdown-button">Select Time Interval</button>
+                    <button id="intervalButton" class="dropdown-button">Временной интервал</button>
                     <div id="intervalDropdown" class="dropdown-content">
                         <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
                         <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
@@ -339,8 +339,8 @@ Mediteran Express
 
                     </div>
 
-                    <button id="searchButton" class="search-button">Find Schedule</button>
-                    <button id="showAllButton" class="search-button">Show All</button>
+                    <button id="searchButton" class="search-button">Найти расписание</button>
+                    <button id="showAllButton" class="search-button">Показать все</button>
                 </div>
                 <div id="result"></div>
             </div>
@@ -351,61 +351,61 @@ Mediteran Express
 
 
                 <div class="price-container">
-             <h2>Price for stops</h2>
+             <h2>Ценовые зоны</h2>
                     <div class="price-item">
                         <h2> ↓ </h2>
 
             </div>
             <div class="price-item">
-                <img src="img/Bus_Red.png" alt="Red Stop">
-                <p>Red Ticket - €1.5</p>
+                <img src="/img/Bus_Red.png" alt="Red Stop">
+                <p>Красный билет - €1.5</p>
             </div>
             <div class="price-item">
-                <img src="img/Bus_Blue.png" alt="Blue Stop">
-                <p>Blue Ticket - €2</p>
+                <img src="/img/Bus_Blue.png" alt="Blue Stop">
+                <p>Красный билет - €2</p>
             </div>
             <div class="price-item">
-                <img src="img/Bus_Green.png" alt="Green Stop">
-                <p>Green Ticket - €2.5</p>
+                <img src="/img/Bus_Green.png" alt="Green Stop">
+                <p>Зеленый билет - €2.5</p>
             </div>
         </div>
 
       <div class="map-container">
-    <h1>Sveti Stefan - Budva</h1>
+    <h1>Свети Стефан - Будва</h1>
     <div id="map2"></div>
     <div class="timetable-container">
-        <h2>Timetable for Stops</h2>
-        <button class="schedule-button" id="scheduleButton2">Detailed Schedule</button>
-        <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
+        <h2>Расписание автобусов</h2>
+        <button class="schedule-button" id="scheduleButton2">Детали расписания</button>
+        <p style="text-align: center;">*Расписание может быть не точным из-за дорожных обстоятельств.</p>
     </div>
 </div>
 
 <div id="schedulePopup2" class="popup">
     <div class="popup-content">
         <span class="close" id="closePopup2">&times;</span>
-        <h2>Detailed Schedule</h2>
+        <h2>Детали расписания</h2>
         <div class="filter-buttons">
-            <button id="departureButton2" class="dropdown-button">Select Departure</button>
+            <button id="departureButton2" class="dropdown-button">Остановака отправления</button>
             <div id="departureDropdown2" class="dropdown-content">
-                <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
-                <a href="#" data-station="Vertmont">Vertmont</a>
-                <a href="#" data-station="Adrovichi">Adrovichi</a>
-                <a href="#" data-station="Kamenovo">Kamenovo</a>
-                <a href="#" data-station="Rafailovichi">Rafailovichi</a>
-                <a href="#" data-station="Belavista">Belavista</a>
-                <a href="#" data-station="Moc">Moc</a>
-                <a href="#" data-station="Aquapark">Aquapark</a>
-                <a href="#" data-station="Slavija">Slavija</a>
-                <a href="#" data-station="Obshtima">Obshtima</a>
-                <a href="#" data-station="Budva">Budva</a>
+                <a href="#" data-station="Свети Стефан">Свети Стефан</a>
+                <a href="#" data-station="Вертмонт">Вертмонт</a>
+                <a href="#" data-station="Адрович">Адрович</a>
+                <a href="#" data-station="Каменово">Каменово</a>
+                <a href="#" data-station="Рафаиловичи">Рафаиловичи</a>
+                <a href="#" data-station="Белла Виста">Белла Виста</a>
+                <a href="#" data-station="Моц">Моц</a>
+                <a href="#" data-station="Аквапарк">Аквапарк</a>
+                <a href="#" data-station="Стадион (Славия)">Стадион (Славия)</a>
+                <a href="#" data-station="Обштина">Обштина</a>
+                <a href="#" data-station="Будва">Будва</a>
             </div>
 
-            <button id="arrivalButton2" class="dropdown-button">Select Arrival</button>
+            <button id="arrivalButton2" class="dropdown-button">Остановка назначения</button>
             <div id="arrivalDropdown2" class="dropdown-content">
-                <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Please select a departure</a>
+                <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Пожалуйста, выберите остановку отправления.</a>
             </div>
 
-            <button id="intervalButton2" class="dropdown-button">Select Time Interval</button>
+            <button id="intervalButton2" class="dropdown-button">Временной интервал</button>
             <div id="intervalDropdown2" class="dropdown-content">
                 <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
                 <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
@@ -419,8 +419,8 @@ Mediteran Express
                 <a href="#" data-interval="00:30">00:30</a>
             </div>
 
-            <button id="searchButton2" class="search-button">Find Schedule</button>
-            <button id="showAllButton2" class="search-button">Show All</button>
+            <button id="searchButton2" class="search-button">Найти расписание</button>
+            <button id="showAllButton2" class="search-button">Показать все</button>
         </div>
         <div id="result2"></div>
     </div>
@@ -489,7 +489,7 @@ let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; //Информация, если Show All не нажата
 
-const stops = ["Budva", "Crvena Zgrad", "Stadion", "Aquapark", "Moc", "Belavista", "Rafailovichi", "Kamenovo", "Maestral", "Przno", "Sveti Stefan"];
+const stops = ["Будва", "Црвена Зграда", "Стадион (Славия)", "Аквапарк", "Моц", "Белла Виста", "Рафаиловичи", "Каменово", "Маэстрал", "пржно", "Свети Стефан"];
 
 // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -508,7 +508,7 @@ function updateArrivalDropdown(selectedDeparture) {
 
 // Функция для загрузки расписания
 function loadActiveSchedule() {
-    return fetch('active_schedule.json')
+    return fetch('/active_schedule.json')
         .then(response => response.json())
         .then(data => {
             // Проверяем, изменились ли данные
@@ -518,7 +518,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active === '2buses' ? 'budva-sveti_stefan_2buses.json' : 'budva-sveti_stefan_3buses.json';
+            const scheduleFile = data.active === '2buses' ? '/budva-sveti_stefan_2buses.json' : '/budva-sveti_stefan_3buses.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -587,7 +587,7 @@ function renderFilteredTable(filteredTimes, selectedDeparture, selectedArrival) 
     result.style.display = 'block';
 
     if (!filteredTimes || filteredTimes.length === 0) {
-        result.innerHTML = '<p>No schedule found.</p>';
+        result.innerHTML = '<p>На это время автобусов нет.</p>';
         return;
     }
 
@@ -693,9 +693,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
-    if (!isShowAllClicked) {
-        alert("Please click 'Show All' to load the schedule before searching.");
-    } else {
+ {
+            if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+                alert("Пожалуйста, выберите остановку отправления, назначения и временной интервал.");
+                return;
+            }
         const [start, end] = selectedInterval.split('-');
         const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {
@@ -740,7 +742,7 @@ let currentSchedule2 = null;
 let lastUpdated2 = null;
 let isShowAllClicked2 = false; //Информация, если Show All не нажата
 
-const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovichi", "Belavista", "Moc", "Aquapark", "Slavija", "Obshtima", "Budva"];
+const stops2 = ["Свети Стефан", "Вертмонт", "Адрович", "Каменово", "Рафаиловичи", "Белла Виста", "Моц", "Аквапарк", "Стадион (Славия)", "Обштина", "Будва"];
 
   // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {
@@ -760,7 +762,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
 
 // Функция для загрузки расписания
     function loadActiveSchedule2() {
-        return fetch('active_schedule.json')
+        return fetch('/active_schedule.json')
             .then(response => response.json())
             .then(data => {
                 if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
@@ -769,7 +771,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-            const scheduleFile = data.active === '2buses' ? 'sveti_stefan-budva_2buses.json' : 'sveti_stefan-budva_3buses.json';
+            const scheduleFile = data.active === '2buses' ? '/sveti_stefan-budva_2buses.json' : '/sveti_stefan-budva_3buses.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {
@@ -788,7 +790,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
         const resultContainer = document.getElementById('result2');
 
         if (!Array.isArray(schedule) || schedule.length === 0) {
-            resultContainer.innerHTML = '<p>No schedule found.</p>';
+            resultContainer.innerHTML = '<p>На это время автобусов нет.</p>';
             return;
         }
 
@@ -824,7 +826,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
         result.style.display = 'block';
 
         if (!Array.isArray(filteredTimes) || filteredTimes.length === 0) {
-            result.innerHTML = '<p>No schedule found.</p>';
+            result.innerHTML = '<p>На это время автобусов нет.</p>';
             return;
         }
 
@@ -916,7 +918,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovichi", "Kamenovo", "Rafailovic
             }
 
             if (!selectedDeparture2 || !selectedArrival2 || !selectedInterval2) {
-                alert("Please select Departure, Arrival, and Time Interval.");
+                alert("Пожалуйста, выберите остановку отправления, назначения и временной интервал.");
                 return;
             }
 
