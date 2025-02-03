@@ -518,7 +518,23 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active === '2buses' ? 'budva-sveti_stefan_2buses.json' : 'budva-sveti_stefan_3buses.json';
+
+                      if (data.active === '2buses') {
+    scheduleFile = 'budva-sveti_stefan_2buses.json';
+    } else if (data.active === '3buses') {
+    scheduleFile = 'budva-sveti_stefan_3buses.json';
+    } else if (data.active === '4buses') {
+    scheduleFile = 'budva-sveti_stefan_4buses.json';
+    } else if (data.active === '5buses') {
+    scheduleFile = 'budva-sveti_stefan_5buses.json';
+    } else if (data.active === '6buses') {
+    scheduleFile = 'budva-sveti_stefan_6buses.json';
+} else {
+                // Если не нужно загружать какое-либо расписание,
+                // то просто возвращаемся и не вызываем fetch(scheduleFile):
+                return;
+            }
+
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -740,6 +756,7 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
 let currentSchedule2 = null;
 let lastUpdated2 = null;
 let isShowAllClicked2 = false; //Информация, если Show All не нажата
+let scheduleFile2;
 
 const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovichi", "Bella Vista", "Moc (SkyLine)", "Aqua park", "Slavija", "Obshtina (Bus Station)", "Budva"];
 
@@ -770,8 +787,24 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovich
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-            const scheduleFile = data.active === '2buses' ? 'sveti_stefan-budva_2buses.json' : 'sveti_stefan-budva_3buses.json';
-                return fetch(scheduleFile).then(response => response.json());
+
+            if (data.active === '2buses') {
+    scheduleFile2 = 'sveti_stefan-budva_2buses.json';
+    } else if (data.active === '3buses') {
+    scheduleFile2 = 'sveti_stefan-budva_3buses.json';
+    } else if (data.active === '4buses') {
+    scheduleFile2 = 'sveti_stefan-budva_4buses.json';
+    } else if (data.active === '5buses') {
+    scheduleFile2 = 'sveti_stefan-budva_5buses.json';
+    } else if (data.active === '6buses') {
+    scheduleFile2 = 'sveti_stefan-budva_6buses.json';
+} else {
+                // Если не нужно загружать какое-либо расписание,
+                // то просто возвращаемся и не вызываем fetch(scheduleFile):
+                return;
+            }
+
+            return fetch(scheduleFile2).then(response => response.json());
             })
             .then(scheduleData => {
                 currentSchedule2 = scheduleData;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budva - Braichi - Budva</title>
+    <title>Budva - Ploche - Budva</title>
   <link rel="icon" type="image/png" href="img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
@@ -304,7 +304,7 @@ h1 {
 
 
 <div class="map-container">
-    <h1>Budva - Braichi</h1>
+    <h1>Budva - Ploche</h1>
     <div id="map1"></div>
     <div class="timetable-container">
         <h2>Timetable for Stops</h2>
@@ -323,10 +323,9 @@ h1 {
             <button id="departureButton" class="dropdown-button">Select Departure</button>
              <div id="departureDropdown" class="dropdown-content">
                         <a href="#" data-station="Budva (Obshtina)">Budva (Obshtina)</a>
-                        <a href="#" data-station="Nova Shkola">Nova Shkola</a>
-                        <a href="#" data-station="Dukley">Dukley</a>
-                        <a href="#" data-station="Markovichi">Markovichi</a>
-                        <a href="#" data-station="Pobori">Pobori</a>
+                        <a href="#" data-station="Jaz">Jaz</a>
+                        <a href="#" data-station="Trsteno  beach">Trsteno  beach</a>
+                        <a href="#" data-station="Ploche beach">Ploche beach</a>
                     </div>
 
                     <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
@@ -372,10 +371,15 @@ h1 {
                 <p>Red Ticket - €1.5</p>
             </div>
 
+                  <div class="price-item">
+                <img src="img/Bus_Blue.png" alt="Blue Stop">
+                <p>Blue Ticket - €2</p>
+            </div>
+
         </div>
 
       <div class="map-container">
-    <h1>Lastva - Budva</h1>
+    <h1>Ploche - Budva</h1>
     <div id="map2"></div>
     <div class="timetable-container">
         <h2>Timetable for Stops</h2>
@@ -391,10 +395,11 @@ h1 {
         <div class="filter-buttons">
             <button id="departureButton2" class="dropdown-button">Select Departure</button>
             <div id="departureDropdown2" class="dropdown-content">
-                     <a href="#" data-station="Braichi">Braichi</a>
-                        <a href="#" data-station="Pobori">Pobori</a>
-                        <a href="#" data-station="Markovichi">Markovichi</a>
-                        <a href="#" data-station="Stadion (Slavia)">Stadion (Slavia)</a>
+                     <a href="#" data-station="Ploche beach">Ploche beach</a>
+                        <a href="#" data-station="Trsteno  beach">Trsteno  beach</a>
+                        <a href="#" data-station="Jaz beach">Jaz beach</a>
+                        <a href="#" data-station="Jaz">Jaz</a>
+                        <a href="#" data-station="Crvena Zgrada">Crvena Zgrada</a>
 
             </div>
 
@@ -437,7 +442,7 @@ h1 {
             });
 
             var kmlLayer1 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1XQWXd5Rsm5crZPth7ILZhohn2FmHBi2w',
+                url: 'https://drive.google.com/uc?id=1nqvJV7cCekJ8tGz1UBOi8jY2RGhoYgx1',
                 map: map1
             });
 

@@ -520,6 +520,7 @@ td {
     let currentSchedule = null;
     let lastUpdated = null;
     let isShowAllClicked = false; // Запоминаем, нажата ли кнопка "Show All"
+    let scheduleFile;
 
     const stops = ["Budva", "Crvena Zgrada", "Stadion", "Aqua park", "Moc (SkyLine)", "Bella Vista", "Rafailovichi", "Kamenovo", "Adrovich", "Blizikuche", "Rezhevichi", "Giardino", "Monastery Rezhevichi", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
 
@@ -549,8 +550,19 @@ td {
             }
 
             lastUpdated = data.lastUpdated;
-            const scheduleFile = data.active_petrovac === '2buses' ? 'budva-petrovac_2buses.json' : 'budva-petrovac_1bus.json';
-            return fetch(scheduleFile).then(response => response.json());
+
+            if (data.active_petrovac === '1bus') {
+    scheduleFile = 'budva-petrovac_1bus.json';
+    } else if (data.active_petrovac === '2buses') {
+    scheduleFile = 'budva-petrovac_2buses.json';
+    } else if (data.active_petrovac === '3buses') {
+    scheduleFile = 'budva-petrovac_3buses.json';
+} else {
+                // Если не нужно загружать какое-либо расписание,
+                // то просто возвращаемся и не вызываем fetch(scheduleFile):
+                return;
+            }
+                     return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
             currentSchedule = scheduleData; // Сохраняем данные в глобальную переменную
@@ -746,6 +758,7 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
     let currentSchedule2 = null;
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
+    let scheduleFile2;
 
     const stops2 =  ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezhevichi", "Giardino", "Rezhevichi", "Blizikuche", "Adrovich", "Kamenovo", "Rafailovichi", "Bella Vista", "Moc (SkyLine)", "Aqua park", "Slavija", "Obshtina (Bus Station)", "Budva"];
 
@@ -774,8 +787,20 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
                 }
 
             lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
-            const scheduleFile = data.active_petrovac === '1bus' ? 'petrovac-budva_1bus.json' : 'petrovac-budva_2buses.json';
-            return fetch(scheduleFile).then(response => response.json());
+
+                          if (data.active_petrovac === '1bus') {
+    scheduleFile2 = 'petrovac-budva_1bus.json';
+    } else if (data.active_petrovac === '2buses') {
+    scheduleFile2 = 'petrovac-budva_2buses.json';
+    } else if (data.active_petrovac === '3buses') {
+    scheduleFile2 = 'petrovac-budva_3buses.json';
+} else {
+                // Если не нужно загружать какое-либо расписание,
+                // то просто возвращаемся и не вызываем fetch(scheduleFile):
+                return;
+            }
+
+              return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
             currentSchedule2 = scheduleData; // Сохраняем данные в глобальную переменную
