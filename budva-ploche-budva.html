@@ -452,7 +452,7 @@ h1 {
             });
 
             var kmlLayer2 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1xxP_NY7RxzuDuQ0wjNnKiKOIdzfGU5h5',
+                url: 'https://drive.google.com/uc?id=1MzDMqwaBm8ShPBJF-WFaZT535hB5Hrev',
                 map: map2
             });
         }
@@ -516,7 +516,7 @@ h1 {
 let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; // Информация, если Show All не нажата
-   const stops =["Budva (Obshtina)", "Nova Shkola", "Dukley", "Markovichi", "Pobori", "Braichi"];
+   const stops =["Budva (Obshtina)", "Jaz", "Trsteno  beach", "Ploche beach"];
 
    // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -545,7 +545,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active_braichi === '2buses' ? 'budva-braichi.json' : 'budva-braichi.json';
+            const scheduleFile = data.active_ploche === '2buses' ? 'budva-ploche_2buses.json' : 'budva-ploche_1bus.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -746,7 +746,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
 
-    const stops2 = ["Braichi", "Pobori", "Markovichi", "Stadion (Slavia)", "Budva (Obshtina)",];
+    const stops2 = ["Ploche beach", "Trsteno  beach", "Jaz beach", "Jaz", "Crvena Zgrada",];
 
     // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {
@@ -774,7 +774,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-                const scheduleFile = data.active_braichi === '2buses'  ? 'braichi-budva.json'  : 'braichi-budva.json';
+                const scheduleFile = data.active_ploche === '2buses'  ? 'ploche-budva_2buses.json'  : 'ploche-budva_1bus.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {

@@ -55,7 +55,11 @@
     <button class="schedule-option" id="select2BusesLastva">2 Buses</button>
 
     <h1>Budva - Braichi</h1>
-    <button class="schedule-option" id="select1BusBraich">1 Bus</button>
+    <button class="schedule-option" id="select1BusBraichi">1 Bus</button>
+
+    <h1>Budva - Ploche</h1>
+    <button class="schedule-option" id="select1BusPloche">1 Bus</button>
+    <button class="schedule-option" id="select2BusesPloche">2 Buses</button>
 
 
   <script>
@@ -210,6 +214,33 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+     //Ploche----------------------------------------------
+      document.getElementById('select1BusPloche').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_ploche: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('select2BusesPloche').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_ploche: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
 
       </script>
 
@@ -244,6 +275,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('select1BusBraichi')
     ];
 
+        // Кнопки для Budva-Ploche
+    const plocheButtons = [
+        document.getElementById('select1BusPloche'),
+        document.getElementById('select2BusesPloche')
+    ];
+
     // Функция для управления подсветкой
     const addHighlighting = (buttons) => {
         buttons.forEach(button => {
@@ -261,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addHighlighting(petrovacButtons);
     addHighlighting(lastvaButtons);
     addHighlighting(braichiButtons);
+    addHighlighting(plocheButtons);
 });
 
   </script>
