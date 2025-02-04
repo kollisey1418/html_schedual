@@ -1,5 +1,6 @@
 # Название проекта: 
-## Расписание автобусных маршрутов "Mediteran Express"
+## Расписание автобусных маршрутов "Mediteran Express" 
+## Version: Beta 1.0.2
 ______________________________________________________________________________________________________
 
 # Описание проекта
@@ -18,6 +19,8 @@ ________________________________________________________________________________
   * ***Budva – Sveti Stefan – Budva***
   * ***Budva – Petrovac – Budva***
   * ***Budva – Lastva – Budva***
+  * ***Budva – Braichi – Budva***
+  * ***Budva – Ploche – Budva***
 
 * Расписания визуализируются в виде таблиц с указанием времени отправления и промежуточных остановок.
 
@@ -33,7 +36,7 @@ ________________________________________________________________________________
 
 ## 4. Интерактивные карты:
 
-* В проекте используются карты Google Maps, которые отображают маршруты движения автобусов и места остановок через KML-файлы.
+* В проекте используются карты Google Maps, которые отображают маршруты движения автобусов и места остановок через KML-файлы. Остановки имеют соответствующий цене цвет.
 
 ## 5. Цены на билеты:
 
@@ -42,6 +45,10 @@ ________________________________________________________________________________
 ### 6. Мобильная адаптация:
 
 * Интерфейс оптимизирован для просмотра на мобильных устройствах.
+
+### 7. Языковая адаптация:
+
+* Сайт предоставляет возможность выбора 3х языков: английский (базовая страница), себский (латиница), русский.
 ______________________________________________________________________________________________________
 
 # Целевая аудитория
@@ -60,15 +67,53 @@ ________________________________________________________________________________
   * Сохранение активного расписания в файле `active_schedule.json` .
 
 **2. Пользовательские страницы:**
+      **Английский:**
   * `budva-sveti-stefan-budva.html` : Расписание маршрута ***Budva – Sveti Stefan – Budva.***
   * `budva-petrovac-budva.html` : Расписание маршрута ***Budva – Petrovac – Budva.***
   * `budva-lastva-budva.html` : Расписание маршрута ***Budva – Lastva – Budva.***
+  * `budva-braichi-budva.html` : Расписание маршрута ***Budva – Braichi – Budva.***
+  * `budva-ploche-budva.html` : Расписание маршрута ***Budva – Ploche – Budva.***
   * `index.html` : Главная страница с навигацией по маршрутам.
+
+      **Сербский:**
+  * `budva-sveti-stefan-budva_me.html` : Расписание маршрута ***Budva – Sveti Stefan – Budva.***
+  * `budva-petrovac-budva_me.html` : Расписание маршрута ***Budva – Petrovac – Budva.***
+  * `budva-lastva-budva_me.html` : Расписание маршрута ***Budva – Lastva – Budva.***
+  * `budva-braichi-budva_me.html` : Расписание маршрута ***Budva – Braichi – Budva.***
+  * `budva-ploche-budva_me.html` : Расписание маршрута ***Budva – Ploche – Budva.***
+  * `index_me.html` : Главная страница с навигацией по маршрутам.
+
+    
+      **Русский:**
+  * `budva-sveti-stefan-budva_me.html` : Расписание маршрута ***Budva – Sveti Stefan – Budva.***
+  * `budva-petrovac-budva_ru.html` : Расписание маршрута ***Budva – Petrovac – Budva.***
+  * `budva-lastva-budva_ru.html` : Расписание маршрута ***Budva – Lastva – Budva.***
+  * `budva-braichi-budva_ru.html` : Расписание маршрута ***Budva – Braichi – Budva.***
+  * `budva-ploche-budva_ru.html` : Расписание маршрута ***Budva – Ploche – Budva.***
+  * `index_me.html_ru` : Главная страница с навигацией по маршрутам.
 
 **3. Файлы данных:**
 * JSON-файлы:
   * `active_schedule.json` : хранит данные о текущем активном расписании.
-  * Расписания для различных маршрутов `budva-sveti_stefan_2buses.json`, `budva-sveti_stefan_3buses.json`, `budva-sveti_stefan_4buses.json`, `budva-petrovac_1bus.json`, `budva-petrovac_2buses.json`, `budva-petrovac_3buses.json`, `budva-lastva_1bus.json`, `budva-lastva_2buses.json`.
+  * Расписания для различных маршрутов:
+  *  `budva-sveti_stefan_2buses.json`, `budva-sveti_stefan_3buses.json`, `budva-sveti_stefan_4buses.json`, `budva-sveti_stefan_5buses.json`, `budva-sveti_stefan_6buses.json`;
+  *  `sveti_stefan-budva_2buses.json`, `sveti_stefan-budva_3buses.json`, `sveti_stefan-budva_4buses.json`, `sveti_stefan-budva_5buses.json`, `sveti_stefan-budva_6buses.json`;
+ 
+
+  *  `budva-petrovac_1bus.json`, `budva-petrovac_2buses.json`, `budva-petrovac_3buses.json`;
+  *  `petrovac-budva_1bus.json`, `petrovac-budva_2buses.json`, `petrovac-budva_3buses.json`;
+ 
+    
+  *  `budva-lastva_1bus.json`, `budva-lastva_2buses.json`;
+  *  `lastva-budva_1bus.json`, `lastva-budva_2buses.json`;
+ 
+    
+  *  `budva-braichi_1bus.json`, `budva-braichi_2buses.json`;
+  *  `braichi-budva_1bus.json`, `braichi-budva_2buses.json`;
+ 
+    
+  *  `budva-ploche_1bus.json`, `budva-ploche_2buses.json`
+  *  `ploche-budva_1bus.json`, `ploche-budva_2buses.json`.
 * PHP-скрипт `update_schedule.php` для обновления данных расписания.
 
 **4. Карты маршрутов:**
