@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bus Schedule</title>
+    <link rel="icon" type="image/png" href="img/img_for_favicon.png">
+    <style>
+        /* Пример простого стиля для кнопок выбора расписания */
+        .schedule-option {
+            margin: 10px;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .selected {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+}
+
+                    .site-version {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    </style>
+</head>
+<body>
+    <h1>Budva - Sveti Stefan</h1>
+    <button class="schedule-option" id="BdSvselect2Buses">2 Buses</button>
+    <button class="schedule-option" id="BdSvselect3Buses">3 Buses</button>
+
+    <h1>Budva - Petrovac</h1>
+    <button class="schedule-option" id="select1BusPetrovac">1 Bus</button>
+    <button class="schedule-option" id="select2BusesPetrovac">2 Buses</button>
+
+    <h1>Budva - Lastav</h1>
+    <button class="schedule-option" id="select1BusLastva">1 Bus</button>
+    <button class="schedule-option" id="select2BusesLastva">2 Buses</button>
+
+    <h1>Budva - Lastav</h1>
+    <button class="schedule-option" id="select1BusBraich">1 Bus</button>
+
+
+  <script>
+    //Lastva----------------------------------------------
+    document.getElementById('BdSvselect2Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('BdSvselect3Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '3buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+
+    //Petrovac----------------------------------------------
+    document.getElementById('select1BusPetrovac').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_petrovac: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+      document.getElementById('select2BusesPetrovac').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_petrovac: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+
+      //Lastva----------------------------------------------
+      document.getElementById('select1BusLastva').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_lastva: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('select2BusesLastva').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_lastva: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+
+    //Braichi----------------------------------------------
+    document.getElementById('select1BusBraichi').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_braichi: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+
+      </script>
+
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Кнопки для Budva-Sveti Stefan
+    const svetiStefanButtons = [
+        document.getElementById('BdSvselect2Buses'),
+        document.getElementById('BdSvselect3Buses')
+    ];
+
+    // Кнопки для Budva-Petrovac
+    const petrovacButtons = [
+        document.getElementById('select2BusesPetrovac'),
+        document.getElementById('select1BusPetrovac')
+    ];
+
+        // Кнопки для Budva-Lastva
+    const lastvaButtons = [
+        document.getElementById('select1BusLastva'),
+        document.getElementById('select2BusesLastva')
+    ];
+
+    // Кнопки для Budva-Braich
+    const braichiButtons = [
+        document.getElementById('select1BusBraichi')
+    ];
+
+    // Функция для управления подсветкой
+    const addHighlighting = (buttons) => {
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Удаляем класс 'selected' у всех кнопок в группе
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                // Добавляем класс 'selected' к нажатой кнопке
+                button.classList.add('selected');
+            });
+        });
+    };
+
+    // Добавляем подсветку для каждой группы кнопок
+    addHighlighting(svetiStefanButtons);
+    addHighlighting(petrovacButtons);
+    addHighlighting(lastvaButtons);
+    addHighlighting(braichiButtons);
+});
+
+  </script>
+
+<div class="site-version">Version: Beta 1.0</div>
+
+</body>
+</html>
