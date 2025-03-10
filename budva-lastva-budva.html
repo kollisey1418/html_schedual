@@ -130,6 +130,7 @@ td {
 
 /* Содержимое popup */
 .popup-content {
+    position: relative;
     background-color: white;
     margin: 15% auto;
     padding: 20px;
@@ -138,6 +139,7 @@ td {
     max-width: 6000px;
     box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.5);
     overflow-x: auto; /* Горизонтальная прокрутка */
+    height: 300px;
 }
 
 /* Кнопка закрытия popup */
@@ -184,6 +186,8 @@ td {
     z-index: 1000;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    height: 150px;
+    overflow: auto;
 }
 
 .dropdown-content a {
@@ -657,31 +661,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Настройка выпадающих списков
     const setupDropdown = (buttonId, dropdownId, callback) => {
-        const button = document.getElementById(buttonId);
-        const dropdown = document.getElementById(dropdownId);
+    const button = document.getElementById(buttonId);
+    const dropdown = document.getElementById(dropdownId);
+    const popupContent = button.closest('.popup-content');
 
-        button.addEventListener('click', (event) => {
-            const buttonRect = button.getBoundingClientRect();
-            dropdown.style.left = `${buttonRect.left}px`;
-            dropdown.style.top = `${buttonRect.bottom}px`;
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
+    button.addEventListener('click', (event) => {
+        const buttonRect = button.getBoundingClientRect();
+        const popupRect = popupContent.getBoundingClientRect();
 
-        dropdown.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A') {
-                const value = event.target.dataset.station || event.target.dataset.interval;
-                button.textContent = event.target.textContent;
-                dropdown.style.display = 'none';
-                callback(value);
-            }
-        });
+        const offsetLeft = buttonRect.left - popupRect.left + popupContent.scrollLeft;
+        const offsetTop = buttonRect.bottom - popupRect.top + popupContent.scrollTop;
 
-        window.addEventListener('click', (event) => {
-            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-    };
+        dropdown.style.left = `${offsetLeft}px`;
+        dropdown.style.top = `${offsetTop}px`;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            const value = event.target.dataset.station || event.target.dataset.interval;
+            button.textContent = event.target.textContent;
+            dropdown.style.display = 'none';
+            callback(value);
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+};
 
     setupDropdown('departureButton', 'departureDropdown', (value) => { selectedDeparture = value; updateArrivalDropdown(value); });
     setupDropdown('arrivalButton', 'arrivalDropdown', (value) => selectedArrival = value);
@@ -851,33 +861,39 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
         let selectedArrival2 = null;
         let selectedInterval2 = null;
 
-        const setupDropdown = (buttonId, dropdownId, callback) => {
-            const button = document.getElementById(buttonId);
-            const dropdown = document.getElementById(dropdownId);
+       // Настройка выпадающих списков
+    const setupDropdown = (buttonId, dropdownId, callback) => {
+    const button = document.getElementById(buttonId);
+    const dropdown = document.getElementById(dropdownId);
+    const popupContent = button.closest('.popup-content');
 
-            button.addEventListener('click', (event) => {
-                // Позиционируем выпадающее меню относительно кнопки
-                const buttonRect = button.getBoundingClientRect();
-                dropdown.style.left = `${buttonRect.left}px`;
-                dropdown.style.top = `${buttonRect.bottom}px`;
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            });
+    button.addEventListener('click', (event) => {
+        const buttonRect = button.getBoundingClientRect();
+        const popupRect = popupContent.getBoundingClientRect();
 
-            dropdown.addEventListener('click', (event) => {
-                if (event.target.tagName === 'A') {
-                    const value = event.target.dataset.station || event.target.dataset.interval;
-                    button.textContent = event.target.textContent;
-                    dropdown.style.display = 'none';
-                    callback(value);
-                }
-            });
+        const offsetLeft = buttonRect.left - popupRect.left + popupContent.scrollLeft;
+        const offsetTop = buttonRect.bottom - popupRect.top + popupContent.scrollTop;
 
-            window.addEventListener('click', (event) => {
-                if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-                    dropdown.style.display = 'none';
-                }
-            });
-        };
+        dropdown.style.left = `${offsetLeft}px`;
+        dropdown.style.top = `${offsetTop}px`;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            const value = event.target.dataset.station || event.target.dataset.interval;
+            button.textContent = event.target.textContent;
+            dropdown.style.display = 'none';
+            callback(value);
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+};
 
         setupDropdown('departureButton2', 'departureDropdown2', (value) => {
             selectedDeparture2 = value;
