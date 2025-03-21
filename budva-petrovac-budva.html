@@ -796,9 +796,9 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
                     return;
                 }
 
-            lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
+                lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
 
-                          if (data.active_petrovac === '1bus') {
+              if (data.active_petrovac === '1bus') {
     scheduleFile2 = 'petrovac-budva_1bus.json';
     } else if (data.active_petrovac === '2buses') {
     scheduleFile2 = 'petrovac-budva_2buses.json';
@@ -810,7 +810,7 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
                 return;
             }
 
-              return fetch(scheduleFile).then(response => response.json());
+              return fetch(scheduleFile2).then(response => response.json());
         })
         .then(scheduleData => {
             currentSchedule2 = scheduleData; // Сохраняем данные в глобальную переменную

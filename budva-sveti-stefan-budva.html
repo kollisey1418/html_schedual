@@ -799,8 +799,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovich
 
                 lastUpdated2 = data.lastUpdated2;
 
-            if (data.active === '2buses') {
-    scheduleFile2 = 'sveti_stefan-budva_2buses.json';
+            if (data.active === '2buses') {scheduleFile2 = 'sveti_stefan-budva_2buses.json';
     } else if (data.active === '3buses') {
     scheduleFile2 = 'sveti_stefan-budva_3buses.json';
     } else if (data.active === '4buses') {
@@ -809,11 +808,7 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovich
     scheduleFile2 = 'sveti_stefan-budva_5buses.json';
     } else if (data.active === '6buses') {
     scheduleFile2 = 'sveti_stefan-budva_6buses.json';
-} else {
-                // Если не нужно загружать какое-либо расписание,
-                // то просто возвращаемся и не вызываем fetch(scheduleFile):
-                return;
-            }
+} else
 
             return fetch(scheduleFile2).then(response => response.json());
             })
