@@ -21,6 +21,8 @@
     background-color: #002244;
     color: #ffffff;
     padding: 2px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
     font-family: 'Tangerine', cursive;
     font-size: 5em;
@@ -230,6 +232,19 @@ td {
         font-size: 12px;
     }
 
+.weather-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    text-align: right;
+    z-index: 999;
+}
+
+
+
+
+
                         /*Разработка страницы*/
 
 
@@ -303,7 +318,27 @@ h1 {
     </div>
     <div class="header">
         Mediteran Express
-    </div>
+      <!-- Для ПК -->
+
+
+<!-- Для мобильных -->
+<div class="mobil-only" style="    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+    padding-bottom: 6px;
+    overflow: hidden;">
+  <div id="weather-mb" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
+</div>
+</div>
+
+
     <div class="schedule-container">
 
 
@@ -959,10 +994,15 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
 
 
-<div class="site-version">Version: Beta 1.0.2</div>
+<div class="site-version">Version: Beta 1.0.3</div>
 
 
 
+<script src="weather.js"></script>
+<script>
+  getWeather("Budva", "weather");     // для ПК
+  getWeather("Budva", "weather-mb");  // для мобилки
+</script>
 
 </body>
 </html>
