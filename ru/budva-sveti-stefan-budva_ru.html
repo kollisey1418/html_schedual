@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Будва - Свети Стефан - Будва</title>
+    <link rel="icon" type="image/png" href="/img/img_for_favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+ body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #003366;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden; /* Убирает горизонтальную прокрутку */
+}
+
+.header {
+    background-color: #002244;
+    color: #ffffff;
+    padding: 2px;
+    text-align: center;
+    font-family: 'Tangerine', cursive;
+    font-size: 5em;
+    font-style: italic;
+    letter-spacing: 3px;
+}
+
+
+.schedule-container {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    width: 95%;
+    max-width: 1200px;
+    padding: 4px;
+    margin: 4px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+h1, h2 {
+    font-weight: 700;
+    color: #cc0000;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 40px;
+    font-size: 1em;
+    color: #ffffff;
+    text-align: center;
+    background-color: #002244;
+    padding: 20px;
+    border-radius: 0 0 15px 15px;
+}
+
+.map-container {
+    width: 40%;
+    margin-bottom: 30px;
+}
+
+#map1, #map2 {
+    height: 350px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.price-container {
+    width: 20%;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.price-item img {
+    width: 50px; /* Настройте под свои нужды */
+    height: auto;
+    margin-bottom: 2px;
+}
+
+.timetable-container {
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 40%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+}
+
+.mobil-only {
+    display: none; /* Скрываем на ПК */
+}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Содержимое popup */
+.popup-content {
+    position: relative;
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 6000px;
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.5);
+    overflow-x: auto; /* Горизонтальная прокрутка */
+    min-height: 300px;
+}
+
+/* Кнопка закрытия popup */
+.popup .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.popup .close:hover,
+.popup .close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Стиль таблицы */
+.popup table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.popup th, .popup td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.popup th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none; /* Скрыть по умолчанию */
+    list-style: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height:150px;
+    overflow: auto;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover {
+    background-color: #f2f2f2;
+}
+
+.dropdown-button, .schedule-button, .search-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .schedule-selection {
+    text-align: center;
+    margin: 20px auto;
+}
+
+            .site-version {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 550px) {
+    .schedule-container {
+        flex-direction: column;
+        align-items: center;
+        width: 98%;
+        padding: 0px;
+
+    }
+
+    .desktop-only {
+        display: none; /* Скрываем на телефоне */
+    }
+
+    .mobil-only {
+        display: block; /* Показываем только на телефоне */
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+        justify-content: center; /* Центрируем содержимое по горизонтали */
+        align-items: center;    /* Центрируем содержимое по вертикали */
+    }
+
+
+    .price-container, .timetable-container {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .map-container {
+    width: 100%; /* или любое значение, которое вам нужно */
+    margin: 10px auto; /* Уменьшите верхний/нижний отступ, если необходимо */
+    padding: 0; /* Если были внутренние отступы, убираем их */
+}
+
+    table {
+        width: 100%;
+    }
+
+    .highlight {
+    background-color: yellow;
+      font-weight: bold;
+}
+
+
+
+
+    }
+    </style>
+</head>
+<body>
+<div style="position: absolute; top: 20px; left: 20px;">
+        <a href="index_ru.html" class="home-button desktop-only" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Главная</a>
+        <a href="index_ru.html" class="home-button mobil-only" style="border-radius: 10px; font-weight: bold;"><img src="/img/home_mobil.png" alt="Back" class="home-icon"></a>
+    </div>
+    <div class="header">
+Mediteran Express
+    </div>
+    <div class="schedule-container">
+
+<div class="map-container">
+    <h1>Будва - Свети Стефан</h1>
+    <div id="map1"></div>
+    <div class="timetable-container">
+        <h2>Расписание автобусов</h2>
+       <div class="timetable-container">
+    <button id="detailedScheduleButton" class="schedule-button">Детали расписания</button>
+</div>
+        <p style="text-align: center;">*Расписание может быть не точным из-за дорожных обстоятельств.</p>
+    </div>
+</div>
+
+      <div id="schedulePopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Детали расписания</h2>
+              <div class="filter-buttons">
+            <button id="departureButton" class="dropdown-button">Остановка отправления</button>
+             <div id="departureDropdown" class="dropdown-content">
+                        <a href="#" data-station="Будва">Будва</a>
+                        <a href="#" data-station="Црвена Зграда">Црвена Зграда</a>
+                        <a href="#" data-station="Стадион (Славия)">Стадион (Славия)</a>
+                        <a href="#" data-station="Аквапарк">Аквапарк</a>
+                        <a href="#" data-station="Моц">Моц</a>
+                        <a href="#" data-station="Белла Виста">Белла Виста</a>
+                        <a href="#" data-station="Рафаиловичи">Рафаиловичи</a>
+                        <a href="#" data-station="Каменово">Каменово</a>
+                        <a href="#" data-station="Маэстрал">Маэстрал</a>
+                        <a href="#" data-station="Пржно">Пржно</a>
+                    </div>
+
+                    <button id="arrivalButton" class="dropdown-button">Остановка назначения</button>
+                    <div id="arrivalDropdown" class="dropdown-content">
+                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Пожалуйста, выберите остановку отправления</a>
+                    </div>
+
+                    <button id="intervalButton" class="dropdown-button">Временной интервал</button>
+                    <div id="intervalDropdown" class="dropdown-content">
+                        <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
+                        <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
+                        <a href="#" data-interval="10:00-12:00">10:00-12:00</a>
+                        <a href="#" data-interval="12:00-14:00">12:00-14:00</a>
+                        <a href="#" data-interval="14:00-16:00">14:00-16:00</a>
+                        <a href="#" data-interval="16:00-18:00">16:00-18:00</a>
+                        <a href="#" data-interval="18:00-20:00">18:00-20:00</a>
+                        <a href="#" data-interval="20:00-22:00">20:00-22:00</a>
+                        <a href="#" data-interval="22:00-00:00">22:00-00:00</a>
+
+
+                    </div>
+
+                    <button id="searchButton" class="search-button">Найти расписание</button>
+                    <button id="showAllButton" class="search-button">Показать все</button>
+                </div>
+                <div id="result"></div>
+            </div>
+        </div>
+
+
+
+
+
+                <div class="price-container">
+             <h2>Ценовые зоны</h2>
+                    <div class="price-item">
+                        <h2> ↓ </h2>
+
+            </div>
+            <div class="price-item">
+                <img src="/img/Bus_Red.png" alt="Red Stop">
+                <p>Красный билет - €1.5</p>
+            </div>
+            <div class="price-item">
+                <img src="/img/Bus_Blue.png" alt="Blue Stop">
+                <p>Красный билет - €2</p>
+            </div>
+            <div class="price-item">
+                <img src="/img/Bus_Green.png" alt="Green Stop">
+                <p>Зеленый билет - €2.5</p>
+            </div>
+        </div>
+
+      <div class="map-container">
+    <h1>Свети Стефан - Будва</h1>
+    <div id="map2"></div>
+    <div class="timetable-container">
+        <h2>Расписание автобусов</h2>
+        <button class="schedule-button" id="scheduleButton2">Детали расписания</button>
+        <p style="text-align: center;">*Расписание может быть не точным из-за дорожных обстоятельств.</p>
+    </div>
+</div>
+
+<div id="schedulePopup2" class="popup">
+    <div class="popup-content">
+        <span class="close" id="closePopup2">&times;</span>
+        <h2>Детали расписания</h2>
+        <div class="filter-buttons">
+            <button id="departureButton2" class="dropdown-button">Остановака отправления</button>
+            <div id="departureDropdown2" class="dropdown-content">
+                <a href="#" data-station="Свети Стефан">Свети Стефан</a>
+                <a href="#" data-station="Вертмонт">Вертмонт</a>
+                <a href="#" data-station="Адрович">Адрович</a>
+                <a href="#" data-station="Каменово">Каменово</a>
+                <a href="#" data-station="Рафаиловичи">Рафаиловичи</a>
+                <a href="#" data-station="Белла Виста">Белла Виста</a>
+                <a href="#" data-station="Моц">Моц</a>
+                <a href="#" data-station="Аквапарк">Аквапарк</a>
+                <a href="#" data-station="Стадион (Славия)">Стадион (Славия)</a>
+                <a href="#" data-station="Обштина">Обштина</a>
+            </div>
+
+            <button id="arrivalButton2" class="dropdown-button">Остановка назначения</button>
+            <div id="arrivalDropdown2" class="dropdown-content">
+                <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Пожалуйста, выберите остановку отправления.</a>
+            </div>
+
+            <button id="intervalButton2" class="dropdown-button">Временной интервал</button>
+            <div id="intervalDropdown2" class="dropdown-content">
+                <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
+                <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
+                <a href="#" data-interval="08:00-10:00">10:00-12:00</a>
+                <a href="#" data-interval="12:00-14:00">12:00-14:00</a>
+                <a href="#" data-interval="14:00-16:00">14:00-16:00</a>
+                <a href="#" data-interval="16:00-18:00">16:00-18:00</a>
+                <a href="#" data-interval="18:00-20:00">18:00-20:00</a>
+                <a href="#" data-interval="20:00-22:00">20:00-22:00</a>
+                <a href="#" data-interval="22:00-00:00">22:00-00:00</a>
+                <a href="#" data-interval="00:30">00:30</a>
+            </div>
+
+            <button id="searchButton2" class="search-button">Найти расписание</button>
+            <button id="showAllButton2" class="search-button">Показать все</button>
+        </div>
+        <div id="result2"></div>
+    </div>
+</div>
+    </div>
+
+
+
+
+    <script>
+        function initMap() {
+            var map1 = new google.maps.Map(document.getElementById('map1'), {
+                zoom: 13,
+                center: {lat: 42.2867, lng: 18.8414}
+            });
+
+            var kmlLayer1 = new google.maps.KmlLayer({
+                url: 'https://drive.google.com/uc?id=1aXA_KFwaNmmldNBbiS-VQQvpJRRc9Fgd',
+                map: map1
+            });
+
+            var map2 = new google.maps.Map(document.getElementById('map2'), {
+                zoom: 13,
+                center: {lat: 42.2867, lng: 18.8414}
+            });
+
+            var kmlLayer2 = new google.maps.KmlLayer({
+                url: 'https://drive.google.com/uc?id=17vJKvg5c4JtjPOYZ7EREV-At0DeMYN59',
+                map: map2
+            });
+        }
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuVZouqPoNNvzq781PhW4PJkoa9OF0hjw&callback=initMap" async defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Получаем элементы
+        const popup = document.getElementById('schedulePopup');
+        const openButton = document.querySelector('.schedule-button');
+        const closeButton = popup.querySelector('.close');
+
+        // Функция для открытия popup
+        openButton.addEventListener('click', () => {
+            popup.style.display = 'block';
+        });
+
+        // Функция для закрытия popup
+        closeButton.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Закрытие popup при клике вне окна
+        window.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<script>
+// Глобальная переменная для текущего расписания
+let currentSchedule = null;
+let lastUpdated = null;
+let isShowAllClicked = false; //Информация, если Show All не нажата
+
+const stops = ["Будва", "Црвена Зграда", "Стадион (Славия)", "Аквапарк", "Моц", "Белла Виста", "Рафаиловичи", "Каменово", "Маэстрал", "пржно", "Свети Стефан"];
+
+// Функция для динамической подгрузки станций в arrivalDropdown
+function updateArrivalDropdown(selectedDeparture) {
+  const departureIndex = stops.indexOf(selectedDeparture);
+  const allowedArrivals = stops.slice(departureIndex + 1);
+
+  const arrivalDropdown = document.getElementById('arrivalDropdown');
+  arrivalDropdown.innerHTML = ''; // Очищаем старые пункты
+
+  allowedArrivals.forEach(station => {
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#" data-station="${station}">${station}</a>`;
+    arrivalDropdown.appendChild(li);
+  });
+}
+
+// Функция для загрузки расписания
+function loadActiveSchedule() {
+    return fetch('/active_schedule.json')
+        .then(response => response.json())
+        .then(data => {
+            // Проверяем, изменились ли данные
+            if (lastUpdated && lastUpdated === data.lastUpdated) {
+                console.log("No changes in schedule data.");
+                return; // Если данных нет изменений, ничего не делаем
+            }
+
+            lastUpdated = data.lastUpdated; // Обновляем метку времени
+            const scheduleFile = data.active === '2buses' ? '/budva-sveti_stefan_2buses.json' : '/budva-sveti_stefan_3buses.json';
+            return fetch(scheduleFile).then(response => response.json());
+        })
+        .then(scheduleData => {
+            currentSchedule = scheduleData; // Сохраняем данные в глобальную переменную
+            console.log('Schedule loaded into memory:', currentSchedule); // Для отладки
+            if (scheduleData) {
+                console.log('Schedule updated:', currentSchedule);
+
+                // Обновляем таблицу только если она видима
+                if (document.getElementById('result').style.display === 'block') {
+                    renderTable(scheduleData); // Используем scheduleData, а не currentSchedule
+                }
+            }
+        })
+        .catch(error => console.error('Error loading schedule:', error));
+}
+
+
+// Функция для рендера таблицы
+function renderTable(schedule) {
+    const resultContainer = document.getElementById('result');
+
+
+        // Проверяем структуру schedule
+    console.log('Schedule:', schedule);
+
+    if (!schedule || schedule.length === 0) {
+       console.error('Invalid schedule structure:', schedule);
+        resultContainer.innerHTML = `<p>No schedule found for the selected filters.</p>`;
+        return;
+    }
+
+    resultContainer.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    ${stops.map(stop => `<th>${stop}</th>`).join('')}
+                </tr>
+            </thead>
+            <tbody>
+                ${schedule.map(({ time, osta }) => {
+                     console.log('Osta:', osta);
+
+
+                     if (!Array.isArray(osta)) {
+                        return `<tr><td>${time}</td>${'<td>-</td>'.repeat(osta.length)}</tr>`;
+                    }
+
+                    return `
+                        <tr>
+                            <td>${time}</td>
+                            ${osta.map(stopTime => `<td>${stopTime || '-'}</td>`).join('')}
+                        </tr>
+                    `;
+                }).join('')}
+            </tbody>
+        </table>
+    `;
+
+    resultContainer.style.display = 'block'; // Показываем расписание
+}
+
+function renderFilteredTable(filteredTimes, selectedDeparture, selectedArrival) {
+    const result = document.getElementById('result');
+    result.style.display = 'block';
+
+    if (!filteredTimes || filteredTimes.length === 0) {
+        result.innerHTML = '<p>На это время автобусов нет.</p>';
+        return;
+    }
+
+    // Используем глобальную переменную stops (либо объявите const stops = [...] здесь)
+    const departureIndex = stops.indexOf(selectedDeparture);
+    const arrivalIndex   = stops.indexOf(selectedArrival);
+
+    result.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>${selectedDeparture}</th>
+                    <th>${selectedArrival}</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${filteredTimes.map(({ time, osta }) => `
+                    <tr>
+                        <td>${time}</td>
+                        <td>${osta[departureIndex] || '-'}</td>
+                        <td>${osta[arrivalIndex]   || '-'}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+// Настройка событий и автоматического обновления
+document.addEventListener('DOMContentLoaded', () => {
+    loadActiveSchedule(); // Первоначальная загрузка
+
+    // Устанавливаем интервал для автоматического обновления
+    setInterval(() => {
+        loadActiveSchedule();
+    }, 5 * 60 * 1000); // Каждые 5 минут
+});
+
+// Привязка событий к кнопкам
+document.addEventListener('DOMContentLoaded', () => {
+    const showAllButton = document.getElementById('showAllButton');
+    const resultContainer = document.getElementById('result');
+
+    // Скрываем расписание по умолчанию
+    resultContainer.style.display = 'none';
+
+    // Показываем расписание только при нажатии на кнопку "Show All"
+    showAllButton.addEventListener('click', () => {
+        if (currentSchedule) {
+            renderTable(currentSchedule); // Отображаем уже загруженное расписание
+        } else {
+            loadActiveSchedule(); // Загружаем и отображаем расписание
+        }
+    });
+});
+
+// Обработчик для фильтрации расписания
+document.addEventListener('DOMContentLoaded', () => {
+    let selectedDeparture = null;
+    let selectedArrival = null;
+    let selectedInterval = null;
+
+
+        // Настройка выпадающих списков
+    const setupDropdown = (buttonId, dropdownId, callback) => {
+    const button = document.getElementById(buttonId);
+    const dropdown = document.getElementById(dropdownId);
+    const popupContent = button.closest('.popup-content');
+
+    button.addEventListener('click', (event) => {
+        const buttonRect = button.getBoundingClientRect();
+        const popupRect = popupContent.getBoundingClientRect();
+
+        const offsetLeft = buttonRect.left - popupRect.left + popupContent.scrollLeft;
+        const offsetTop = buttonRect.bottom - popupRect.top + popupContent.scrollTop;
+
+        dropdown.style.left = `${offsetLeft}px`;
+        dropdown.style.top = `${offsetTop}px`;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            const value = event.target.dataset.station || event.target.dataset.interval;
+            button.textContent = event.target.textContent;
+            dropdown.style.display = 'none';
+            callback(value);
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+};
+
+    setupDropdown('departureButton', 'departureDropdown', (value) => { selectedDeparture = value; updateArrivalDropdown(value); });
+    setupDropdown('arrivalButton', 'arrivalDropdown', (value) => selectedArrival = value);
+    setupDropdown('intervalButton', 'intervalDropdown', (value) => selectedInterval = value);
+
+
+
+
+    document.getElementById('showAllButton').addEventListener('click', () => {
+    isShowAllClicked = true;  // Запоминаем, что кнопка "Show All" была нажата
+    // Здесь можно добавить код для показа расписания, если это нужно
+});
+
+document.getElementById('searchButton').addEventListener('click', () => {
+ {
+            if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+                alert("Пожалуйста, выберите остановку отправления, назначения и временной интервал.");
+                return;
+            }
+        const [start, end] = selectedInterval.split('-');
+        const filteredTimes = currentSchedule.filter(({ time }) => {
+            if (start > end) {
+                return time >= start || time <= end;
+            }
+            return time >= start && time <= end;
+        });
+
+        // Передаём и filteredTimes, и выбранные станции
+        renderFilteredTable(filteredTimes, selectedDeparture, selectedArrival);
+    }
+});
+});
+
+</script>
+
+<script>
+
+    // Управление popup для map2
+    const popup2 = document.getElementById('schedulePopup2');
+    const openButton2 = document.getElementById('scheduleButton2');
+    const closeButton2 = document.getElementById('closePopup2');
+
+    openButton2.addEventListener('click', () => {
+        popup2.style.display = 'block';
+    });
+
+    closeButton2.addEventListener('click', () => {
+        popup2.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === popup2) {
+            popup2.style.display = 'none';
+        }
+    });
+    </script>
+
+    <script>
+// Глобальная переменная для текущего расписания
+let currentSchedule2 = null;
+let lastUpdated2 = null;
+let isShowAllClicked2 = false; //Информация, если Show All не нажата
+
+const stops2 = ["Свети Стефан", "Вертмонт", "Адрович", "Каменово", "Рафаиловичи", "Белла Виста", "Моц", "Аквапарк", "Стадион (Славия)", "Обштина", "Будва"];
+
+  // Функция для динамической подгрузки станций в arrivalDropdown2
+    function updateArrivalDropdown2(selectedDeparture) {
+        const departureIndex = stops2.indexOf(selectedDeparture);
+        const allowedArrivals = stops2.slice(departureIndex + 1);
+
+        const arrivalDropdown = document.getElementById('arrivalDropdown2');
+        arrivalDropdown.innerHTML = ''; // Очищаем старые пункты
+
+        allowedArrivals.forEach(station => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#" data-station="${station}">${station}</a>`;
+            arrivalDropdown.appendChild(li);
+        });
+    }
+
+
+// Функция для загрузки расписания
+    function loadActiveSchedule2() {
+        return fetch('/active_schedule.json')
+            .then(response => response.json())
+            .then(data => {
+                if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
+                    console.log("No changes in schedule data.");
+                    return;
+                }
+
+                lastUpdated2 = data.lastUpdated2;
+            const scheduleFile = data.active === '2buses' ? '/sveti_stefan-budva_2buses.json' : '/sveti_stefan-budva_3buses.json';
+                return fetch(scheduleFile).then(response => response.json());
+            })
+            .then(scheduleData => {
+                currentSchedule2 = scheduleData;
+
+                // Если блок с расписанием уже показывается, обновляем таблицу
+                if (document.getElementById('result2').style.display === 'block') {
+                    renderTable2(currentSchedule2);
+                }
+            })
+            .catch(error => console.error('Error loading schedule:', error));
+    }
+
+    // Функция для рендера таблицы
+    function renderTable2(schedule) {
+        const resultContainer = document.getElementById('result2');
+
+        if (!Array.isArray(schedule) || schedule.length === 0) {
+            resultContainer.innerHTML = '<p>На это время автобусов нет.</p>';
+            return;
+        }
+
+        const tableHeader = `<tr><th>Time</th>${stops2.map(stop => `<th>${stop}</th>`).join('')}</tr>`;
+        const tableBody = schedule.map(({ time, osta }) => {
+            if (!Array.isArray(osta)) return '';
+            return `<tr><td>${time}</td>${osta.map(stopTime => `<td>${stopTime || '-'}</td>`).join('')}</tr>`;
+        }).join('');
+
+        resultContainer.innerHTML = `<table>
+            <thead>${tableHeader}</thead>
+            <tbody>${tableBody}</tbody>
+        </table>`;
+        resultContainer.style.display = 'block';
+    }
+
+    // Обработчик кнопки "Show All"
+    document.addEventListener('DOMContentLoaded', () => {
+        const showAllButton = document.getElementById('showAllButton2');
+        showAllButton.addEventListener('click', () => {
+            isShowAllClicked2 = true;
+            if (currentSchedule2) {
+                renderTable2(currentSchedule2);
+            } else {
+                loadActiveSchedule2();
+            }
+        });
+    });
+
+    // Функция фильтрации расписания
+    function renderFilteredTable2(filteredTimes, selectedDeparture, selectedArrival) {
+        const result = document.getElementById('result2');
+        result.style.display = 'block';
+
+        if (!Array.isArray(filteredTimes) || filteredTimes.length === 0) {
+            result.innerHTML = '<p>На это время автобусов нет.</p>';
+            return;
+        }
+
+        const departureIndex = stops2.indexOf(selectedDeparture);
+        const arrivalIndex = stops2.indexOf(selectedArrival);
+
+        const tableBody = filteredTimes.map(({ time, osta }) => `
+            <tr>
+                <td>${time}</td>
+                <td>${osta[departureIndex] || '-'}</td>
+                <td>${osta[arrivalIndex] || '-'}</td>
+            </tr>
+        `).join('');
+
+        result.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>${selectedDeparture}</th>
+                        <th>${selectedArrival}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableBody}
+                </tbody>
+            </table>
+        `;
+    }
+
+    // Настройка событий
+    document.addEventListener('DOMContentLoaded', () => {
+        loadActiveSchedule2();
+
+        // Автоматическое обновление каждые 5 минут
+        setInterval(() => {
+            loadActiveSchedule2();
+        }, 5 * 60 * 1000);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        let selectedDeparture2 = null;
+        let selectedArrival2 = null;
+        let selectedInterval2 = null;
+
+        // Настройка выпадающих списков
+    const setupDropdown = (buttonId, dropdownId, callback) => {
+    const button = document.getElementById(buttonId);
+    const dropdown = document.getElementById(dropdownId);
+    const popupContent = button.closest('.popup-content');
+
+    button.addEventListener('click', (event) => {
+        const buttonRect = button.getBoundingClientRect();
+        const popupRect = popupContent.getBoundingClientRect();
+
+        const offsetLeft = buttonRect.left - popupRect.left + popupContent.scrollLeft;
+        const offsetTop = buttonRect.bottom - popupRect.top + popupContent.scrollTop;
+
+        dropdown.style.left = `${offsetLeft}px`;
+        dropdown.style.top = `${offsetTop}px`;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            const value = event.target.dataset.station || event.target.dataset.interval;
+            button.textContent = event.target.textContent;
+            dropdown.style.display = 'none';
+            callback(value);
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+};
+
+        setupDropdown('departureButton2', 'departureDropdown2', (value) => {
+            selectedDeparture2 = value;
+            updateArrivalDropdown2(value);
+        });
+        setupDropdown('arrivalButton2', 'arrivalDropdown2', (value) => {
+            selectedArrival2 = value;
+        });
+        setupDropdown('intervalButton2', 'intervalDropdown2', (value) => {
+            selectedInterval2 = value;
+        });
+
+        document.getElementById('searchButton2').addEventListener('click', () => {
+            if (!currentSchedule2) {
+                alert("Schedule data is not loaded yet. Please try again later.");
+                return;
+            }
+
+            if (!selectedDeparture2 || !selectedArrival2 || !selectedInterval2) {
+                alert("Пожалуйста, выберите остановку отправления, назначения и временной интервал.");
+                return;
+            }
+
+            const [start, end] = selectedInterval2.split('-');
+            const filteredTimes = currentSchedule2.filter(({ time }) => {
+                if (start > end) {
+                    // Интервалы через полночь
+                    return time >= start || time <= end;
+                }
+                return time >= start && time <= end;
+            });
+
+            renderFilteredTable2(filteredTimes, selectedDeparture2, selectedArrival2);
+        });
+    });
+</script>
+
+
+<div class="site-version">Version: Beta 1.0.2</div>
+
+</body>
+</html>
+
