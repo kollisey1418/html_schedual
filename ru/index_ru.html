@@ -151,6 +151,20 @@
 <body>
     <div class="header">
         Mediteran Express
+            <div class="mobil-only" style="    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+    padding-bottom: 6px;
+    overflow: hidden;">
+  <div id="weather" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
+</div>
     </div>
       <div class="language-switcher">
         <a href="/index.html"><img src="/img/en.png" alt="English"></a>
@@ -187,8 +201,11 @@
     </div>
 
 
-<div class="site-version">Version: Beta 1.0.2</div>
+<div class="site-version">Version: Beta 1.0.3</div>
 
-
+<script src="/weather.js"></script>
+<script>
+  getWeather("Budva", "weather", "ru");
+</script>
 </body>
 </html>

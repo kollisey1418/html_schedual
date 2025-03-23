@@ -17,18 +17,16 @@
     overflow-x: hidden; /* Убирает горизонтальную прокрутку */
 }
 
-.header {
-    background-color: #002244;
-    color: #ffffff;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    font-family: 'Tangerine', cursive;
-    font-size: 5em;
-    font-style: italic;
-    letter-spacing: 3px;
-}
+     .header {
+            background-color: #002244;
+            color: #ffffff;
+            padding: 2px;
+            text-align: center;
+            font-family: 'Tangerine', cursive;
+            font-size: 5em;
+            font-style: italic;
+            letter-spacing: 3px;
+        }
 
 .schedule-container {
     background-color: #ffffff;
@@ -232,14 +230,6 @@ td {
         font-size: 12px;
     }
 
-.weather-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    text-align: right;
-    z-index: 999;
-}
 
 
 
@@ -318,10 +308,7 @@ h1 {
     </div>
     <div class="header">
         Mediteran Express
-      <!-- Для ПК -->
 
-
-<!-- Для мобильных -->
 <div class="mobil-only" style="    width: 100%;
     display: flex;
     justify-content: center;
@@ -1009,8 +996,8 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
 <script src="weather.js"></script>
 <script>
-  getWeather("Budva", "weather");     // для ПК
-  getWeather("Budva", "weather-mb");  // для мобилки
+  getWeather("Budva", "weather-mb");
+
 </script>
 
 </body>

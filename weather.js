@@ -1,6 +1,6 @@
-async function getWeather(city, elementId = "weather") {
+async function getWeather(city, elementId = "weather", lang = "en") {
     const apiKey = '71d91261f3134d148aa114746252203'; // вставь свой ключ
-    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`);
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=${lang}&aqi=no`);
     const data = await response.json();
 
     const container = document.getElementById(elementId);
