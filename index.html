@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <meta name="google-site-verification" content="O0utNFo_5G7m-gFn_BbAysTFxCSEyfBy2wG5KZOlvdY" />
+    <meta name="description" content="City bus schedule between Budva, Sveti Stefan, and Petrovac. Find out how to get around, current departure times, routes, and stops in Montenegro’s coastal tourist zone.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Schedule</title>
@@ -14,6 +16,11 @@
             padding: 0;
             min-height: 100vh;
         }
+
+        .logo {
+  display: block;
+  margin: 0 auto;
+}
 
         .header {
             background-color: #002244;
@@ -114,15 +121,38 @@
             background-color: #990000;
         }
 
-        .footer {
-            margin-top: 40px;
-            font-size: 1em;
-            color: #ffffff;
-            text-align: center;
-            background-color: #002244;
-            padding: 20px;
-            border-radius: 0 0 15px 15px;
-        }
+.footer {
+  margin-top: auto;
+  font-size: 1em;
+  color: #ffffff;
+  background-color: #003366;
+  padding: 20px;
+  border-radius: 0 0 15px 15px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;;
+  flex-wrap: wrap; /* перенос при малой ширине */
+  gap: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.f_info {
+  flex: 1 1 300px;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.footer-main {
+  flex: 1 1 100%;
+  font-size: 1em;
+  text-align: center;
+}
 
             .site-version {
         position: fixed;
@@ -134,6 +164,8 @@
         border-radius: 5px;
         font-size: 12px;
     }
+
+
 
 @media (max-width: 550px) {
     .schedule-container {
@@ -172,7 +204,7 @@
         <!--<a href="languages/al/index_al.html"><img src="img/al.png" alt="Albanian" id="alb"></a>-->
 </div>
     <div class="schedule-container">
-      <img src="img/logo.jpeg">
+      <img src="img/logo.jpeg" class="logo">
         <h1>Bus Schedule</h1>
         <div class="card-container">
             <div class="card">
@@ -203,11 +235,16 @@
             </div>
 
         </div>
+      <div class="footer">
+  <div class="footer-content">
+    <div class="f_info">
+      *Mediteran Express provides urban transportation services. The city bus schedule website in the town of Budva was created on a non-commercial basis by the staff of Mediteran Express.
     </div>
-    <div class="footer">
-    Contact us for more information about the schedule and routes.
+    <div class="footer-main">
+      Contact us for more information about the schedule and routes.
     </div>
-
+  </div>
+</div>
 <div class="site-version">Version: Beta 1.0.3</div>
 
 <script src="weather.js"></script>
