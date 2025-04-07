@@ -15,7 +15,7 @@
     <meta name="description" content="City bus schedule between Budva, Sveti Stefan, and Petrovac. Find out how to get around, current departure times, routes, and stops in Montenegro’s coastal tourist zone.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <link rel="icon" type="image/png" id="icon_page" href="img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -230,7 +230,7 @@
             <div class="card">
                 <h2 class="card-title">Budva - Lastva - Budva</h2>
                 <p class="card-info"><strong>Stops:</strong> Budva (Obshtina) ⮕ Top Hill ⮕ Lastva ⮕ Mega Market ⮕ Jaz</p>
-                <a href="budva-lastva-budva.html" class="card-button" id="las">More details</a>
+                <a id="lastvaLink" href="#" class="card-button" id="las">More details</a>
             </div>
               <div class="card">
                 <h2 class="card-title">Budva - Braichi - Budva</h2>
@@ -256,10 +256,24 @@
   </div>
 </div>
 <div class="site-version">Version: Beta 1.0.3</div>
-
 <script src="weather.js"></script>
 <script>
   getWeather("Budva", "weather", "en");
+</script>
+
+<script>
+  //const day = new Date().getDay(); // 0 = Sun, 6 = Sat
+document.addEventListener('DOMContentLoaded', () => {
+  const day = new Date().getDay(); // 0 = Sun, 6 = Sat
+  const isWeekend = (day === 0 || day === 6);
+  const lastvaLink = document.getElementById("lastvaLink");
+
+  if (lastvaLink) {
+    lastvaLink.href = isWeekend
+      ? "budva-lastva-budva_2.html"
+      : "budva-lastva-budva.html";
+  }
+});
 </script>
 </body>
 </html>
