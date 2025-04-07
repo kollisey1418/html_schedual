@@ -196,7 +196,7 @@
             <div class="card">
                 <h2 class="card-title">Budva - Lastva - Budva</h2>
                 <p class="card-info"><strong>Stanice:</strong> Budva (Obština) ⮕ Top Hill ⮕ Lastva ⮕ Mega Market ⮕ Jaz</p>
-                <a href="budva-lastva-budva_me.html" class="card-button">Više detalja</a>
+                <a id="lastvaLink" href="#" class="card-button">Više detalja</a>
             </div>
           <div class="card">
                 <h2 class="card-title">Budva - Brajići - Budva</h2>
@@ -209,8 +209,22 @@
     Kontaktirajte nas za više informacija o rasporedu i rutama.
     </div>
 
+<script>
+  //const day = new Date().getDay(); // 0 = Sun, 6 = Sat
+document.addEventListener('DOMContentLoaded', () => {
+  const day = new Date().getDay();
+  const isWeekend = (day === 0 || day === 6);
+  const lastvaLink = document.getElementById("lastvaLink");
 
-<div class="site-version">Version: Beta 1.0.3</div>
+  if (lastvaLink) {
+    lastvaLink.href = isWeekend
+      ? "budva-lastva-budva_me_2.html"
+      : "budva-lastva-budva_me.html";
+  }
+});
+</script>
+
+<div class="site-version">Version: Beta 1.0.4</div>
 
 <script src="/weather.js"></script>
 <script>

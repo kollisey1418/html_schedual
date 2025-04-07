@@ -12,7 +12,7 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
   <link rel="icon" type="image/png" href="img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
@@ -239,6 +239,43 @@ td {
         font-size: 12px;
     }
 
+            .popup_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.popup-content_info {
+  background-color: #ffe5e5;
+  padding: 20px 25px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 90%;
+  text-align: left;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+  line-height: 1.5;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.popup_info .close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
     .schedule-container {
@@ -290,10 +327,35 @@ td {
     </style>
 </head>
 <body>
+<div id="infoPopup" class="popup_info">
+  <div class="popup-content_info">
+    <span class="close">&times;</span>
+<h2>Attention!</h2>
+<p>
+  The Budva – Lastva schedule changes depending on the day of the week.<br>
+  <strong>On weekdays</strong>, the departure is from <strong>Nova Shkola</strong>.<br>
+  <strong>On weekends (Saturday and Sunday)</strong>, the departure is from <strong>Opshtina</strong>.
+</p>
+  </div>
+</div>
+<!-- Блок для кнопок Home (слева) -->
 <div style="position: absolute; top: 20px; left: 20px;">
-        <a href="index.html" class="home-button desktop-only" id="homepc" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
-        <a href="index.html" class="home-button mobil-only" id="homemb" style="border-radius: 10px; font-weight: bold;"><img src="img/home_mobil.png" alt="Back" class="home-icon"></a>
-    </div>
+  <a href="index.html" class="home-button desktop-only" id="homepc"
+     style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+    Home
+  </a>
+  <a href="index.html" class="home-button mobil-only" id="homemb"
+     style="border-radius: 10px; font-weight: bold;">
+    <img src="img/home_mobil.png" alt="Back" class="home-icon">
+  </a>
+</div>
+
+<!-- Блок для иконки Info (справа) -->
+<div style="position: absolute; top: 20px; right: 20px;">
+  <a href="#" id="infoBtn" style="text-decoration: none; border-radius: 10px; font-weight: bold;">
+    <img src="img/information.png" alt="Info" style="width: 32px; height: 32px;">
+  </a>
+</div>
     <div class="header">
         Mediteran Express
             <div class="mobil-only" style="    width: 100%;
@@ -953,10 +1015,62 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('infoPopup');
+  const closeBtn = popup.querySelector('.close');
+
+  // Показываем popup сразу при загрузке
+  popup.style.display = 'block';
+
+  // Закрытие по кнопке
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Закрытие по фону
+  window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+});
+</script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ...
 
-<div class="site-version">Version: Beta 1.0.3</div>
+  const infoBtn = document.getElementById("infoBtn");
+  const infoPopup = document.getElementById("infoPopup");
+  const closeBtnInfo = infoPopup.querySelector('.close');
+
+  // При загрузке мы один раз показываем попап
+  infoPopup.style.display = 'block';
+
+  // Клик по крестику закрывает
+  closeBtnInfo.addEventListener('click', () => {
+    infoPopup.style.display = 'none';
+  });
+
+  // Клик по фону закрывает
+  window.addEventListener('click', (e) => {
+    if (e.target === infoPopup) {
+      infoPopup.style.display = 'none';
+    }
+  });
+
+  // >>> Клик по иконке infoBtn снова открывает попап <<<
+  infoBtn.addEventListener('click', (e) => {
+    e.preventDefault();  // чтобы не скроллило вверх
+    infoPopup.style.display = 'block';
+  });
+});
+</script>
+
+
+<div class="site-version">Version: Beta 1.0.4</div>
 
 
 
