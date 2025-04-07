@@ -196,7 +196,7 @@
             <div class="card">
                 <h2 class="card-title">Будва - Ластва - Будва</h2>
                 <p class="card-info"><strong>Остановки:</strong> Будва (Обштина) ⮕ Топ Хилл ⮕ Ластва ⮕ Мега Маркеи ⮕ Яз</p>
-                <a href="budva-lastva-budva_ru.html" class="card-button">Детали</a>
+                <a id="lastvaLink" href="#" class="card-button" class="card-button">Детали</a>
             </div>
           <div class="card">
                 <h2 class="card-title">Будва - Браичи - Будва</h2>
@@ -209,8 +209,22 @@
     Свяжитесь с нами для уточнения информации по расписанию или маршрутов
     </div>
 
+<script>
+  //const day = new Date().getDay(); // 0 = Sun, 6 = Sat
+document.addEventListener('DOMContentLoaded', () => {
+  const day = new Date().getDay();
+  const isWeekend = (day === 0 || day === 6);
+  const lastvaLink = document.getElementById("lastvaLink");
 
-<div class="site-version">Version: Beta 1.0.3</div>
+  if (lastvaLink) {
+    lastvaLink.href = isWeekend
+      ? "budva-lastva-budva_ru_2.html"
+      : "budva-lastva-budva_ru.html";
+  }
+});
+</script>
+
+<div class="site-version">Version: Beta 1.0.4</div>
 
 <script src="/weather.js"></script>
 <script>

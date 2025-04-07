@@ -238,6 +238,45 @@ td {
         font-size: 12px;
     }
 
+
+                  .popup_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.popup-content_info {
+  background-color: #ffe5e5;
+  padding: 20px 25px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 90%;
+  text-align: left;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+  line-height: 1.5;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.popup_info .close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
     .schedule-container {
@@ -289,10 +328,35 @@ td {
     </style>
 </head>
 <body>
+<div id="infoPopup" class="popup_info">
+  <div class="popup-content_info">
+    <span class="close">&times;</span>
+<h2>Внимание!</h2>
+<p>
+  Расписание Будва - Ластва - Будва меняется в зависимости от дня недели.<br>
+  <strong>Рабочие дни</strong>, отправление от <strong>Новая Школа</strong>.<br>
+  <strong>Выходные (суббота и воскресенье)</strong>, от <strong>Општина</strong>.
+</p>
+  </div>
+</div>
+<!-- Блок для кнопок Home (слева) -->
 <div style="position: absolute; top: 20px; left: 20px;">
-        <a href="index_ru.html" class="home-button desktop-only" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Главная</a>
-        <a href="index_ru.html" class="home-button mobil-only" style="border-radius: 10px; font-weight: bold;"><img src="/img/home_mobil.png" alt="Back" class="home-icon"></a>
-    </div>
+  <a href="/ru/index_ru.html" class="home-button desktop-only" id="homepc"
+     style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+    Главная
+  </a>
+  <a href="/index.html" class="home-button mobil-only" id="homemb"
+     style="border-radius: 10px; font-weight: bold;">
+    <img src="/img/home_mobil.png" alt="Back" class="home-icon">
+  </a>
+</div>
+
+<!-- Блок для иконки Info (справа) -->
+<div style="position: absolute; top: 20px; right: 20px;">
+  <a href="#" id="infoBtn" style="text-decoration: none; border-radius: 10px; font-weight: bold;">
+    <img src="/img/information.png" alt="Info" style="width: 32px; height: 32px;">
+  </a>
+</div>
     <div class="header">
         Mediteran Express
             <div class="mobil-only" style="    width: 100%;
@@ -314,6 +378,7 @@ td {
 
 <div class="map-container">
     <h1>Будва - Ластва</h1>
+  <a style="display: block; width: max-content; margin: 0 auto; color: #cc0000;">Рабочие дни</a>
     <div id="map1"></div>
     <div class="timetable-container">
         <h2>Расписание автобусов</h2>
@@ -385,6 +450,7 @@ td {
 
       <div class="map-container">
     <h1>Ластва - Будва</h1>
+        <a style="display: block; width: max-content; margin: 0 auto; color: #cc0000;">Рабочие дни</a>
     <div id="map2"></div>
     <div class="timetable-container">
         <h2>Расписание автобусов</h2>
@@ -955,7 +1021,63 @@ document.getElementById('searchButton').addEventListener('click', () => {
     });
 </script>
 
-<div class="site-version">Version: Beta 1.0.3</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('infoPopup');
+  const closeBtn = popup.querySelector('.close');
+
+  // Показываем popup сразу при загрузке
+  popup.style.display = 'block';
+
+  // Закрытие по кнопке
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Закрытие по фону
+  window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ...
+
+  const infoBtn = document.getElementById("infoBtn");
+  const infoPopup = document.getElementById("infoPopup");
+  const closeBtnInfo = infoPopup.querySelector('.close');
+
+  // При загрузке мы один раз показываем попап
+  infoPopup.style.display = 'block';
+
+  // Клик по крестику закрывает
+  closeBtnInfo.addEventListener('click', () => {
+    infoPopup.style.display = 'none';
+  });
+
+  // Клик по фону закрывает
+  window.addEventListener('click', (e) => {
+    if (e.target === infoPopup) {
+      infoPopup.style.display = 'none';
+    }
+  });
+
+  // >>> Клик по иконке infoBtn снова открывает попап <<<
+  infoBtn.addEventListener('click', (e) => {
+    e.preventDefault();  // чтобы не скроллило вверх
+    infoPopup.style.display = 'block';
+  });
+});
+</script>
+
+
+<div class="site-version">Version: Beta 1.0.4</div>
 
 <script src="/weather.js"></script>
 <script>
