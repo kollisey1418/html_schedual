@@ -565,7 +565,7 @@ td {
 
     // Функция для загрузки расписания
     function loadActiveSchedule() {
-    return fetch('active_schedule.json')
+    return fetch('/active_schedule.json')
         .then(response => response.json())
         .then(data => {
             // Проверяем, изменились ли данные
@@ -577,11 +577,11 @@ td {
             lastUpdated = data.lastUpdated;
 
             if (data.active_petrovac === '1bus') {
-    scheduleFile = 'budva-petrovac_1bus.json';
+    scheduleFile = '/budva-petrovac_1bus.json';
     } else if (data.active_petrovac === '2buses') {
-    scheduleFile = 'budva-petrovac_2buses.json';
+    scheduleFile = '/budva-petrovac_2buses.json';
     } else if (data.active_petrovac === '3buses') {
-    scheduleFile = 'budva-petrovac_3buses.json';
+    scheduleFile = '/budva-petrovac_3buses.json';
 } else {
                 // Если не нужно загружать какое-либо расписание,
                 // то просто возвращаемся и не вызываем fetch(scheduleFile):
@@ -808,7 +808,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
 // Функция для загрузки расписания
     function loadActiveSchedule2() {
-        return fetch('active_schedule.json')
+        return fetch('/active_schedule.json')
             .then(response => response.json())
             .then(data => {
                 if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
@@ -819,11 +819,11 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
 
               if (data.active_petrovac === '1bus') {
-    scheduleFile2 = 'petrovac-budva_1bus.json';
+    scheduleFile2 = '/petrovac-budva_1bus.json';
     } else if (data.active_petrovac === '2buses') {
-    scheduleFile2 = 'petrovac-budva_2buses.json';
+    scheduleFile2 = '/petrovac-budva_2buses.json';
     } else if (data.active_petrovac === '3buses') {
-    scheduleFile2 = 'petrovac-budva_3buses.json';
+    scheduleFile2 = '/petrovac-budva_3buses.json';
 } else {
                 // Если не нужно загружать какое-либо расписание,
                 // то просто возвращаемся и не вызываем fetch(scheduleFile):
