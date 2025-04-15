@@ -213,7 +213,7 @@ td {
     background-color: #f2f2f2;
 }
 
-.dropdown-button, .schedule-button, .search-button {
+.dropdown-button, .schedule-button, .search-button, .OkButton {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
@@ -290,6 +290,7 @@ td {
 
     }
     </style>
+    <script src="main_crash.js"></script>
 </head>
 <body>
 <div style="position: absolute; top: 20px; left: 20px;">
@@ -314,6 +315,15 @@ Mediteran Express
 </div>
     </div>
     <div class="schedule-container">
+        <div id="crashPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2 id="crashPopupTitle"></h2>
+      <p  id="crashPopupText" style="text-align: center;"></p>
+      <img src="img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
+
+    </div>
+  </div>
 
 <div class="map-container">
     <h1>Budva - Sveti Stefan</h1>

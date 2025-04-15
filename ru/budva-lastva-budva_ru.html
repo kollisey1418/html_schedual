@@ -325,9 +325,19 @@ td {
 
 
     }
-    </style>
+    </style>  <script src="/main_crash_lan.js"></script>
+
 </head>
 <body>
+              <div id="crashPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2 id="crashPopupTitle"></h2>
+      <p  id="crashPopupText" style="text-align: center;"></p>
+      <img src="/img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
+
+    </div>
+  </div>
 <div id="infoPopup" class="popup_info">
   <div class="popup-content_info">
     <span class="close">&times;</span>
