@@ -465,45 +465,62 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 
     <script>
-      let currentCrashSvSt = false; // сохраним состояние
+      let currentCrashSvSt = false;
+      let currentCrashPetr = false;
+      let currentCrashLast = false;
+      let currentCrashBraic = false;
+      let currentCrashPloc = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) Сначала грузим active_schedule.json, чтобы узнать текущее crash_svst
+  const crashButtons = {
+    CrashSvSt: 'crash_SvSt',
+    CrashPetr: 'crash_Petr',
+    CrashLast: 'crash_Last',
+    CrashBrai: 'crash_Braic',
+    CrashPloc: 'crash_Ploc'
+  };
+
+  const crashStates = {};
+
+  // Загружаем текущие значения
   fetch('active_schedule.json')
     .then(r => r.json())
     .then(data => {
-      currentCrashSvSt = data.crash_SvSt;
-      if (currentCrashSvSt === true) {
-        document.getElementById('CrashSvSt').classList.add('selected_cr'); // или 'selectedRed'
+      for (const [btnId, crashKey] of Object.entries(crashButtons)) {
+        crashStates[crashKey] = data[crashKey] === true;
+        if (crashStates[crashKey]) {
+          const btn = document.getElementById(btnId);
+          if (btn) btn.classList.add('selected_cr');
+        }
       }
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error('Error loading active_schedule.json:', err));
 
-  // 2) Вешаем обработчик клика
-  const crashBtn = document.getElementById('CrashSvSt');
-  crashBtn.addEventListener('click', () => {
-    // Если сейчас было false — значит ставим true
-    const newValue = (currentCrashSvSt === true) ? false : true;
+  // Назначаем обработчики для всех кнопок Crash
+  for (const [btnId, crashKey] of Object.entries(crashButtons)) {
+    const btn = document.getElementById(btnId);
+    if (!btn) continue;
 
-    fetch('update_schedule.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ crash_SvSt: newValue })
-    })
-    .then(r => r.json())
-    .then(data => {
-      console.log(data.message);
-      // Сохраняем новое значение
-      currentCrashSvst = newValue;
-      // Обновляем подсветку
-      if (newValue === true) {
-        crashBtn.classList.add('selected_cr'); // подсветили
-      } else {
-        crashBtn.classList.remove('selected_cr');
-      }
-    })
-    .catch(err => console.error(err));
-  });
+    btn.addEventListener('click', () => {
+      const newValue = !crashStates[crashKey];
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ [crashKey]: newValue })
+      })
+      .then(r => r.json())
+      .then(data => {
+        crashStates[crashKey] = newValue;
+        if (newValue) {
+          btn.classList.add('selected_cr');
+        } else {
+          btn.classList.remove('selected_cr');
+        }
+        console.log(data.message);
+      })
+      .catch(err => console.error('Update error:', err));
+    });
+  }
 });
 
     </script>

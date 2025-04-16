@@ -325,6 +325,8 @@ td {
 
     }
     </style>
+        <script src="main_crash.js"></script>
+    <script>const crashKey = 'crash_Last';</script>
 </head>
 <body>
 <div id="infoPopup" class="popup_info">
@@ -356,6 +358,15 @@ td {
     <img src="img/information.png" alt="Info" style="width: 32px; height: 32px;">
   </a>
 </div>
+        <div id="crashPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2 id="crashPopupTitle"></h2>
+      <p  id="crashPopupText" style="text-align: center;"></p>
+      <img src="img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
+
+    </div>
+  </div>
     <div class="header">
         Mediteran Express
             <div class="mobil-only" style="    width: 100%;
