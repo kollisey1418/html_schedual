@@ -211,7 +211,7 @@ td {
     background-color: #f2f2f2;
 }
 
-.dropdown-button, .schedule-button, .search-button {
+.dropdown-button, .schedule-button, .search-button, .OkButton {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
@@ -288,6 +288,8 @@ td {
 
     }
     </style>
+    <script src="main_crash.js"></script>
+    <script>const crashKey = 'crash_Petr';</script>
 </head>
 <body>
 <div style="position: absolute; top: 20px; left: 20px;">
@@ -311,6 +313,15 @@ td {
   <div id="weather-mb" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
 </div>
     </div>
+        <div id="crashPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2 id="crashPopupTitle"></h2>
+      <p  id="crashPopupText" style="text-align: center;"></p>
+      <img src="img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
+
+    </div>
+  </div>
     <div class="schedule-container">
 
 <div class="map-container">
@@ -1010,7 +1021,7 @@ function renderTable2(schedule) {
 
 
 
-<div class="site-version">Version: Beta 1.0.4</div>
+<div class="site-version">Version: Beta 1.0.5</div>
 
 <script src="weather.js"></script>
 <script>

@@ -1,18 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // 1. Определяем язык по названию файла
-
   const pathname = window.location.pathname;
 
-  // Можно использовать небольшой helper:
-  let userLang = 'en'; // fallback
+  let userLang = 'en';
   if (pathname.includes('_ru')) {
     userLang = 'ru';
   } else if (pathname.includes('_me')) {
     userLang = 'me';
   }
 
-
-  // 2. Функция показа попапа
   function showCrashPopup(title, text) {
     const popupEl  = document.getElementById('crashPopup');
     const titleEl  = document.getElementById('crashPopupTitle');
@@ -28,21 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 3. Загружаем active_schedule.json, проверяем crash-поля
+  if (typeof crashKey === 'undefined') return;
+
   fetch('active_schedule.json')
     .then(res => res.json())
     .then(schedule => {
-      if (schedule.crash_SvSt === true) {
-        // 4. Загружаем translations.json и берем текст
+      if (schedule[crashKey] === true) {
         fetch('translations.json')
           .then(r => r.json())
           .then(trans => {
-            // Если нет такого userLang в файле, берем fallback en
-            const langPack = trans[userLang] || trans.en;
+            const langPack = trans[userLang] || trans['en'];
             showCrashPopup(langPack.crash_popup_title, langPack.crash_popup_text);
           })
           .catch(err => console.error('Error loading translations:', err));
       }
     })
-    .catch(err => console.error('Error loading schedule:', err));
+    .catch(err => console.error('Error loading active_schedule.json:', err));
 });

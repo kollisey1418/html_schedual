@@ -1,10 +1,11 @@
 {
-    "active": "5buses",
+    "active": "4buses",
     "active_petrovac": "3buses",
     "active_lastva": "1bus",
     "active_braichi": "1bus",
-    "crash_SvSt": false,
-    "crash_Petr": false,
-    "crash_Last": false,
-    "crash_Braic": false
+    "crash_SvSt": true,
+    "crash_Petr": true,
+    "crash_Last": true,
+    "crash_Braic": true,
+    "crash_Ploc": false
 }

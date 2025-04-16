@@ -211,7 +211,7 @@ td {
     background-color: #f2f2f2;
 }
 
-.dropdown-button, .schedule-button, .search-button {
+.dropdown-button, .schedule-button, .search-button, .OkButton {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
@@ -304,12 +304,23 @@ h1 {
 
     }
     </style>
+          <script src="main_crash.js"></script>
+    <script>const crashKey = 'crash_Braic';</script>
 </head>
 <body>
 <div style="position: absolute; top: 20px; left: 20px;">
         <a href="index.html" class="home-button desktop-only" id="homepc" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
         <a href="index.html" class="home-button mobil-only" id="homemb" style="border-radius: 10px; font-weight: bold;"><img src="img/home_mobil.png" alt="Back" class="home-icon"></a>
     </div>
+        <div id="crashPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2 id="crashPopupTitle"></h2>
+      <p  id="crashPopupText" style="text-align: center;"></p>
+      <img src="img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
+
+    </div>
+  </div>
     <div class="header">
         Mediteran Express
             <div class="mobil-only" style="    width: 100%;
@@ -402,7 +413,7 @@ h1 {
         </div>
 
       <div class="map-container">
-    <h1>Lastva - Budva</h1>
+    <h1>Braichi - Budva</h1>
     <div id="map2"></div>
     <div class="timetable-container">
         <h2>Timetable for Stops</h2>
@@ -977,7 +988,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
 
 
-<div class="site-version">Version: Beta 1.0.4</div>
+<div class="site-version">Version: Beta 1.0.5</div>
 
 
 
