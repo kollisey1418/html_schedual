@@ -213,7 +213,7 @@ td {
     background-color: #f2f2f2;
 }
 
-.dropdown-button, .schedule-button, .search-button, .OkButton {
+.dropdown-button, .schedule-button, .search-button, .OkButton, .explorer-button {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
@@ -407,7 +407,18 @@ Mediteran Express
                 <img src="img/Bus_Green.png" alt="Green Stop">
                 <p>Green Ticket - €2.5</p>
             </div>
+                  <div>
+                    <button id="explorer" class="explorer-button">What's Around</button>
+                  </div>
         </div>
+            <div id="explorerPopup" class="popup">
+    <div class="popup-content">
+      <span class="close", id="closePopupEx">&times;</span>
+
+
+      </div>
+              </div>
+
 
       <div class="map-container">
     <h1>Sveti Stefan - Budva</h1>
@@ -1011,6 +1022,33 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovich
             });
 
             renderFilteredTable2(filteredTimes, selectedDeparture2, selectedArrival2);
+        });
+    });
+</script>
+
+<!--Button Tourist Explorer-->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Получаем элементы
+        const popup = document.getElementById('explorerPopup');
+        const openButton = document.querySelector('.explorer-button');
+        const closeButton = popup.querySelector('.close');
+
+        // Функция для открытия popup
+        openButton.addEventListener('click', () => {
+            popup.style.display = 'block';
+        });
+
+        // Функция для закрытия popup
+        closeButton.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Закрытие popup при клике вне окна
+        window.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
         });
     });
 </script>
