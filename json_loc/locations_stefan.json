@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sveti-stefan",
+    "title": "Sveti Stefan",
+    "image": "img/sveti_stefan.jpg",
+    "info": "Sveti Stefan is a famous islet and hotel resort in Montenegro."
+  },
+  {
+    "id": "kamenovo",
+    "title": "Kamenovo Beach",
+    "image": "img/kamenovo.jpg",
+    "info": "A beautiful sandy beach located between Budva and Sveti Stefan."
+  },
+  {
+    "id": "przno",
+    "title": "Pržno",
+    "image": "img/przno.jpg",
+    "info": "A small fishing village with lovely restaurants and a beach."
+  }
+]

@@ -1,0 +1,117 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+}
+.card {
+  flex: 0 0 200px;
+  opacity: 0.6;
+  transform: scale(0.9);
+  transition: transform 0.3s, opacity 0.3s;
+  cursor: pointer;
+  text-align: center;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+}
+.card.active {
+  transform: scale(1.1);
+  opacity: 1;
+}
+.card img {
+  width: 100%;
+  border-radius: 50px 50px 0 0;
+  height: 100px;
+  object-fit: cover;
+}
+.controls {
+  text-align: center;
+  margin-top: 10px;
+}
+button {
+  padding: 10px 20px;
+  margin: 5px;
+}
+.popup_ex {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup_ex.visible {
+  display: flex;
+}
+
+.popup-content_ex {
+  background: lightskyblue;
+  padding: 20px;
+  border-radius: 50px;
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  background-color: rgba(135, 206, 250, 0.3);
+}
+
+
+#closePopupEx {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+
+}
+#closePopupEx:hover {
+  transform: scale(1.3);
+  transition: transform 0.2s ease;
+}
+
+.popupInner {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: lightskyblue;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+.popup-closeInner{
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+
+}
+.popup-closeInner:hover {
+  transform: scale(1.3);
+  transition: transform 0.2s ease;
+}
+
+.popup-contentIn {
+  background: lightskyblue;
+  padding: 20px;
+  border-radius: 50px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.99);
+  background-color: rgba(135, 206, 250, 0.7);
+}

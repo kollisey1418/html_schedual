@@ -290,8 +290,11 @@ td {
 
     }
     </style>
+
     <script src="main_crash.js"></script>
   <script>const crashKey = 'crash_SvSt';</script>
+  <link rel="stylesheet" href="css/carousel.css">
+
 </head>
 <body>
 <div style="position: absolute; top: 20px; left: 20px;">
@@ -411,9 +414,22 @@ Mediteran Express
                     <button id="explorer" class="explorer-button">What's Around</button>
                   </div>
         </div>
-            <div id="explorerPopup" class="popup">
-    <div class="popup-content">
-      <span class="close", id="closePopupEx">&times;</span>
+            <div id="explorerPopup" class="popup_ex">
+    <div class="popup-content_ex">
+      <span class="close" id="closePopupEx">❌</span>
+      <div class="carousel" id="carousel"></div>
+      <div class="controls">
+        <button onclick="prevSlide()">◀</button>
+        <button onclick="nextSlide()">▶</button>
+      </div>
+
+<div class="popupInner" id="popupInner">
+  <div class="popup-contentIn">
+    <span class="popup-closeInner" onclick="closeInnerPopup()">&#10062;</span>
+
+    <div id="popup-text"></div>
+  </div>
+</div>
 
       </div>
               </div>
@@ -1027,37 +1043,47 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovich
 
 <!--Button Tourist Explorer-->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Получаем элементы
-        const popup = document.getElementById('explorerPopup');
-        const openButton = document.querySelector('.explorer-button');
-        const closeButton = popup.querySelector('.close');
+document.addEventListener('DOMContentLoaded', () => {
+  const explorerBtn = document.getElementById('explorer');
+  const explorerPopup = document.getElementById('explorerPopup');
+  const closeBtn = document.getElementById('closePopupEx');
 
-        // Функция для открытия popup
-        openButton.addEventListener('click', () => {
-            popup.style.display = 'block';
-        });
+  // Когда нажимаем на кнопку "What's Around"
+  explorerBtn.addEventListener('click', () => {
+    explorerPopup.classList.add('visible'); // открывает popup с каруселью
+    loadCarousel();
+  });
 
-        // Функция для закрытия popup
-        closeButton.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
+  // Когда нажимаем на крестик
+  closeBtn.addEventListener('click', () => {
+    explorerPopup.classList.remove('visible'); // закрывает popup с каруселью
+  });
 
-        // Закрытие popup при клике вне окна
-        window.addEventListener('click', (event) => {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
-    });
+  // Если кликнули вне окна (по затемнённому фону)
+  window.addEventListener('click', (event) => {
+    if (event.target === explorerPopup) {
+      explorerPopup.classList.remove('visible'); // тоже закрывает
+    }
+  });
+});
+
 </script>
 
+<!--Carousel-->
+<script>
+  const jsonFile = 'json_loc/locations_stefan.json'; // меняй под страницу
+</script>
+<script src="js/carousel.js"></script>
 
+<!--Version-->
 <div class="site-version">Version: Beta 1.0.5</div>
+
+<!--Weather-->
 <script src="weather.js"></script>
 <script>
   getWeather("Budva", "weather-mb");
 </script>
+
 
 </body>
 </html>
