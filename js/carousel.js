@@ -11,10 +11,12 @@ function loadCarousel() {
     .then(res => res.json())
     .then(json => {
       data = json;
+      currentIndex = Math.floor(data.length / 2); // поставить активной центральную карточку
       renderCarousel();
     })
     .catch(err => console.error('Error loading JSON:', err));
 }
+
 
 function renderCarousel() {
   const carousel = document.getElementById('carousel');
@@ -22,12 +24,7 @@ function renderCarousel() {
 
   carousel.innerHTML = '';
 
-  const total = data.length;
-  const prev = (currentIndex - 1 + total) % total;
-  const next = (currentIndex + 1) % total;
-
-  [prev, currentIndex, next].forEach((i) => {
-    const item = data[i];
+  data.forEach((item, i) => {
     const card = document.createElement('div');
     card.className = 'card' + (i === currentIndex ? ' active' : '');
     card.innerHTML = `
@@ -43,6 +40,9 @@ function renderCarousel() {
     };
     carousel.appendChild(card);
   });
+
+  carousel.scrollLeft = carousel.scrollWidth / 2 - carousel.clientWidth / 2;
+
 }
 
 function nextSlide() {
