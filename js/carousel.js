@@ -1,5 +1,5 @@
+let originalData = [];
 let data = [];
-let currentIndex = 0;
 
 function loadCarousel() {
   if (!jsonFile) {
@@ -10,11 +10,22 @@ function loadCarousel() {
   fetch(jsonFile)
     .then(res => res.json())
     .then(json => {
-      data = json;
+      originalData = json;
+
+      // Сформировать новый массив
+      data = [
+        ...originalData.slice(-2), // последние 2 карточки
+        ...originalData,
+        ...originalData.slice(0, 2) // первые 2 карточки
+      ];
+
+      currentIndex = originalData.length + Math.floor(originalData.length / 2);
       renderCarousel();
     })
     .catch(err => console.error('Error loading JSON:', err));
 }
+
+
 
 function renderCarousel() {
   const carousel = document.getElementById('carousel');
@@ -22,12 +33,7 @@ function renderCarousel() {
 
   carousel.innerHTML = '';
 
-  const total = data.length;
-  const prev = (currentIndex - 1 + total) % total;
-  const next = (currentIndex + 1) % total;
-
-  [prev, currentIndex, next].forEach((i) => {
-    const item = data[i];
+  data.forEach((item, i) => {
     const card = document.createElement('div');
     card.className = 'card' + (i === currentIndex ? ' active' : '');
     card.innerHTML = `
@@ -43,7 +49,31 @@ function renderCarousel() {
     };
     carousel.appendChild(card);
   });
+
+  // Центрируем сразу
+  setTimeout(() => {
+    carousel.scrollLeft = carousel.scrollWidth / 2 - carousel.clientWidth / 2;
+  }, 50);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.getElementById('carousel');
+
+  carousel.addEventListener('scroll', () => {
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+
+    if (carousel.scrollLeft <= 50) {
+      // слишком влево → прыгаем в центр
+      carousel.scrollLeft = maxScrollLeft / 2;
+    }
+
+    if (carousel.scrollLeft >= maxScrollLeft - 50) {
+      // слишком вправо → прыгаем в центр
+      carousel.scrollLeft = maxScrollLeft / 2;
+    }
+  });
+});
+
 
 function nextSlide() {
   currentIndex = (currentIndex + 1) % data.length;

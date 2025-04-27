@@ -16,5 +16,12 @@
     "title": "Pržno",
     "image": "img/przno.jpg",
     "info": "A small fishing village with lovely restaurants and a beach."
+  },
+
+    {
+    "id": "rafailovichi",
+    "title": "Rafailovichi",
+    "image": "img/rafailovichi.jpg",
+    "info": "A small fishing village with lovely restaurants and a beach."
   }
 ]
