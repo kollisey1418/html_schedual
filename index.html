@@ -250,22 +250,23 @@
         </div>
 
           <!-- Кнопка для открытия -->
-<button id="openFeedbackBtn" class="feedback_button">Оставить отзыв</button>
-
+    <div class="feedback-wrapper">
+<button id="openFeedbackBtn" class="feedback_button" >Feedback</button>
+</div>
 
 <!-- Попап -->
 <div id="feedbackPopup" class="popup">
   <div class="popup-content">
     <span class="close">&times;</span>
     <form id="feedbackForm" method="POST" action="feedback/feedback.php">
-      <label>Имя: <input type="text" name="first_name" required></label><br>
-      <label>Фамилия: <input type="text" name="last_name" required></label><br>
-      <label>Email: <input type="email" name="email" required></label><br>
-      <label>Город / Страна: <input type="text" name="location" required></label><br>
-      <label>Сообщение:
-        <textarea name="message" maxlength="350" required placeholder="Напишите свой отзыв на любом языке"></textarea>
-      </label><br>
-      <button type="submit">Отправить</button>
+      <label>*First Name: <input type="text" name="first_name" required></label><br>
+      <label>Last Name: <input type="text" name="last_name"></label><br>
+      <label>*Email: <input type="email" name="email" required></label><br>
+      <label>City / Country: <input type="text" name="location"placeholder="Write your country or city"></label><br>
+      <label for="message">*Your message:</label>
+      <textarea id="message" name="message" maxlength="350" required placeholder="Write your review in any language. Maximum 350 characters"></textarea>
+
+      <button type="submit">Send</button>
     </form>
   </div>
 </div>
@@ -279,7 +280,19 @@
     </div>
   </div>
 </div>
-<div class="site-version">Version: Beta 1.0.5</div>
+    <!--Version-->
+<div class="site-version"></div>
+    <script>
+fetch("version.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll(".site-version").forEach(el => {
+      el.textContent = "Version: " + data.version;
+    });
+  });
+</script>
+
+
 <script src="weather.js"></script>
 <script>
   getWeather("Budva", "weather", "en");

@@ -1016,7 +1016,18 @@ const stops2 = ["Sveti Stefan", "Vertmont", "Adrovich", "Kamenovo", "Rafailovich
 </script>
 
 
-<div class="site-version">Version: Beta 1.0.5</div>
+    <!--Version-->
+<div class="site-version"></div>
+    <script>
+fetch("version.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll(".site-version").forEach(el => {
+      el.textContent = "Version: " + data.version;
+    });
+  });
+</script>
+
 <script src="weather.js"></script>
 <script>
   getWeather("Budva", "weather-mb");
