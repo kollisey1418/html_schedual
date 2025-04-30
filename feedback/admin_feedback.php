@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Europe/Podgorica');
+
 $db = new SQLite3(__DIR__ . '/feedback.db');
 
 // Получаем все записи
