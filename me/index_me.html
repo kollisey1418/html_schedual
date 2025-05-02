@@ -156,6 +156,7 @@
     }
         }
     </style>
+    <link rel="stylesheet" href="/feedback/css/popup_form">
 </head>
 <body>
     <div class="header">
@@ -205,6 +206,27 @@
             </div>
         </div>
     </div>
+       <!-- Кнопка для открытия -->
+    <div class="feedback-wrapper">
+<button id="openFeedbackBtn" class="feedback_button" >Utisak</button>
+</div>
+
+<!-- Попап -->
+<div id="feedbackPopup" class="popup">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <form id="feedbackForm" method="POST" action="/feedback/feedback.php">
+      <label>*Ime: <input type="text" name="first_name" required></label><br>
+      <label>Prezime: <input type="text" name="last_name"></label><br>
+      <label>*Email: <input type="email" name="email" required></label><br>
+      <label>Grad / Država: <input type="text" name="location"placeholder="Napiši svoju državu ili grad"></label><br>
+      <label for="message">*Tvoja poruka:</label>
+      <textarea id="message" name="message" maxlength="350" required placeholder="Napiši svoju recenziju na bilo kom jeziku. Maksimalno 350 karaktera."></textarea>
+
+      <button type="submit">Pošalji</button>
+    </form>
+  </div>
+</div>
     <div class="footer">
     Kontaktirajte nas za više informacija o rasporedu i rutama.
     </div>
@@ -224,7 +246,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<div class="site-version">Version: Beta 1.0.5</div>
+    <!--Version-->
+<div class="site-version"></div>
+    <script>
+fetch("/version.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll(".site-version").forEach(el => {
+      el.textContent = "Version: " + data.version;
+    });
+  });
+</script>
+
+        <!--Feedback-->
+<script src="/feedback/popup_form.js"></script>
+
 
 <script src="/weather.js"></script>
 <script>
