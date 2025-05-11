@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <title>Bus Schedule</title>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYQ5Y4HPK4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MYQ5Y4HPK4');
+</script>
+   <meta name="google-site-verification" content="O0utNFo_5G7m-gFn_BbAysTFxCSEyfBy2wG5KZOlvdY" />
+    <meta name="description" content="City bus schedule between Budva, Sveti Stefan, and Petrovac. Find out how to get around, current departure times, routes, and stops in Montenegro’s coastal tourist zone.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Schedule</title>
-    <link rel="icon" type="image/png" href="img/img_for_favicon.png">
+
+    <link rel="icon" type="image/png" id="icon_page" href="img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -14,6 +26,11 @@
             padding: 0;
             min-height: 100vh;
         }
+
+        .logo {
+  display: block;
+  margin: 0 auto;
+}
 
         .header {
             background-color: #002244;
@@ -114,15 +131,38 @@
             background-color: #990000;
         }
 
-        .footer {
-            margin-top: 40px;
-            font-size: 1em;
-            color: #ffffff;
-            text-align: center;
-            background-color: #002244;
-            padding: 20px;
-            border-radius: 0 0 15px 15px;
-        }
+.footer {
+  margin-top: auto;
+  font-size: 1em;
+  color: #ffffff;
+  background-color: #003366;
+  padding: 20px;
+  border-radius: 0 0 15px 15px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;;
+  flex-wrap: wrap; /* перенос при малой ширине */
+  gap: 10px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.f_info {
+  flex: 1 1 300px;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.footer-main {
+  flex: 1 1 100%;
+  font-size: 1em;
+  text-align: center;
+}
 
             .site-version {
         position: fixed;
@@ -135,6 +175,8 @@
         font-size: 12px;
     }
 
+
+
 @media (max-width: 550px) {
     .schedule-container {
         flex-direction: column;
@@ -145,49 +187,135 @@
     }
         }
     </style>
+
+  <link rel="stylesheet" href="feedback/css/popup_form">
+
 </head>
 <body>
     <div class="header">
         Mediteran Express
+      <div class="mobil-only" style="    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+    padding-bottom: 6px;
+    overflow: hidden;">
+  <div id="weather" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
+</div>
     </div>
       <div class="language-switcher">
-        <a href="languages/me/index_me.html"><img src="img/me.png" alt="Serbian"></a>
-        <a href="languages/ru/index_ru.html"><img src="img/ru.png" alt="Russian"></a>
-        <!--<a href="languages/de/index_de.html"><img src="img/ge.png" alt="German"></a>-->
-       <!-- <a href="languages/fr/index_fr.html"><img src="img/fr.png" alt="French"></a>-->
-        <!--<a href="languages/al/index_al.html"><img src="img/al.png" alt="Albanian"></a>-->
+        <a href="me/index_me.html"><img src="img/me.png" alt="Montenegrian" id="mne"></a>
+        <a href="ru/index_ru.html"><img src="img/ru.png" alt="Russian" id="rus"></a>
+        <!--<a href="languages/de/index_de.html"><img src="img/ge.png" alt="German" id="ger"></a>-->
+       <!-- <a href="languages/fr/index_fr.html"><img src="img/fr.png" alt="French" id="fre"></a>-->
+        <!--<a href="languages/al/index_al.html"><img src="img/al.png" alt="Albanian" id="alb"></a>-->
 </div>
     <div class="schedule-container">
-      <img src="img/logo.jpeg">
+      <img src="img/logo.jpeg" class="logo">
         <h1>Bus Schedule</h1>
         <div class="card-container">
             <div class="card">
                 <h2 class="card-title">Budva - Sveti Stefan - Budva</h2>
                 <p class="card-info"><strong>Stops:</strong> Budva ⮕ Crvena Zgrada ⮕ Stadion (Slavia) ⮕ Aqua park ⮕ Moc (SkyLine) ⮕ Bella Vista ⮕ Rafailovichi ⮕ Kamenovo ⮕ Maestral ⮕ Przhno ⮕ Sveti Stefan</p>
-                <a href="budva-sveti-stefan-budva.html" class="card-button">More details</a>
+                <a href="budva-sveti-stefan-budva.html" class="card-button" id="svst">More details</a>
             </div>
             <div class="card">
                 <h2 class="card-title">Budva - Petrovac - Budva</h2>
                 <p class="card-info"><strong>Stops:</strong> Budva ⮕ Crvena Zgrada ⮕ Stadion (Slavia) ⮕ Aqua park ⮕ Moc (SkyLine) ⮕ Bella Vista ⮕ Rafailovichi ⮕ Kamenovo ⮕ Adrovichi ⮕ Blizikuche ⮕ Rezhevichi ⮕ Giardino ⮕ Monastery Rezhevichi ⮕ Bus Station (Petrovac) ⮕ Petrovac ⮕ Buljarica</p>
-                <a href="budva-petrovac-budva.html" class="card-button">More details</a>
+                <a href="budva-petrovac-budva.html" class="card-button" id="pet">More details</a>
             </div>
             <div class="card">
                 <h2 class="card-title">Budva - Lastva - Budva</h2>
                 <p class="card-info"><strong>Stops:</strong> Budva (Obshtina) ⮕ Top Hill ⮕ Lastva ⮕ Mega Market ⮕ Jaz</p>
-                <a href="budva-lastva-budva.html" class="card-button">More details</a>
+                <a id="lastvaLink" href="#" class="card-button" id="las">More details</a>
             </div>
               <div class="card">
                 <h2 class="card-title">Budva - Braichi - Budva</h2>
                 <p class="card-info"><strong>Stops:</strong> Budva (Obshtina) ⮕ Nova Shkola ⮕ Dukley ⮕ Markovichi ⮕ Pobori ⮕ Braichi</p>
-                <a href="budva-braichi-budva.html" class="card-button">More details</a>
+                <a href="budva-braichi-budva.html" class="card-button" id="bra">More details</a>
             </div>
-        </div>
-    </div>
-    <div class="footer">
-    Contact us for more information about the schedule and routes.
-    </div>
+            <!--<div class="card">
+                <h2 class="card-title">Budva - Ploche - Budva</h2>
+                <p class="card-info"><strong>Stops:</strong> Budva (Obshtina) ⮕ Nova Shkola ⮕ Dukley ⮕ Markovichi ⮕ Pobori ⮕ Braichi</p>
+                <a href="budva-ploche-budva.html" class="card-button" id="plo">More details</a>
+              </div>-->
+            </div>
 
-<div class="site-version">Version: Beta 1.0.2</div>
+        </div>
+
+          <!-- Кнопка для открытия -->
+    <div class="feedback-wrapper">
+<button id="openFeedbackBtn" class="feedback_button" >Feedback</button>
+</div>
+
+<!-- Попап -->
+<div id="feedbackPopup" class="popup">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <form id="feedbackForm" method="POST" action="feedback/feedback.php">
+      <label>*First Name: <input type="text" name="first_name" required></label><br>
+      <label>Last Name: <input type="text" name="last_name"></label><br>
+      <label>*Email: <input type="email" name="email" required></label><br>
+      <label>City / Country: <input type="text" name="location"placeholder="Write your country or city"></label><br>
+      <label for="message">*Your message:</label>
+      <textarea id="message" name="message" maxlength="350" required placeholder="Write your review in any language. Maximum 350 characters"></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+      <div class="footer">
+  <div class="footer-content">
+    <div class="f_info">
+      *Mediteran Express provides urban transportation services. The city bus schedule website in the town of Budva was created on a non-commercial basis by the staff of Mediteran Express.
+    </div>
+    <div class="footer-main">
+      Contact us for more information about the schedule and routes.
+    </div>
+  </div>
+</div>
+    <!--Version-->
+<div class="site-version"></div>
+    <script>
+fetch("version.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll(".site-version").forEach(el => {
+      el.textContent = "Version: " + data.version;
+    });
+  });
+</script>
+
+
+<script src="weather.js"></script>
+<script>
+  getWeather("Budva", "weather", "en");
+</script>
+
+<script>
+  //const day = new Date().getDay(); // 0 = Sun, 6 = Sat
+document.addEventListener('DOMContentLoaded', () => {
+  const day = new Date().getDay(); // 0 = Sun, 6 = Sat
+  const isWeekend = (day === 0 || day === 6);
+  const lastvaLink = document.getElementById("lastvaLink");
+
+  if (lastvaLink) {
+    lastvaLink.href = isWeekend
+      ? "budva-lastva-budva_2.html"
+      : "budva-lastva-budva.html";
+  }
+});
+</script>
+
+    <!--Feedback-->
+<script src="feedback/popup_form.js"></script>
+
 
 
 </body>

@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="img/img_for_favicon.png">
     <style>
         /* Пример простого стиля для кнопок выбора расписания */
-        .schedule-option {
+        .schedule-option, .feedbacks {
             margin: 10px;
             padding: 15px;
             background-color: #007BFF;
@@ -20,6 +20,23 @@
 
         .selected {
     background-color: yellow;
+    color: black;
+    font-weight: bold;
+}
+
+                .Crash-button {
+            margin: 10px;
+            padding: 15px;
+            background-color: #008000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 30px;
+        }
+
+                .selected_cr {
+    background-color: red;
     color: black;
     font-weight: bold;
 }
@@ -41,17 +58,37 @@
     <h1>Budva - Sveti Stefan</h1>
     <button class="schedule-option" id="BdSvselect2Buses">2 Buses</button>
     <button class="schedule-option" id="BdSvselect3Buses">3 Buses</button>
+    <button class="schedule-option" id="BdSvselect4Buses">4 Buses</button>
+    <button class="schedule-option" id="BdSvselect5Buses">5 Buses</button>
+    <button class="schedule-option" id="BdSvselect6Buses">6 Buses</button>
+
+    <button class="Crash-button" id="CrashSvSt">Crash</button>
 
     <h1>Budva - Petrovac</h1>
     <button class="schedule-option" id="select1BusPetrovac">1 Bus</button>
     <button class="schedule-option" id="select2BusesPetrovac">2 Buses</button>
+    <button class="schedule-option" id="select3BusesPetrovac">3 Buses</button>
 
-    <h1>Budva - Lastav</h1>
+    <button class="Crash-button" id="CrashPetr">Crash</button>
+
+    <h1>Budva - Lastava</h1>
     <button class="schedule-option" id="select1BusLastva">1 Bus</button>
     <button class="schedule-option" id="select2BusesLastva">2 Buses</button>
 
-    <h1>Budva - Lastav</h1>
-    <button class="schedule-option" id="select1BusBraich">1 Bus</button>
+    <button class="Crash-button" id="CrashLast">Crash</button>
+
+    <h1>Budva - Braichi</h1>
+    <button class="schedule-option" id="select1BusBraichi">1 Bus</button>
+
+    <button class="Crash-button" id="CrashBrai">Crash</button>
+
+    <h1>Budva - Ploche</h1>
+    <button class="schedule-option" id="select1BusPloche">1 Bus</button>
+    <button class="schedule-option" id="select2BusesPloche">2 Buses</button>
+
+    <button class="Crash-button" id="CrashPloc">Crash</button>
+
+    <a href="/html_schedual/feedback/admin_feedback.php" class="feedbacks" style="position: fixed; right: 10px">Feedbacks</a>
 
 
   <script>
@@ -69,6 +106,7 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+        //Sveti Stefan----------------------------------------------
     document.getElementById('BdSvselect3Buses').addEventListener('click', () => {
       fetch('update_schedule.php', {
         method: 'POST',
@@ -76,6 +114,45 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({active: '3buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+        document.getElementById('BdSvselect4Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '4buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+        document.getElementById('BdSvselect5Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '5buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+        document.getElementById('BdSvselect6Buses').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active: '6buses'})
       })
         .then(response => response.json())
         .then(data => console.log(data.message))
@@ -104,6 +181,19 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({active_petrovac: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('select3BusesPetrovac').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_petrovac: '3buses'})
       })
         .then(response => response.json())
         .then(data => console.log(data.message))
@@ -153,6 +243,33 @@
         .catch(error => console.error('Error updating schedule:', error));
     });
 
+     //Ploche----------------------------------------------
+      document.getElementById('select1BusPloche').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_ploche: '1bus'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
+    document.getElementById('select2BusesPloche').addEventListener('click', () => {
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({active_ploche: '2buses'})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error updating schedule:', error));
+    });
+
 
       </script>
 
@@ -163,13 +280,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Кнопки для Budva-Sveti Stefan
     const svetiStefanButtons = [
         document.getElementById('BdSvselect2Buses'),
-        document.getElementById('BdSvselect3Buses')
+        document.getElementById('BdSvselect3Buses'),
+        document.getElementById('BdSvselect4Buses'),
+        document.getElementById('BdSvselect5Buses'),
+        document.getElementById('BdSvselect6Buses'),
+
     ];
+
+    const crashSvStButtons = [
+            document.getElementById('CrashSvSt')
+        ]
 
     // Кнопки для Budva-Petrovac
     const petrovacButtons = [
         document.getElementById('select2BusesPetrovac'),
-        document.getElementById('select1BusPetrovac')
+        document.getElementById('select1BusPetrovac'),
+        document.getElementById('select3BusesPetrovac')
     ];
 
         // Кнопки для Budva-Lastva
@@ -181,6 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Кнопки для Budva-Braich
     const braichiButtons = [
         document.getElementById('select1BusBraichi')
+    ];
+
+        // Кнопки для Budva-Ploche
+    const plocheButtons = [
+        document.getElementById('select1BusPloche'),
+        document.getElementById('select2BusesPloche')
     ];
 
     // Функция для управления подсветкой
@@ -195,16 +327,217 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+        const addHighlighting_cr = (buttons) => {
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Удаляем класс 'selected' у всех кнопок в группе
+                buttons.forEach(btn => btn.classList.remove('selected_cr'));
+                // Добавляем класс 'selected' к нажатой кнопке
+                button.classList.add('selected_cr');
+            });
+        });
+    };
+
     // Добавляем подсветку для каждой группы кнопок
     addHighlighting(svetiStefanButtons);
     addHighlighting(petrovacButtons);
     addHighlighting(lastvaButtons);
     addHighlighting(braichiButtons);
+    addHighlighting(plocheButtons);
+
+    addHighlighting_cr(crashSvStButtons);
 });
 
   </script>
 
-<div class="site-version">Version: Beta 1.0</div>
+        <!-- Скрипт для управления подсветкой (selected) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Группы кнопок:
+        const svetiStefanButtons = [
+            document.getElementById('BdSvselect2Buses'),
+            document.getElementById('BdSvselect3Buses'),
+            document.getElementById('BdSvselect4Buses'),
+            document.getElementById('BdSvselect5Buses'),
+            document.getElementById('BdSvselect6Buses')
+
+        ];
+        const crashSvStButtons = [
+            document.getElementById('CrashSvSt')
+        ]
+
+        const petrovacButtons = [
+            document.getElementById('select1BusPetrovac'),
+            document.getElementById('select2BusesPetrovac'),
+            document.getElementById('select3BusesPetrovac')
+        ];
+
+        const lastvaButtons = [
+            document.getElementById('select1BusLastva'),
+            document.getElementById('select2BusesLastva')
+        ];
+
+        const braichiButtons = [
+            document.getElementById('select1BusBraichi')
+        ];
+
+        const plocheButtons = [
+            document.getElementById('select1BusPloche'),
+            document.getElementById('select2BusesPloche')
+        ];
+
+        // Функция для навешивания клика и сброса/установки класса
+        const addHighlighting = (buttons) => {
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
+        };
+
+                const addHighlighting_cr = (buttons) => {
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(btn => btn.classList.remove('selected_cr'));
+                    button.classList.add('selected_cr');
+                });
+            });
+        };
+
+        // Подключаем функцию подсветки к каждой группе
+        addHighlighting(svetiStefanButtons);
+        addHighlighting(petrovacButtons);
+        addHighlighting(lastvaButtons);
+        addHighlighting(braichiButtons);
+        addHighlighting(plocheButtons);
+
+        addHighlighting_cr(crashSvStButtons);
+
+        // Читаем текущее состояние выбора из active_schedule.json и подсвечиваем нужные кнопки
+        fetch('active_schedule.json')
+            .then(response => response.json())
+            .then(data => {
+                // Budva - Sveti Stefan (data.active)
+                if(data.active === '2buses') {
+                    document.getElementById('BdSvselect2Buses').classList.add('selected');
+                } else if(data.active === '3buses') {
+                    document.getElementById('BdSvselect3Buses').classList.add('selected');
+                } else if(data.active === '4buses') {
+                    document.getElementById('BdSvselect4Buses').classList.add('selected');
+                } else if(data.active === '5buses') {
+                    document.getElementById('BdSvselect5Buses').classList.add('selected');
+                } else if(data.active === '6buses') {
+                    document.getElementById('BdSvselect6Buses').classList.add('selected');
+                }
+
+                if(data.crash_SvSt === true) {
+                    document.getElementById('CrashSvSt').classList.add('selected_cr');}
+
+                // Budva - Petrovac (data.active_petrovac)
+                if(data.active_petrovac === '1bus') {
+                    document.getElementById('select1BusPetrovac').classList.add('selected');
+                } else if(data.active_petrovac === '2buses') {
+                    document.getElementById('select2BusesPetrovac').classList.add('selected');
+                } else if(data.active_petrovac === '3buses') {
+                    document.getElementById('select3BusesPetrovac').classList.add('selected');
+                }
+
+                // Budva - Lastva (data.active_lastva)
+                if(data.active_lastva === '1bus') {
+                    document.getElementById('select1BusLastva').classList.add('selected');
+                } else if(data.active_lastva === '2buses') {
+                    document.getElementById('select2BusesLastva').classList.add('selected');
+                }
+
+                // Budva - Braichi (data.active_braichi)
+                if(data.active_braichi === '1bus') {
+                    document.getElementById('select1BusBraichi').classList.add('selected');
+                }
+
+                // Budva - Ploche (data.active_ploche)
+                if(data.active_ploche === '1bus') {
+                    document.getElementById('select1BusPloche').classList.add('selected');
+                } else if(data.active_ploche === '2buses') {
+                    document.getElementById('select2BusesPloche').classList.add('selected');
+                }
+            })
+            .catch(err => console.error('Error fetching active schedule:', err));
+    });
+    </script>
+
+    <script>
+      let currentCrashSvSt = false;
+      let currentCrashPetr = false;
+      let currentCrashLast = false;
+      let currentCrashBraic = false;
+      let currentCrashPloc = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const crashButtons = {
+    CrashSvSt: 'crash_SvSt',
+    CrashPetr: 'crash_Petr',
+    CrashLast: 'crash_Last',
+    CrashBrai: 'crash_Braic',
+    CrashPloc: 'crash_Ploc'
+  };
+
+  const crashStates = {};
+
+  // Загружаем текущие значения
+  fetch('active_schedule.json')
+    .then(r => r.json())
+    .then(data => {
+      for (const [btnId, crashKey] of Object.entries(crashButtons)) {
+        crashStates[crashKey] = data[crashKey] === true;
+        if (crashStates[crashKey]) {
+          const btn = document.getElementById(btnId);
+          if (btn) btn.classList.add('selected_cr');
+        }
+      }
+    })
+    .catch(err => console.error('Error loading active_schedule.json:', err));
+
+  // Назначаем обработчики для всех кнопок Crash
+  for (const [btnId, crashKey] of Object.entries(crashButtons)) {
+    const btn = document.getElementById(btnId);
+    if (!btn) continue;
+
+    btn.addEventListener('click', () => {
+      const newValue = !crashStates[crashKey];
+      fetch('update_schedule.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ [crashKey]: newValue })
+      })
+      .then(r => r.json())
+      .then(data => {
+        crashStates[crashKey] = newValue;
+        if (newValue) {
+          btn.classList.add('selected_cr');
+        } else {
+          btn.classList.remove('selected_cr');
+        }
+        console.log(data.message);
+      })
+      .catch(err => console.error('Update error:', err));
+    });
+  }
+});
+
+    </script>
+
+    <!--Version-->
+<div class="site-version"></div>
+    <script>
+fetch("version.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll(".site-version").forEach(el => {
+      el.textContent = "Version: " + data.version;
+    });
+  });
+</script>
 
 </body>
 </html>

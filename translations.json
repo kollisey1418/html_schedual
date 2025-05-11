@@ -1,0 +1,14 @@
+{
+  "ru": {
+    "crash_popup_title": "Внимание!",
+    "crash_popup_text": "В связи с временными техническими проблемами, автобус прибудет с опозданием. Приносим извинения за неудобства."
+  },
+  "en": {
+    "crash_popup_title": "Attention!",
+    "crash_popup_text": "Due to temporary technical issues, the bus will arrive with a delay.\nWe apologize for the inconvenience."
+  },
+    "me": {
+    "crash_popup_title": "Pažnja!",
+    "crash_popup_text": "Zbog privremenih tehničkih problema, autobus će stići sa zakašnjenjem. Izvinjavamo se zbog neprijatnosti."
+  }
+}
