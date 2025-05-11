@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budva - Petrovac - Budva</title>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYQ5Y4HPK4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MYQ5Y4HPK4');
+</script>
     <link rel="icon" type="image/png" href="img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
@@ -130,6 +139,7 @@ td {
 
 /* Содержимое popup */
 .popup-content {
+    position: relative;
     background-color: white;
     margin: 15% auto;
     padding: 20px;
@@ -138,6 +148,7 @@ td {
     max-width: 6000px;
     box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.5);
     overflow-x: auto; /* Горизонтальная прокрутка */
+    min-height: 300px;
 }
 
 /* Кнопка закрытия popup */
@@ -184,6 +195,8 @@ td {
     z-index: 1000;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 .dropdown-content a {
@@ -198,7 +211,7 @@ td {
     background-color: #f2f2f2;
 }
 
-.dropdown-button, .schedule-button, .search-button {
+.dropdown-button, .schedule-button, .search-button, .OkButton {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
@@ -275,15 +288,40 @@ td {
 
     }
     </style>
+    <script src="main_crash.js"></script>
+    <script>const crashKey = 'crash_Petr';</script>
 </head>
 <body>
 <div style="position: absolute; top: 20px; left: 20px;">
-        <a href="index.html" class="home-button desktop-only" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
-        <a href="index.html" class="home-button mobil-only" style="border-radius: 10px; font-weight: bold;"><img src="img/home_mobil.png" alt="Back" class="home-icon"></a>
+        <a href="index.html" class="home-button desktop-only" id="homepc" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
+        <a href="index.html" class="home-button mobil-only" id="homemb" style="border-radius: 10px; font-weight: bold;"><img src="img/home_mobil.png" alt="Back" class="home-icon"></a>
     </div>
     <div class="header">
         Mediteran Express
+            <div class="mobil-only" style="    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+    padding-bottom: 6px;
+    overflow: hidden;">
+  <div id="weather-mb" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
+</div>
     </div>
+        <div id="crashPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2 id="crashPopupTitle"></h2>
+      <p  id="crashPopupText" style="text-align: center;"></p>
+      <img src="img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
+
+    </div>
+  </div>
     <div class="schedule-container">
 
 <div class="map-container">
@@ -324,7 +362,8 @@ td {
                     </div>
 
                     <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
-                    <div id="arrivalDropdown" class="dropdown-content"></div>
+                    <div id="arrivalDropdown" class="dropdown-content"> <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Please select a departure</a>
+                    </div>
 
                     <button id="intervalButton" class="dropdown-button">Select Time Interval</button>
                     <div id="intervalDropdown" class="dropdown-content">
@@ -411,13 +450,15 @@ td {
             </div>
 
             <button id="arrivalButton2" class="dropdown-button">Select Arrival</button>
-            <div id="arrivalDropdown2" class="dropdown-content"></div>
+            <div id="arrivalDropdown2" class="dropdown-content">
+               <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Please select a departure</a>
+            </div>
 
             <button id="intervalButton2" class="dropdown-button">Select Time Interval</button>
             <div id="intervalDropdown2" class="dropdown-content">
                 <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
                 <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
-                <a href="#" data-interval="08:00-10:00">10:00-12:00</a>
+                <a href="#" data-interval="10:00-12:00">10:00-12:00</a>
                 <a href="#" data-interval="12:00-14:00">12:00-14:00</a>
                 <a href="#" data-interval="14:00-16:00">14:00-16:00</a>
                 <a href="#" data-interval="16:00-18:00">16:00-18:00</a>
@@ -520,6 +561,7 @@ td {
     let currentSchedule = null;
     let lastUpdated = null;
     let isShowAllClicked = false; // Запоминаем, нажата ли кнопка "Show All"
+    let scheduleFile;
 
     const stops = ["Budva", "Crvena Zgrada", "Stadion", "Aqua park", "Moc (SkyLine)", "Bella Vista", "Rafailovichi", "Kamenovo", "Adrovich", "Blizikuche", "Rezhevichi", "Giardino", "Monastery Rezhevichi", "Bus Station (Petrovac)", "Petrovac", "Buljarica"];
 
@@ -549,8 +591,19 @@ td {
             }
 
             lastUpdated = data.lastUpdated;
-            const scheduleFile = data.active_petrovac === '2buses' ? 'budva-petrovac_2buses.json' : 'budva-petrovac_1bus.json';
-            return fetch(scheduleFile).then(response => response.json());
+
+            if (data.active_petrovac === '1bus') {
+    scheduleFile = 'budva-petrovac_1bus.json';
+    } else if (data.active_petrovac === '2buses') {
+    scheduleFile = 'budva-petrovac_2buses.json';
+    } else if (data.active_petrovac === '3buses') {
+    scheduleFile = 'budva-petrovac_3buses.json';
+} else {
+                // Если не нужно загружать какое-либо расписание,
+                // то просто возвращаемся и не вызываем fetch(scheduleFile):
+                return;
+            }
+                     return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
             currentSchedule = scheduleData; // Сохраняем данные в глобальную переменную
@@ -683,33 +736,39 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedArrival = null;
     let selectedInterval = null;
 
-    // Настройка выпадающих списков
+   // Настройка выпадающих списков
     const setupDropdown = (buttonId, dropdownId, callback) => {
-        const button = document.getElementById(buttonId);
-        const dropdown = document.getElementById(dropdownId);
+    const button = document.getElementById(buttonId);
+    const dropdown = document.getElementById(dropdownId);
+    const popupContent = button.closest('.popup-content');
 
-        button.addEventListener('click', (event) => {
-            const buttonRect = button.getBoundingClientRect();
-            dropdown.style.left = `${buttonRect.left}px`;
-            dropdown.style.top = `${buttonRect.bottom}px`;
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
+    button.addEventListener('click', (event) => {
+        const buttonRect = button.getBoundingClientRect();
+        const popupRect = popupContent.getBoundingClientRect();
 
-        dropdown.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A') {
-                const value = event.target.dataset.station || event.target.dataset.interval;
-                button.textContent = event.target.textContent;
-                dropdown.style.display = 'none';
-                callback(value);
-            }
-        });
+        const offsetLeft = buttonRect.left - popupRect.left + popupContent.scrollLeft;
+        const offsetTop = buttonRect.bottom - popupRect.top + popupContent.scrollTop;
 
-        window.addEventListener('click', (event) => {
-            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-    };
+        dropdown.style.left = `${offsetLeft}px`;
+        dropdown.style.top = `${offsetTop}px`;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            const value = event.target.dataset.station || event.target.dataset.interval;
+            button.textContent = event.target.textContent;
+            dropdown.style.display = 'none';
+            callback(value);
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+};
 
     setupDropdown('departureButton', 'departureDropdown', (value) => { selectedDeparture = value; updateArrivalDropdown(value); });
     setupDropdown('arrivalButton', 'arrivalDropdown', (value) => selectedArrival = value);
@@ -746,6 +805,7 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
     let currentSchedule2 = null;
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
+    let scheduleFile2;
 
     const stops2 =  ["Petrovac", "Bus Station (Petrovac)", "Monastery Rezhevichi", "Giardino", "Rezhevichi", "Blizikuche", "Adrovich", "Kamenovo", "Rafailovichi", "Bella Vista", "Moc (SkyLine)", "Aqua park", "Slavija", "Obshtina (Bus Station)", "Budva"];
 
@@ -773,9 +833,21 @@ if (!selectedDeparture || !selectedArrival || !selectedInterval) {
                     return;
                 }
 
-            lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
-            const scheduleFile = data.active_petrovac === '1bus' ? 'petrovac-budva_1bus.json' : 'petrovac-budva_2buses.json';
-            return fetch(scheduleFile).then(response => response.json());
+                lastUpdated2 = data.lastUpdated2; // Обновляем метку времени
+
+              if (data.active_petrovac === '1bus') {
+    scheduleFile2 = 'petrovac-budva_1bus.json';
+    } else if (data.active_petrovac === '2buses') {
+    scheduleFile2 = 'petrovac-budva_2buses.json';
+    } else if (data.active_petrovac === '3buses') {
+    scheduleFile2 = 'petrovac-budva_3buses.json';
+} else {
+                // Если не нужно загружать какое-либо расписание,
+                // то просто возвращаемся и не вызываем fetch(scheduleFile):
+                return;
+            }
+
+              return fetch(scheduleFile2).then(response => response.json());
         })
         .then(scheduleData => {
             currentSchedule2 = scheduleData; // Сохраняем данные в глобальную переменную
@@ -875,33 +947,39 @@ function renderTable2(schedule) {
         let selectedArrival2 = null;
         let selectedInterval2 = null;
 
-        const setupDropdown = (buttonId, dropdownId, callback) => {
-            const button = document.getElementById(buttonId);
-            const dropdown = document.getElementById(dropdownId);
+        // Настройка выпадающих списков
+    const setupDropdown = (buttonId, dropdownId, callback) => {
+    const button = document.getElementById(buttonId);
+    const dropdown = document.getElementById(dropdownId);
+    const popupContent = button.closest('.popup-content');
 
-            button.addEventListener('click', (event) => {
-                // Позиционируем выпадающее меню относительно кнопки
-                const buttonRect = button.getBoundingClientRect();
-                dropdown.style.left = `${buttonRect.left}px`;
-                dropdown.style.top = `${buttonRect.bottom}px`;
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            });
+    button.addEventListener('click', (event) => {
+        const buttonRect = button.getBoundingClientRect();
+        const popupRect = popupContent.getBoundingClientRect();
 
-            dropdown.addEventListener('click', (event) => {
-                if (event.target.tagName === 'A') {
-                    const value = event.target.dataset.station || event.target.dataset.interval;
-                    button.textContent = event.target.textContent;
-                    dropdown.style.display = 'none';
-                    callback(value);
-                }
-            });
+        const offsetLeft = buttonRect.left - popupRect.left + popupContent.scrollLeft;
+        const offsetTop = buttonRect.bottom - popupRect.top + popupContent.scrollTop;
 
-            window.addEventListener('click', (event) => {
-                if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-                    dropdown.style.display = 'none';
-                }
-            });
-        };
+        dropdown.style.left = `${offsetLeft}px`;
+        dropdown.style.top = `${offsetTop}px`;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    dropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            const value = event.target.dataset.station || event.target.dataset.interval;
+            button.textContent = event.target.textContent;
+            dropdown.style.display = 'none';
+            callback(value);
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+};
 
         setupDropdown('departureButton2', 'departureDropdown2', (value) => {
             selectedDeparture2 = value;
@@ -942,9 +1020,22 @@ function renderTable2(schedule) {
 
 
 
+    <!--Version-->
+<div class="site-version"></div>
+    <script>
+fetch("version.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll(".site-version").forEach(el => {
+      el.textContent = "Version: " + data.version;
+    });
+  });
+</script>
 
-<div class="site-version">Version: Beta 1.0.2</div>
-
+<script src="weather.js"></script>
+<script>
+  getWeather("Budva", "weather-mb");
+</script>
 
 </body>
 </html>

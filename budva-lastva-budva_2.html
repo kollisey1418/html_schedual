@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budva - Braichi - Budva</title>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYQ5Y4HPK4"></script>
+    <title>Budva - Lastva - Budva</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYQ5Y4HPK4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -13,6 +10,9 @@
 
   gtag('config', 'G-MYQ5Y4HPK4');
 </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="icon" type="image/png" href="img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
@@ -195,7 +195,7 @@ td {
     z-index: 1000;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    height:150px;
+    height: 150px;
     overflow: auto;
 }
 
@@ -239,21 +239,42 @@ td {
         font-size: 12px;
     }
 
-                        /*Разработка страницы*/
-
-
-.loading {
-  text-align: center;
+            .popup_info {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
 }
 
-h1 {
-  margin-bottom: 20px;
+.popup-content_info {
+  background-color: #ffe5e5;
+  padding: 20px 25px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 90%;
+  text-align: left;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+  line-height: 1.5;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.popup_info .close {
+  float: right;
   font-size: 24px;
-  color: #333;
+  font-weight: bold;
+  cursor: pointer;
 }
-
-
 
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 550px) {
@@ -304,14 +325,39 @@ h1 {
 
     }
     </style>
-          <script src="main_crash.js"></script>
-    <script>const crashKey = 'crash_Braic';</script>
+        <script src="main_crash.js"></script>
+    <script>const crashKey = 'crash_Last';</script>
 </head>
 <body>
+<div id="infoPopup" class="popup_info">
+  <div class="popup-content_info">
+    <span class="close">&times;</span>
+<h2>Attention!</h2>
+<p>
+  The Budva – Lastva schedule changes depending on the day of the week.<br>
+  <strong>On weekdays</strong>, the departure is from <strong>Nova Shkola</strong>.<br>
+  <strong>On weekends (Saturday and Sunday)</strong>, the departure is from <strong>Opshtina</strong>.
+</p>
+  </div>
+</div>
+<!-- Блок для кнопок Home (слева) -->
 <div style="position: absolute; top: 20px; left: 20px;">
-        <a href="index.html" class="home-button desktop-only" id="homepc" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
-        <a href="index.html" class="home-button mobil-only" id="homemb" style="border-radius: 10px; font-weight: bold;"><img src="img/home_mobil.png" alt="Back" class="home-icon"></a>
-    </div>
+  <a href="index.html" class="home-button desktop-only" id="homepc"
+     style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+    Home
+  </a>
+  <a href="index.html" class="home-button mobil-only" id="homemb"
+     style="border-radius: 10px; font-weight: bold;">
+    <img src="img/home_mobil.png" alt="Back" class="home-icon">
+  </a>
+</div>
+
+<!-- Блок для иконки Info (справа) -->
+<div style="position: absolute; top: 20px; right: 20px;">
+  <a href="#" id="infoBtn" style="text-decoration: none; border-radius: 10px; font-weight: bold;">
+    <img src="img/information.png" alt="Info" style="width: 32px; height: 32px;">
+  </a>
+</div>
         <div id="crashPopup" class="popup" style="display:none;">
     <div class="popup-content">
       <h2 id="crashPopupTitle"></h2>
@@ -340,9 +386,9 @@ h1 {
     </div>
     <div class="schedule-container">
 
-
 <div class="map-container">
-    <h1>Budva - Braichi</h1>
+    <h1>Budva - Lastva</h1>
+  <a style="display: block; width: max-content; margin: 0 auto; color: #cc0000;">Weekends</a>
     <div id="map1"></div>
     <div class="timetable-container">
         <h2>Timetable for Stops</h2>
@@ -361,10 +407,8 @@ h1 {
             <button id="departureButton" class="dropdown-button">Select Departure</button>
              <div id="departureDropdown" class="dropdown-content">
                         <a href="#" data-station="Budva (Obshtina)">Budva (Obshtina)</a>
-                        <a href="#" data-station="Nova Shkola">Nova Shkola</a>
-                        <a href="#" data-station="Dukley">Dukley</a>
-                        <a href="#" data-station="Markovichi">Markovichi</a>
-                        <a href="#" data-station="Pobori">Pobori</a>
+                        <a href="#" data-station="Top Hill">Top Hill</a>
+                        <a href="#" data-station="Sveti Djordje">Sveti Djordje</a>
                     </div>
 
                     <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
@@ -413,7 +457,8 @@ h1 {
         </div>
 
       <div class="map-container">
-    <h1>Braichi - Budva</h1>
+    <h1>Lastva - Budva</h1>
+        <a style="display: block; width: max-content; margin: 0 auto; color: #cc0000;">Weekends</a>
     <div id="map2"></div>
     <div class="timetable-container">
         <h2>Timetable for Stops</h2>
@@ -429,10 +474,10 @@ h1 {
         <div class="filter-buttons">
             <button id="departureButton2" class="dropdown-button">Select Departure</button>
             <div id="departureDropdown2" class="dropdown-content">
-                     <a href="#" data-station="Braichi">Braichi</a>
-                        <a href="#" data-station="Pobori">Pobori</a>
-                        <a href="#" data-station="Markovichi">Markovichi</a>
-                        <a href="#" data-station="Stadion (Slavia)">Stadion (Slavia)</a>
+                     <a href="#" data-station="Lastva">Lastva</a>
+                        <a href="#" data-station="Lovchen Auto">Lovchen Auto</a>
+                        <a href="#" data-station="Mega Market">Mega Market</a>
+                        <a href="#" data-station="Jaz">Jaz</a>
 
             </div>
 
@@ -466,7 +511,7 @@ h1 {
 
 
 
-    </div>>
+
     <script>
         function initMap() {
             var map1 = new google.maps.Map(document.getElementById('map1'), {
@@ -475,7 +520,7 @@ h1 {
             });
 
             var kmlLayer1 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1XQWXd5Rsm5crZPth7ILZhohn2FmHBi2w',
+                url: 'https://drive.google.com/uc?id=1KstVCEI-4_qsyqDazucOyFniPhyuQfP3',
                 map: map1
             });
 
@@ -485,7 +530,7 @@ h1 {
             });
 
             var kmlLayer2 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1xxP_NY7RxzuDuQ0wjNnKiKOIdzfGU5h5',
+                url: 'https://drive.google.com/uc?id=1nY9D_yalHoWe4xe1sT10my2eRzDcY3mL',
                 map: map2
             });
         }
@@ -549,7 +594,7 @@ h1 {
 let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; // Информация, если Show All не нажата
-   const stops =["Budva (Obshtina)", "Nova Shkola", "Dukley", "Markovichi", "Pobori", "Braichi"];
+   const stops =["Budva (Obshtina)", "Top Hill", "Sveti Djordje", "Lastva", "Lovchen Auto", "Mega Market", "Jaz", "Nova Shcola", "Slavija"];
 
    // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -578,7 +623,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active_braichi === '2buses' ? 'budva-braichi.json' : 'budva-braichi.json';
+            const scheduleFile = data.active_lastva === '2buses' ? 'budva-lastva_2buses.json' : 'budva-lastva_1bus.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -757,12 +802,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('searchButton').addEventListener('click', () => {
- {
-   if (!selectedDeparture || !selectedArrival || !selectedInterval) {
+if (!selectedDeparture || !selectedArrival || !selectedInterval) {
                 alert("Please select Departure, Arrival, and Time Interval.");
                 return;
-            }
-
+            } {
         const [start, end] = selectedInterval.split('-');
         const filteredTimes = currentSchedule.filter(({ time }) => {
             if (start > end) {
@@ -785,7 +828,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
 
-    const stops2 = ["Braichi", "Pobori", "Markovichi", "Stadion (Slavia)", "Budva (Obshtina)",];
+    const stops2 = ["Lastva", "Lovchen Auto", "Mega Market", "Jaz", "Nova Shkola"];
 
     // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {
@@ -813,7 +856,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-                const scheduleFile = data.active_braichi === '2buses'  ? 'braichi-budva.json'  : 'braichi-budva.json';
+                const scheduleFile = data.active_lastva === '2buses'  ? 'lastva-budva_2buses.json'  : 'lastva-budva_1bus.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {
@@ -914,7 +957,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         let selectedArrival2 = null;
         let selectedInterval2 = null;
 
-        // Настройка выпадающих списков
+       // Настройка выпадающих списков
     const setupDropdown = (buttonId, dropdownId, callback) => {
     const button = document.getElementById(buttonId);
     const dropdown = document.getElementById(dropdownId);
@@ -985,6 +1028,59 @@ document.getElementById('searchButton').addEventListener('click', () => {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('infoPopup');
+  const closeBtn = popup.querySelector('.close');
+
+  // Показываем popup сразу при загрузке
+  popup.style.display = 'block';
+
+  // Закрытие по кнопке
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Закрытие по фону
+  window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ...
+
+  const infoBtn = document.getElementById("infoBtn");
+  const infoPopup = document.getElementById("infoPopup");
+  const closeBtnInfo = infoPopup.querySelector('.close');
+
+  // При загрузке мы один раз показываем попап
+  infoPopup.style.display = 'block';
+
+  // Клик по крестику закрывает
+  closeBtnInfo.addEventListener('click', () => {
+    infoPopup.style.display = 'none';
+  });
+
+  // Клик по фону закрывает
+  window.addEventListener('click', (e) => {
+    if (e.target === infoPopup) {
+      infoPopup.style.display = 'none';
+    }
+  });
+
+  // >>> Клик по иконке infoBtn снова открывает попап <<<
+  infoBtn.addEventListener('click', (e) => {
+    e.preventDefault();  // чтобы не скроллило вверх
+    infoPopup.style.display = 'block';
+  });
+});
+</script>
 
 
     <!--Version-->
@@ -998,6 +1094,8 @@ fetch("version.json")
     });
   });
 </script>
+
+
 
 <script src="weather.js"></script>
 <script>

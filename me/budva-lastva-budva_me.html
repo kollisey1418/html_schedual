@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budva - Braichi - Budva</title>
+    <title>Budva - Lastva - Budva</title>
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYQ5Y4HPK4"></script>
 <script>
@@ -13,7 +13,7 @@
 
   gtag('config', 'G-MYQ5Y4HPK4');
 </script>
-  <link rel="icon" type="image/png" href="img/img_for_favicon.png">
+  <link rel="icon" type="image/png" href="/img/img_for_favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -239,19 +239,43 @@ td {
         font-size: 12px;
     }
 
-                        /*Разработка страницы*/
-
-
-.loading {
-  text-align: center;
+      .popup_info {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
 }
 
-h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+.popup-content_info {
+  background-color: #ffe5e5;
+  padding: 20px 25px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 90%;
+  text-align: left;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+  line-height: 1.5;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+
+.popup_info .close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 
 
 
@@ -304,23 +328,48 @@ h1 {
 
     }
     </style>
-          <script src="main_crash.js"></script>
-    <script>const crashKey = 'crash_Braic';</script>
+      </style>  <script src="/main_crash_lan.js"></script>
+  <script>const crashKey = 'crash_Last';</script>
 </head>
 <body>
-<div style="position: absolute; top: 20px; left: 20px;">
-        <a href="index.html" class="home-button desktop-only" id="homepc" style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Home</a>
-        <a href="index.html" class="home-button mobil-only" id="homemb" style="border-radius: 10px; font-weight: bold;"><img src="img/home_mobil.png" alt="Back" class="home-icon"></a>
-    </div>
-        <div id="crashPopup" class="popup" style="display:none;">
+<div id="infoPopup" class="popup_info">
+  <div class="popup-content_info">
+    <span class="close">&times;</span>
+<h2>Pažnja!</h2>
+<p>
+  Raspored Budva – Lastva se menja u zavisnosti od dana u nedelji.<br>
+  <strong>Radnim danima</strong>, polazak je od <strong>Nove škole</strong>.<br>
+  <strong>Vikendom (subota i nedelja)</strong>, od <strong>Opštine</strong>.
+</p>
+  </div>
+</div>
+  <div id="crashPopup" class="popup" style="display:none;">
     <div class="popup-content">
       <h2 id="crashPopupTitle"></h2>
       <p  id="crashPopupText" style="text-align: center;"></p>
-      <img src="img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
+      <img src="/img/broken_bus.gif" alt="Weather Icon" style="width: 200px; height: 200px; display: block; margin: 0 auto;">
       <button id="closeCrashPopup" class="OkButton" style="display: block; margin: 0 auto;">OK</button>
 
     </div>
   </div>
+<!-- Блок для кнопок Home (слева) -->
+<div style="position: absolute; top: 20px; left: 20px;">
+  <a href="/me/index_me.html" class="home-button desktop-only" id="homepc"
+     style="text-decoration: none; background-color: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+    Početna
+  </a>
+  <a href="/me/index_me.html" class="home-button mobil-only" id="homemb"
+     style="border-radius: 10px; font-weight: bold;">
+    <img src="/img/home_mobil.png" alt="Back" class="home-icon">
+  </a>
+</div>
+
+<!-- Блок для иконки Info (справа) -->
+<div style="position: absolute; top: 20px; right: 20px;">
+  <a href="#" id="infoBtn" style="text-decoration: none; border-radius: 10px; font-weight: bold;">
+    <img src="/img/information.png" alt="Info" style="width: 32px; height: 32px;">
+  </a>
+</div>
     <div class="header">
         Mediteran Express
             <div class="mobil-only" style="    width: 100%;
@@ -335,44 +384,44 @@ h1 {
     margin-top: 5px;
     padding-bottom: 6px;
     overflow: hidden;">
-  <div id="weather-mb" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
+  <div id="weather" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 16px;"></div>
 </div>
     </div>
     <div class="schedule-container">
 
-
 <div class="map-container">
-    <h1>Budva - Braichi</h1>
+    <h1>Budva - Lastva</h1>
+  <a style="display: block; width: max-content; margin: 0 auto; color: #cc0000;">Radnim danima</a>
     <div id="map1"></div>
     <div class="timetable-container">
-        <h2>Timetable for Stops</h2>
+        <h2>Raspored za stanice</h2>
        <div class="timetable-container">
-    <button id="detailedScheduleButton" class="schedule-button">Detailed Schedule</button>
+    <button id="detailedScheduleButton" class="schedule-button">Detaljan raspored</button>
 </div>
-        <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
+        <p style="text-align: center;">*Ovaj raspored može biti promenjen zbog saobraćajnih uslova.</p>
     </div>
 </div>
 
       <div id="schedulePopup" class="popup">
     <div class="popup-content">
         <span class="close">&times;</span>
-        <h2>Detailed Schedule</h2>
+        <h2>Detaljan raspored</h2>
               <div class="filter-buttons">
-            <button id="departureButton" class="dropdown-button">Select Departure</button>
+            <button id="departureButton" class="dropdown-button">Izaberite polazak</button>
              <div id="departureDropdown" class="dropdown-content">
-                        <a href="#" data-station="Budva (Obshtina)">Budva (Obshtina)</a>
-                        <a href="#" data-station="Nova Shkola">Nova Shkola</a>
-                        <a href="#" data-station="Dukley">Dukley</a>
-                        <a href="#" data-station="Markovichi">Markovichi</a>
-                        <a href="#" data-station="Pobori">Pobori</a>
+                        <a href="#" data-station="Budva(Nova škola)">Budva (Nova škola)</a>
+                        <a href="#" data-station="Slavija">Slavija</a>
+                        <a href="#" data-station="Opština">Opština</a>
+                        <a href="#" data-station="Top Hill">Top Hill</a>
+                        <a href="#" data-station="Sveti Djordje">Sveti Djordje</a>
                     </div>
 
-                    <button id="arrivalButton" class="dropdown-button">Select Arrival</button>
+                    <button id="arrivalButton" class="dropdown-button">Izaberite dolazak</button>
                     <div id="arrivalDropdown" class="dropdown-content">
-                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Please select a departure</a>
+                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Molimo vas da izaberete polazak</a>
                     </div>
 
-                    <button id="intervalButton" class="dropdown-button">Select Time Interval</button>
+                    <button id="intervalButton" class="dropdown-button">Izaberite vremenski interval</button>
                     <div id="intervalDropdown" class="dropdown-content">
                         <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
                         <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
@@ -388,8 +437,8 @@ h1 {
 
                     </div>
 
-                    <button id="searchButton" class="search-button">Find Schedule</button>
-                    <button id="showAllButton" class="search-button">Show All</button>
+                    <button id="searchButton" class="search-button">Pronađite raspored</button>
+                    <button id="showAllButton" class="search-button">Prikaži sve</button>
                 </div>
                 <div id="result"></div>
             </div>
@@ -400,53 +449,54 @@ h1 {
 
 
                 <div class="price-container">
-             <h2>Price for stops</h2>
+             <h2>Cena za stanice</h2>
                     <div class="price-item">
                         <h2> ↓ </h2>
 
             </div>
             <div class="price-item">
-                <img src="img/Bus_Red.png" alt="Red Stop">
-                <p>Red Ticket - €1.5</p>
+                <img src="/img/Bus_Red.png" alt="Red Stop">
+                <p>Crvena karta - €1.5</p>
             </div>
 
         </div>
 
       <div class="map-container">
-    <h1>Braichi - Budva</h1>
+    <h1>Lastva - Budva</h1>
+        <a style="display: block; width: max-content; margin: 0 auto; color: #cc0000;">Radnim danima</a>
     <div id="map2"></div>
     <div class="timetable-container">
-        <h2>Timetable for Stops</h2>
-        <button class="schedule-button" id="scheduleButton2">Detailed Schedule</button>
-        <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
+        <h2>Raspored za stanice</h2>
+        <button class="schedule-button" id="scheduleButton2">Detaljan raspored</button>
+        <p style="text-align: center;">*Ovaj raspored je podložan promenama zbog saobraćajnih uslova.</p>
     </div>
 </div>
 
 <div id="schedulePopup2" class="popup">
     <div class="popup-content">
         <span class="close" id="closePopup2">&times;</span>
-        <h2>Detailed Schedule</h2>
+        <h2>Detaljan raspored</h2>
         <div class="filter-buttons">
-            <button id="departureButton2" class="dropdown-button">Select Departure</button>
+            <button id="departureButton2" class="dropdown-button">Detaljan raspored</button>
             <div id="departureDropdown2" class="dropdown-content">
-                     <a href="#" data-station="Braichi">Braichi</a>
-                        <a href="#" data-station="Pobori">Pobori</a>
-                        <a href="#" data-station="Markovichi">Markovichi</a>
-                        <a href="#" data-station="Stadion (Slavia)">Stadion (Slavia)</a>
+                     <a href="#" data-station="Lastva">Lastva</a>
+                        <a href="#" data-station="Lovćen Auto">Lovćen Auto</a>
+                        <a href="#" data-station="Mega Market">Mega Market</a>
+                        <a href="#" data-station="Jaz">Jaz</a>
 
             </div>
 
-            <button id="arrivalButton2" class="dropdown-button">Select Arrival</button>
+            <button id="arrivalButton2" class="dropdown-button">Izaberite dolazak</button>
             <div id="arrivalDropdown2" class="dropdown-content">
-                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Please select a departure</a>
+                        <a href="#" data-station="" style="pointer-events: none; color: #aaa; cursor: default;">Molimo vas da izaberete polazak</a>
 
             </div>
 
-            <button id="intervalButton2" class="dropdown-button">Select Time Interval</button>
+            <button id="intervalButton2" class="dropdown-button">Izaberite vremenski interval</button>
             <div id="intervalDropdown2" class="dropdown-content">
                 <a href="#" data-interval="06:00-08:00">06:00-08:00</a>
                 <a href="#" data-interval="08:00-10:00">08:00-10:00</a>
-                <a href="#" data-interval="10:00-12:00">10:00-12:00</a>
+                <a href="#" data-interval="08:00-10:00">10:00-12:00</a>
                 <a href="#" data-interval="12:00-14:00">12:00-14:00</a>
                 <a href="#" data-interval="14:00-16:00">14:00-16:00</a>
                 <a href="#" data-interval="16:00-18:00">16:00-18:00</a>
@@ -456,8 +506,8 @@ h1 {
                 <a href="#" data-interval="00:30">00:30</a>
             </div>
 
-            <button id="searchButton2" class="search-button">Find Schedule</button>
-            <button id="showAllButton2" class="search-button">Show All</button>
+            <button id="searchButton2" class="search-button">Pronađite raspored</button>
+            <button id="showAllButton2" class="search-button">Prikaži sve</button>
         </div>
         <div id="result2"></div>
     </div>
@@ -466,7 +516,7 @@ h1 {
 
 
 
-    </div>>
+
     <script>
         function initMap() {
             var map1 = new google.maps.Map(document.getElementById('map1'), {
@@ -475,7 +525,7 @@ h1 {
             });
 
             var kmlLayer1 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1XQWXd5Rsm5crZPth7ILZhohn2FmHBi2w',
+                url: 'https://drive.google.com/uc?id=1wnKsCgt0UpRl7A7U_sGfK3FyV0qZeNJH',
                 map: map1
             });
 
@@ -485,7 +535,7 @@ h1 {
             });
 
             var kmlLayer2 = new google.maps.KmlLayer({
-                url: 'https://drive.google.com/uc?id=1xxP_NY7RxzuDuQ0wjNnKiKOIdzfGU5h5',
+                url: 'https://drive.google.com/uc?id=16pWVjFqcxOFXMytfkPkQ7L1kLX45ZW6D',
                 map: map2
             });
         }
@@ -549,7 +599,7 @@ h1 {
 let currentSchedule = null;
 let lastUpdated = null;
 let isShowAllClicked = false; // Информация, если Show All не нажата
-   const stops =["Budva (Obshtina)", "Nova Shkola", "Dukley", "Markovichi", "Pobori", "Braichi"];
+   const stops =["Budva (Nova škola)", "Slavija", "Opština", "Top Hill", "Sveti Djordje", "Lastva", "Lovćen Auto", "Mega Market", "Jaz"];
 
    // Функция для динамической подгрузки станций в arrivalDropdown
 function updateArrivalDropdown(selectedDeparture) {
@@ -568,7 +618,7 @@ function updateArrivalDropdown(selectedDeparture) {
 
 // Функция для загрузки расписания
 function loadActiveSchedule() {
-    return fetch('active_schedule.json')
+    return fetch('/active_schedule.json')
         .then(response => response.json())
         .then(data => {
             // Проверяем, изменились ли данные
@@ -578,7 +628,7 @@ function loadActiveSchedule() {
             }
 
             lastUpdated = data.lastUpdated; // Обновляем метку времени
-            const scheduleFile = data.active_braichi === '2buses' ? 'budva-braichi.json' : 'budva-braichi.json';
+            const scheduleFile = data.active_lastva === '2buses' ? '/budva-lastva_2buses.json' : '/budva-lastva_1bus.json';
             return fetch(scheduleFile).then(response => response.json());
         })
         .then(scheduleData => {
@@ -606,7 +656,7 @@ function renderTable(schedule) {
 
     if (!schedule || schedule.length === 0) {
        console.error('Invalid schedule structure:', schedule);
-        resultContainer.innerHTML = `<p>No schedule found for the selected filters.</p>`;
+        resultContainer.innerHTML = `<p>Nije pronađen raspored za izabrane filtere.</p>`;
         return;
     }
 
@@ -646,7 +696,7 @@ function renderFilteredTable(filteredTimes, selectedDeparture, selectedArrival) 
     result.style.display = 'block';
 
     if (!filteredTimes || filteredTimes.length === 0) {
-        result.innerHTML = '<p>No schedule found.</p>';
+        result.innerHTML = '<p>Raspored nije pronađen.</p>';
         return;
     }
 
@@ -710,7 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedArrival = null;
     let selectedInterval = null;
 
-    // Настройка выпадающих списков
+  // Настройка выпадающих списков
     const setupDropdown = (buttonId, dropdownId, callback) => {
     const button = document.getElementById(buttonId);
     const dropdown = document.getElementById(dropdownId);
@@ -759,7 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('searchButton').addEventListener('click', () => {
  {
    if (!selectedDeparture || !selectedArrival || !selectedInterval) {
-                alert("Please select Departure, Arrival, and Time Interval.");
+                alert("Molimo vas da izaberete polazak, dolazak i vremenski interval.");
                 return;
             }
 
@@ -785,7 +835,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     let lastUpdated2 = null;
     let isShowAllClicked2 = false; // Запоминает, была ли нажата кнопка "Show All"
 
-    const stops2 = ["Braichi", "Pobori", "Markovichi", "Stadion (Slavia)", "Budva (Obshtina)",];
+    const stops2 = ["Lastva", "Lovćen Auto", "Mega Market", "Jaz", "Nova škola"];
 
     // Функция для динамической подгрузки станций в arrivalDropdown2
     function updateArrivalDropdown2(selectedDeparture) {
@@ -804,7 +854,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
     // Функция для загрузки расписания
     function loadActiveSchedule2() {
-        return fetch('active_schedule.json')
+        return fetch('/active_schedule.json')
             .then(response => response.json())
             .then(data => {
                 if (lastUpdated2 && lastUpdated2 === data.lastUpdated2) {
@@ -813,7 +863,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
                 }
 
                 lastUpdated2 = data.lastUpdated2;
-                const scheduleFile = data.active_braichi === '2buses'  ? 'braichi-budva.json'  : 'braichi-budva.json';
+                const scheduleFile = data.active_lastva === '2buses'  ? '/lastva-budva_2buses.json'  : '/lastva-budva_1bus.json';
                 return fetch(scheduleFile).then(response => response.json());
             })
             .then(scheduleData => {
@@ -832,7 +882,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         const resultContainer = document.getElementById('result2');
 
         if (!Array.isArray(schedule) || schedule.length === 0) {
-            resultContainer.innerHTML = '<p>No schedule found.</p>';
+            resultContainer.innerHTML = '<p>Raspored nije pronađen.</p>';
             return;
         }
 
@@ -868,7 +918,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         result.style.display = 'block';
 
         if (!Array.isArray(filteredTimes) || filteredTimes.length === 0) {
-            result.innerHTML = '<p>No schedule found.</p>';
+            result.innerHTML = '<p>Raspored nije pronađen.</p>';
             return;
         }
 
@@ -914,7 +964,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         let selectedArrival2 = null;
         let selectedInterval2 = null;
 
-        // Настройка выпадающих списков
+  // Настройка выпадающих списков
     const setupDropdown = (buttonId, dropdownId, callback) => {
     const button = document.getElementById(buttonId);
     const dropdown = document.getElementById(dropdownId);
@@ -947,7 +997,6 @@ document.getElementById('searchButton').addEventListener('click', () => {
         }
     });
 };
-
         setupDropdown('departureButton2', 'departureDropdown2', (value) => {
             selectedDeparture2 = value;
             updateArrivalDropdown2(value);
@@ -966,7 +1015,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
             }
 
             if (!selectedDeparture2 || !selectedArrival2 || !selectedInterval2) {
-                alert("Please select Departure, Arrival, and Time Interval.");
+                alert("Molimo vas da izaberete polazak, dolazak i vremenski interval.");
                 return;
             }
 
@@ -984,13 +1033,64 @@ document.getElementById('searchButton').addEventListener('click', () => {
     });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('infoPopup');
+  const closeBtn = popup.querySelector('.close');
+
+  // Показываем popup сразу при загрузке
+  popup.style.display = 'block';
+
+  // Закрытие по кнопке
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Закрытие по фону
+  window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+});
+</script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ...
+
+  const infoBtn = document.getElementById("infoBtn");
+  const infoPopup = document.getElementById("infoPopup");
+  const closeBtnInfo = infoPopup.querySelector('.close');
+
+  // При загрузке мы один раз показываем попап
+  infoPopup.style.display = 'block';
+
+  // Клик по крестику закрывает
+  closeBtnInfo.addEventListener('click', () => {
+    infoPopup.style.display = 'none';
+  });
+
+  // Клик по фону закрывает
+  window.addEventListener('click', (e) => {
+    if (e.target === infoPopup) {
+      infoPopup.style.display = 'none';
+    }
+  });
+
+  // >>> Клик по иконке infoBtn снова открывает попап <<<
+  infoBtn.addEventListener('click', (e) => {
+    e.preventDefault();  // чтобы не скроллило вверх
+    infoPopup.style.display = 'block';
+  });
+});
+</script>
 
     <!--Version-->
 <div class="site-version"></div>
     <script>
-fetch("version.json")
+fetch("/version.json")
   .then(res => res.json())
   .then(data => {
     document.querySelectorAll(".site-version").forEach(el => {
@@ -999,10 +1099,9 @@ fetch("version.json")
   });
 </script>
 
-<script src="weather.js"></script>
+<script src="/weather.js"></script>
 <script>
-  getWeather("Budva", "weather-mb");
+  getWeather("Budva", "weather", "sr");
 </script>
-
 </body>
 </html>
