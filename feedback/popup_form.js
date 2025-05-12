@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const feedbackBtn = document.getElementById('openFeedbackBtn');
 if (feedbackBtn) {
   feedbackBtn.addEventListener('click', () => {
-    gtag('event', 'click', {
+    gtag('event', 'feedback_click', {
       event_category: 'popup',
       event_label: 'Feedback Button',
       value: 1
