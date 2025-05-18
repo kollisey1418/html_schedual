@@ -224,6 +224,18 @@ td {
     cursor: pointer;
 }
 
+.showAllbutton {
+      display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
     .schedule-selection {
     text-align: center;
     margin: 20px auto;
@@ -342,6 +354,7 @@ Mediteran Express
         <span class="close">&times;</span>
         <h2>Detaljan raspored</h2>
               <div class="filter-buttons">
+                <button id="showAllButton" class="showAllbutton">Prikaži sve</button>
             <button id="departureButton" class="dropdown-button">Izaberite polazak</button>
              <div id="departureDropdown" class="dropdown-content">
                         <a href="#" data-station="Budva">Budva</a>
@@ -377,7 +390,6 @@ Mediteran Express
                     </div>
 
                     <button id="searchButton" class="search-button">Pronađite raspored</button>
-                    <button id="showAllButton" class="search-button">Prikaži sve</button>
                 </div>
                 <div id="result"></div>
             </div>
@@ -422,6 +434,7 @@ Mediteran Express
         <span class="close" id="closePopup2">&times;</span>
         <h2>Detaljan raspored</h2>
         <div class="filter-buttons">
+          <button id="showAllButton2" class="showAllbutton">Prikaži sve</button>
             <button id="departureButton2" class="dropdown-button">Izaberite polazak</button>
             <div id="departureDropdown2" class="dropdown-content">
                 <a href="#" data-station="Sveti Stefan">Sveti Stefan</a>
@@ -456,7 +469,6 @@ Mediteran Express
             </div>
 
             <button id="searchButton2" class="search-button">Pronađite raspored</button>
-            <button id="showAllButton2" class="search-button">Prikaži sve</button>
         </div>
         <div id="result2"></div>
     </div>
