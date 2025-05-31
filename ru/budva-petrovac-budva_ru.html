@@ -223,6 +223,18 @@ td {
     cursor: pointer;
 }
 
+.showAllbutton {
+      display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
     .schedule-selection {
     text-align: center;
     margin: 20px auto;
@@ -342,6 +354,7 @@ td {
         <span class="close">&times;</span>
         <h2>Детали расписания</h2>
               <div class="filter-buttons">
+                <button id="showAllButton" class="showAllbutton">Показать все</button>
             <button id="departureButton" class="dropdown-button">Остановка отправления</button>
              <div id="departureDropdown" class="dropdown-content">
                         <a href="#" data-station="Будва">Будва</a>
@@ -381,7 +394,6 @@ td {
                     </div>
 
                     <button id="searchButton" class="search-button">Найти расписание</button>
-                    <button id="showAllButton" class="search-button">Показать все</button>
                 </div>
                 <div id="result"></div>
             </div>
@@ -430,6 +442,7 @@ td {
         <span class="close" id="closePopup2">&times;</span>
         <h2>Детали расписания</h2>
         <div class="filter-buttons">
+          <button id="showAllButton2" class="showAllbutton">Показать все</button>
             <button id="departureButton2" class="dropdown-button">Остановка отправления</button>
             <div id="departureDropdown2" class="dropdown-content">
                         <a href="#" data-station="Петровац">Петровац</a>
@@ -466,7 +479,6 @@ td {
             </div>
 
             <button id="searchButton2" class="search-button">Найти расписание</button>
-            <button id="showAllButton2" class="search-button">Показать все</button>
         </div>
         <div id="result2"></div>
     </div>
