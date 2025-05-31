@@ -12,7 +12,7 @@ module.exports = merge(common, {
     new CopyPlugin({
       patterns: [
         { from: 'img', to: 'img' },
-        { from: 'popup_form.css', to: 'popup_form.css' },
+        { from: 'feedback/css/popup_form.css', to: 'popup_form.css' },
         { from: 'js/vendor', to: 'js/vendor' },
         { from: 'icon.svg', to: 'icon.svg' },
         { from: 'favicon.ico', to: 'favicon.ico' },
