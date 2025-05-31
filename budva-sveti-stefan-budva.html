@@ -32,7 +32,7 @@
     padding: 2px;
     text-align: center;
     font-family: 'Tangerine', cursive;
-    font-size: 5em;
+    font-size: 3em;
     font-style: italic;
     letter-spacing: 3px;
 }
@@ -276,6 +276,32 @@ td {
         align-items: center;    /* Центрируем содержимое по вертикали */
     }
 
+    #priceSection {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+    #togglePrice {
+  width: 100px;
+  height: 20px;
+  display: block;
+  margin: 100px auto;
+}
+    .price-toggle-wrapper {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.price-toggle-text {
+  font-size: 16px;
+  color: #42d4f5;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+
+
 
     .price-container, .timetable-container {
         width: 90%;
@@ -399,9 +425,13 @@ Mediteran Express
 
 
 
+<div class="price-toggle-wrapper">
+  <div class="price-toggle-text">Tap to show prices</div>
+ <img id="togglePrice" class="mobil-only" src="img/toggle_down.png" alt="Show Prices" style="width: 200px; cursor: pointer; margin: 10px auto; display: block;">
+</div>
+  <div class="price-container" id="priceSection" >
+     <div style="text-align: center; width: 50%;">
 
-
-                <div class="price-container">
              <h2>Price for stops</h2>
                     <div class="price-item">
                         <h2> ↓ </h2>
@@ -420,6 +450,7 @@ Mediteran Express
                 <p>Green Ticket - €2.5</p>
             </div>
         </div>
+    </div>
 
       <div class="map-container">
     <h1>Sveti Stefan - Budva</h1>
@@ -1043,6 +1074,7 @@ fetch("version.json")
 </script>
 
 <script src="weather.js"></script>
+<script src="js/togglePrice.js"></script>
 <script>
   getWeather("Budva", "weather-mb");
 </script>
