@@ -69,7 +69,9 @@ h1, h2 {
 
 .map-container {
     width: 40%;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+    padding: 0;
+
 }
 
 #map1, #map2 {
@@ -95,9 +97,12 @@ h1, h2 {
 }
 
 .timetable-container {
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
     overflow-x: auto;
+    height: auto;
+    padding: 0;
 }
 
 table {
@@ -268,7 +273,9 @@ td {
     }
 
     .mobil-only {
-        display: block; /* Показываем только на телефоне */
+      display: block; /* Показываем только на телефоне */
+    }
+    .mobil-icon {
         font-size: 20px;
         width: 30px;
         height: 30px;
@@ -368,13 +375,12 @@ Mediteran Express
 <div class="map-container">
     <h1>Budva - Sveti Stefan</h1>
     <div id="map1"></div>
-    <div class="timetable-container">
-        <h2>Timetable for Stops</h2>
-       <div class="timetable-container">
-    <button id="detailedScheduleButton" class="schedule-button">Detailed Schedule</button>
+
+       <div class="timetable-container" style="margin-left: auto; margin-right: auto">
+    <button id="detailedScheduleButton" class="schedule-button" style="display: block; margin-left: auto; margin-right: auto">Schedule</button>
 </div>
-        <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
-    </div>
+
+
 </div>
 
       <div id="schedulePopup" class="popup">
@@ -418,6 +424,7 @@ Mediteran Express
                     </div>
 
                     <button id="searchButton" class="search-button">Find Schedule</button>
+                 <p style="text-align: center;">*This timetable is subject to change due to traffic conditions.</p>
                 </div>
                 <div id="result"></div>
             </div>
@@ -425,7 +432,7 @@ Mediteran Express
 
 
 
-<div class="price-toggle-wrapper">
+<div class="mobil-only price-toggle-wrapper">
   <div class="price-toggle-text">Tap to show prices</div>
  <img id="togglePrice" class="mobil-only" src="img/toggle_down.png" alt="Show Prices" style="width: 200px; cursor: pointer; margin: 10px auto; display: block;">
 </div>
